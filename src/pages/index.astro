@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const parts = await getCollection('path');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Springboard</title>
+    <meta
+      name="description"
+      content="Springboard — the point where one operator can run the store."
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Springboard</h1>
+      <p>Scaffold (M0). Real pages arrive in M1–M2.</p>
+      <p>
+        {posts.length} published posts · {parts.length} Path parts
+      </p>
+    </main>
+  </body>
+</html>
