@@ -1,0 +1,123 @@
+---
+import Button from './Button.astro';
+import { PRIMARY_NAV, isCurrent } from '@/lib/nav';
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand" aria-label="Springboard home">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="currentColor"></rect>
+        <path
+          d="M8 22h16M11 22l5-12 5 12"
+          stroke="var(--color-bg)"
+          stroke-width="2.5"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+      <span>Springboard</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {PRIMARY_NAV.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isCurrent(item.href, pathname) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <Button href="/score" class="site-header__cta">
+      Take the Score
+    </Button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    padding-block: var(--space-3);
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+    text-decoration: none;
+  }
+
+  .site-header__brand:hover {
+    color: var(--color-text);
+  }
+
+  .site-header__nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .site-header__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-inline: calc(-1 * var(--space-3));
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-header__nav a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-header__nav a:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  .site-header__nav a[aria-current='page'] {
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  :global(.site-header__cta) {
+    margin-left: auto;
+  }
+
+  @media (min-width: 60rem) {
+    .site-header__nav {
+      order: 0;
+      flex-basis: auto;
+      margin-left: auto;
+    }
+
+    .site-header__nav ul {
+      margin-inline: 0;
+    }
+
+    :global(.site-header__cta) {
+      margin-left: 0;
+    }
+  }
+</style>
