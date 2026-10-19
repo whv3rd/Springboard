@@ -14,10 +14,10 @@ Springboard is a **threshold a business reaches, not a product it buys**. It is 
 
 ## Tiers of operation
 
-| Tier | Who runs it | Who it serves |
-| --- | --- | --- |
-| Small | A single operator | A solo owner-entrepreneur |
-| Medium | Director of ecommerce plus a couple of operators | A mid-sized business |
+| Tier   | Who runs it                                      | Who it serves             |
+| ------ | ------------------------------------------------ | ------------------------- |
+| Small  | A single operator                                | A solo owner-entrepreneur |
+| Medium | Director of ecommerce plus a couple of operators | A mid-sized business      |
 
 ## The five checkpoints (the Springboard foundation)
 

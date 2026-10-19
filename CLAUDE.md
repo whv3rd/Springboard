@@ -3,6 +3,7 @@
 Education-first site (blog + docs + paid library) for **Springboard**: the threshold where a small/mid-sized ecommerce business has design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run it. Brand sits under **Springs** (name not final). Owner: Will Vinton.
 
 Detail lives in `docs/`:
+
 - `docs/concept.md` — the concept, audience, voice, the five checkpoints
 - `docs/site-blueprint.md` — sitemap, Score rubric, Path structure, pricing, conversion flow
 - `docs/SPRINGBOARD_HANDOFF.md` — original planning record (source of truth; don't edit)
@@ -17,7 +18,7 @@ Detail lives in `docs/`:
 
 ## Conventions
 
-- **Paywall rule:** explains *what* or *why* → free. Step-by-step *how to build* → paid. Mark with `access: free | paid` frontmatter.
+- **Paywall rule:** explains _what_ or _why_ → free. Step-by-step _how to build_ → paid. Mark with `access: free | paid` frontmatter.
 - **Path content:** 5 tracks × the same 6 parts (overview, requirements, build-guide, templates, workflows, checklist). Overview, requirements, checklist are free; the rest paid.
 - **Score:** 5 checkpoints × 0–4, total × 5 → 0–100. Levels: Grounded, Loading, Coiled, Launch-ready, Springboard (see blueprint).
 - **Voice:** practitioner, not pundit. Real workflows, real numbers. No hype.

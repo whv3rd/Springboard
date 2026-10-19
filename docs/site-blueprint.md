@@ -26,21 +26,21 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 
 0–100. Each of the five checkpoints is rated 0–4; total × 5.
 
-| Rating | Meaning |
-| --- | --- |
-| 0 | Not started |
-| 1 | Partial, ad hoc |
-| 2 | In place, not connected to AI |
-| 3 | Connected, used sometimes |
-| 4 | Connected and part of how work gets done |
+| Rating | Meaning                                  |
+| ------ | ---------------------------------------- |
+| 0      | Not started                              |
+| 1      | Partial, ad hoc                          |
+| 2      | In place, not connected to AI            |
+| 3      | Connected, used sometimes                |
+| 4      | Connected and part of how work gets done |
 
-| Score | Level | Meaning |
-| --- | --- | --- |
-| 0–25 | Grounded | Vendor-dependent; start with the design system |
-| 26–50 | Loading | Foundations exist but aren't connected |
-| 51–75 | Coiled | Key systems connected; processes still manual |
-| 76–95 | Launch-ready | Mostly automated; a few gaps to close |
-| 96–100 | Springboard | One operator or a small team can run it all |
+| Score  | Level        | Meaning                                        |
+| ------ | ------------ | ---------------------------------------------- |
+| 0–25   | Grounded     | Vendor-dependent; start with the design system |
+| 26–50  | Loading      | Foundations exist but aren't connected         |
+| 51–75  | Coiled       | Key systems connected; processes still manual  |
+| 76–95  | Launch-ready | Mostly automated; a few gaps to close          |
+| 96–100 | Springboard  | One operator or a small team can run it all    |
 
 - **Free result:** total, level, one next step.
 - **Paid result:** full gap report per checkpoint, with links into matching Path modules.
@@ -49,14 +49,14 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 
 One track per checkpoint. Every track uses the same six parts:
 
-| # | Part | Access |
-| --- | --- | --- |
-| 1 | Overview | free |
-| 2 | Requirements | free |
-| 3 | Build guide | paid |
-| 4 | Templates and assets — Figma files, prompts, MCP configs, process maps | paid |
-| 5 | Workflows — day-to-day recipes | paid |
-| 6 | Checklist — what earns a 4 | free |
+| #   | Part                                                                   | Access |
+| --- | ---------------------------------------------------------------------- | ------ |
+| 1   | Overview                                                               | free   |
+| 2   | Requirements                                                           | free   |
+| 3   | Build guide                                                            | paid   |
+| 4   | Templates and assets — Figma files, prompts, MCP configs, process maps | paid   |
+| 5   | Workflows — day-to-day recipes                                         | paid   |
+| 6   | Checklist — what earns a 4                                             | free   |
 
 Tracks:
 
@@ -70,12 +70,12 @@ A short **Start here** guide (free) sits above all tracks.
 
 ## Pricing tiers
 
-| Tier | For | Unlocks | Price |
-| --- | --- | --- | --- |
-| Free | Anyone | Blog, Springboard pages, Score total + level, track overviews, requirements, checklists, newsletter | $0 |
-| Path | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report | TBD |
-| Path Team | Small teams | Path for multiple seats, team Score tracking, quarterly live Q&A | TBD |
-| Springs Advisory | Done-with-you | Readiness audit, hands-on build, optional ongoing operation | Quoted |
+| Tier             | For            | Unlocks                                                                                             | Price  |
+| ---------------- | -------------- | --------------------------------------------------------------------------------------------------- | ------ |
+| Free             | Anyone         | Blog, Springboard pages, Score total + level, track overviews, requirements, checklists, newsletter | $0     |
+| Path             | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                       | TBD    |
+| Path Team        | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                    | TBD    |
+| Springs Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                         | Quoted |
 
 ## Content pillars
 
