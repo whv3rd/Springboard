@@ -1,0 +1,88 @@
+---
+import { PRIMARY_NAV } from '@/lib/nav';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="site-footer__brand">Springboard</p>
+      <p class="site-footer__tagline">
+        Design, platform and marketing systems connected to AI, so one operator or a small team can
+        run the store.
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        {PRIMARY_NAV.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="container site-footer__legal">
+    <p>© {year} Springs. Built to the Springboard standard.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    padding-block: var(--space-7) var(--space-5);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: var(--text-sm);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .site-footer__brand {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+  }
+
+  .site-footer__tagline {
+    margin-top: var(--space-2);
+    max-width: 40ch;
+    color: var(--color-text-muted);
+  }
+
+  .site-footer ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: var(--space-2) var(--space-6);
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .site-footer__legal {
+    margin-top: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__inner {
+      grid-template-columns: 1fr auto;
+    }
+
+    .site-footer ul {
+      grid-template-columns: repeat(3, max-content);
+    }
+  }
+</style>
