@@ -1,0 +1,271 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import Card from '@/components/Card.astro';
+import Callout from '@/components/Callout.astro';
+import Paywall from '@/components/Paywall.astro';
+
+const colors = [
+  'bg',
+  'surface',
+  'surface-raised',
+  'border',
+  'border-strong',
+  'text',
+  'text-muted',
+  'accent',
+  'accent-hover',
+  'accent-subtle',
+];
+const textSizes = ['3xl', '2xl', 'xl', 'lg', 'md', 'base', 'sm', 'xs'];
+const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const radii = ['sm', 'md', 'lg', 'full'];
+---
+
+<BaseLayout title="Styleguide" description="Springboard design tokens and components." noindex>
+  <div class="container styleguide">
+    <header>
+      <p class="eyebrow">Internal</p>
+      <h1>Styleguide</h1>
+      <p class="muted">
+        Placeholder tokens from <code>src/styles/tokens.css</code>. They will be replaced from the
+        Springboard Figma design system. Switch your OS to dark mode to check the dark theme.
+      </p>
+    </header>
+
+    <section>
+      <h2>Color</h2>
+      <ul class="swatches">
+        {colors.map((c) => (
+          <li>
+            <span class="swatch" style={`background: var(--color-${c})`} />
+            <code>--color-{c}</code>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Type scale</h2>
+      {textSizes.map((s) => (
+        <p style={`font-size: var(--text-${s}); line-height: var(--leading-tight)`}>
+          <code class="label">--text-{s}</code> Connected and part of how work gets done
+        </p>
+      ))}
+    </section>
+
+    <section>
+      <h2>Spacing</h2>
+      <ul class="spaces">
+        {spaces.map((s) => (
+          <li>
+            <code class="label">--space-{s}</code>
+            <span class="space-bar" style={`width: var(--space-${s})`} />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Radius</h2>
+      <ul class="radii">
+        {radii.map((r) => (
+          <li>
+            <span class="radius-box" style={`border-radius: var(--radius-${r})`} />
+            <code>--radius-{r}</code>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Buttons</h2>
+      <div class="row">
+        <Button href="#">Primary</Button>
+        <Button href="#" variant="secondary">
+          Secondary
+        </Button>
+        <Button href="#" variant="ghost">
+          Ghost
+        </Button>
+        <Button size="lg">Large button</Button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cards</h2>
+      <div class="grid">
+        <Card
+          eyebrow="Track 1"
+          title="Design system in Figma"
+          description="Design system, component library and every page template in Figma."
+          href="#"
+        />
+        <Card
+          eyebrow="Track 3"
+          title="Platform MCP"
+          description="Store platform and full catalog connected to Claude. Shopify first."
+          href="#"
+        />
+        <Card title="Static card" description="No link, no hover state." />
+      </div>
+    </section>
+
+    <section>
+      <h2>Callouts</h2>
+      <div class="stack">
+        <Callout>A neutral note for context or asides.</Callout>
+        <Callout type="tip">A practical shortcut from real operation.</Callout>
+        <Callout type="warning">Something that will bite you if you skip it.</Callout>
+        <Callout type="danger" title="Don't do this in production">
+          Destructive or irreversible steps.
+        </Callout>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prose</h2>
+      <div class="prose">
+        <p>
+          Body copy at <code>--text-md</code> with a <a href="#">link</a>. Long-form Markdown
+          renders inside <code>.prose</code>, capped at a readable measure.
+        </p>
+        <h3>A third-level heading</h3>
+        <ul>
+          <li>Design system in Figma</li>
+          <li>Claude connected to Figma</li>
+          <li>Platform and marketing MCPs</li>
+        </ul>
+        <blockquote>Practitioner, not pundit.</blockquote>
+        <pre><code>{`{ "mcpServers": { "shopify": { "command": "npx" } } }`}</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th>Rating</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>Not started</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Connected and part of how work gets done</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Paywall</h2>
+      <Paywall teaser="Start by auditing every page template you ship today. List each one, the components it uses, and where it deviates from the rest. This becomes the inventory your Figma library is built from, and it is the first thing Claude needs to stay on-system." />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .styleguide {
+    padding-block: var(--space-8);
+  }
+
+  .styleguide > * + * {
+    margin-top: var(--space-8);
+  }
+
+  .styleguide h1 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-2);
+  }
+
+  .styleguide h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .muted {
+    margin-top: var(--space-3);
+    max-width: 60ch;
+    color: var(--color-text-muted);
+  }
+
+  .swatches,
+  .spaces,
+  .radii {
+    padding: 0;
+    list-style: none;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  .label {
+    display: inline-block;
+    min-width: 7rem;
+    color: var(--color-text-muted);
+  }
+
+  .swatches,
+  .radii {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .swatches li,
+  .radii li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .swatch {
+    height: 3.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .radius-box {
+    height: 3.5rem;
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-accent);
+  }
+
+  section > p + p,
+  .spaces li + li {
+    margin-top: var(--space-3);
+  }
+
+  .spaces li {
+    display: flex;
+    align-items: center;
+  }
+
+  .space-bar {
+    height: 0.75rem;
+    background: var(--color-accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .stack > * + * {
+    margin-top: var(--space-4);
+  }
+</style>
