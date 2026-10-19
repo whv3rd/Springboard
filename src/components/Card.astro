@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  eyebrow?: string;
+  description?: string;
+  headingLevel?: 2 | 3 | 4;
+}
+
+const { title, href, eyebrow, description, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
+---
+
+<article class:list={['card', { 'card--link': href }]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Heading class="card__title">{href ? <a href={href}>{title}</a> : title}</Heading>
+  {description && <p class="card__description">{description}</p>}
+  <slot />
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .card--link:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card__title {
+    font-size: var(--text-lg);
+  }
+
+  .card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  /* Stretch the title link over the whole card */
+  .card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .card__description {
+    color: var(--color-text-muted);
+  }
+</style>
