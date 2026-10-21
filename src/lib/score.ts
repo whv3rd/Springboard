@@ -6,12 +6,15 @@
 
 import type { Track } from './path';
 
+/** Every Path track except Start here builds one checkpoint. */
+export type CheckpointTrack = Exclude<Track, 'start-here'>;
+
 export interface Checkpoint {
   number: number;
   name: string;
   description: string;
   /** The Path track that builds this checkpoint. */
-  track: Track;
+  track: CheckpointTrack;
 }
 
 // From docs/concept.md, "The five checkpoints".

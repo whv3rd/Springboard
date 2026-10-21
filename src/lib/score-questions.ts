@@ -10,7 +10,7 @@
 //   Changing the number of questions changes the weighting inside that checkpoint only.
 // - `npm test` checks the shape of this file.
 
-import type { Track } from './path';
+import type { CheckpointTrack } from './score';
 
 export interface Question {
   /** Stable id, used as the form field name. Change it only if the question changes meaning. */
@@ -178,7 +178,7 @@ export const QUESTIONS: readonly (readonly Question[])[] = [
 ];
 
 /** One next step per checkpoint, shown when it's the weakest. Keyed by track slug. */
-export const NEXT_STEPS: Record<Exclude<Track, 'start-here'>, string> = {
+export const NEXT_STEPS: Record<CheckpointTrack, string> = {
   'design-system':
     'Put your colours, type and spacing into Figma variables, then build the components your top three page templates use.',
   'ai-design':
