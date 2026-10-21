@@ -43,6 +43,11 @@ select {
   font: inherit;
 }
 
+/* Components set their own display (e.g. inline-flex buttons); `hidden` must still win. */
+[hidden] {
+  display: none !important;
+}
+
 h1,
 h2,
 h3,
