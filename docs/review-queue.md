@@ -23,6 +23,8 @@ Read all eight. Then, in your own words (voice notes are fine, Claude will tidy 
 - [ ] Who I am: "Across platforms and company sizes, one pattern keeps repeating" and "For most of my career, the answer was to hire more specialists." Confirm, or tell the real version.
 - [ ] Who I am: keep the $1.5B line? 📱
 - [ ] Building at my own brands: OK to stay unnamed for now, or name the build log brand? 📱
+- [ ] "Start with a theme, build the system, then just talk": your dictated Figma post, tidied. Check it still sounds like you, and add a real navigation example or screenshot if you have one
+- [ ] "Just talk" draft: answer the five questions in the post by voice (📱 works), then Claude writes it up
 - [ ] Anything in any post that doesn't sound like you
 
 ## Site copy (#5)

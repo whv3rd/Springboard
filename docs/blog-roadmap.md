@@ -4,6 +4,10 @@ The blog does job one of the site: **earn trust**. Every post should leave an op
 
 Status: draft for Will's review. Dates, cadence and titles are proposals.
 
+## The core theme
+
+Set up the foundation right, give AI the rules, then just talk. It applies to every checkpoint (design, platform, marketing, processes), and it is the underlying theme of Springboard. Most posts should come back to it.
+
 ## Principles
 
 - **Practitioner, not pundit.** Lead with what was done, what it took and what happened. Opinion posts (The shift) still need a concrete example.
