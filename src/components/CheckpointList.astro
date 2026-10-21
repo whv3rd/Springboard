@@ -12,7 +12,7 @@ interface Props {
 const { headingLevel = 3, linkTracks = true } = Astro.props;
 ---
 
-<ol class="checkpoints">
+<ol class="card-grid card-grid--five">
   {CHECKPOINTS.map((cp) => (
     <li>
       <Card
@@ -25,17 +25,3 @@ const { headingLevel = 3, linkTracks = true } = Astro.props;
     </li>
   ))}
 </ol>
-
-<style>
-  .checkpoints {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
-    gap: var(--space-4);
-    padding: 0;
-    list-style: none;
-  }
-
-  .checkpoints li {
-    display: grid;
-  }
-</style>
