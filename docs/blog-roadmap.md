@@ -67,6 +67,21 @@ Blocked on open decisions: which brand is the public build log, and what can be 
 
 The research agent's backlog (`ideas` in its digests) should replace or sharpen these titles over time.
 
+## Queued drafts (Will's ideas)
+
+Draft files in `src/content/blog/` with Will's notes and open questions. Each gets written once Will answers by voice.
+
+| Post                                                     | Theme                                                       |
+| -------------------------------------------------------- | ----------------------------------------------------------- |
+| You don't have to be a designer, developer or writer     | Just talk: AI covers the skills you don't have              |
+| The Springboard concept applies to development, too      | Platform MCPs plus a connected repo for non-developers      |
+| Vibe coding vs. agentic development                      | Attention, explicit permission, full history                |
+| Teams 1: your backlog is the bottleneck                  | Jira or Linear in the stack, business requests, audit trail |
+| Teams 2: Claude as your scrum master and project manager | Running Agile, SAFe, Scrum or Kanban with AI                |
+| Teams 3: agentic scrum teams for ecommerce               | Which teams to build, how to structure them, how to decide  |
+
+The teams series may grow into a Path module or a course (see `docs/project-plan.md`, offers).
+
 ## Idea backlog by checkpoint
 
 Seeds for Playbooks and Teardowns. The research pipeline adds to this.

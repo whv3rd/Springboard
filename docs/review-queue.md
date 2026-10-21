@@ -25,6 +25,12 @@ Read all eight. Then, in your own words (voice notes are fine, Claude will tidy 
 - [ ] Building at my own brands: OK to stay unnamed for now, or name the build log brand? 📱
 - [ ] "Start with a theme, build the system, then just talk": your dictated Figma post, tidied. Check it still sounds like you, and add a real navigation example or screenshot if you have one
 - [ ] "Just talk" draft: answer the five questions in the post by voice (📱 works), then Claude writes it up
+- [ ] Queued drafts: answer the questions at the top of each by voice (📱 works), one post at a time. Claude writes each one up in your words:
+  - [ ] Springboard for development (Shopify, WordPress, Magento, GitHub/Bitbucket)
+  - [ ] Vibe coding vs. agentic development
+  - [ ] Teams series 1: your backlog is the bottleneck (Jira/Linear)
+  - [ ] Teams series 2: Claude as your scrum master
+  - [ ] Teams series 3: agentic scrum teams
 - [ ] Anything in any post that doesn't sound like you
 
 ## Site copy (#5)
