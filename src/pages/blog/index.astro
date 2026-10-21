@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import PostList from '@/components/PostList.astro';
+import { getPublishedPosts } from '@/lib/blog';
+import { PILLAR_LABELS, PILLARS } from '@/lib/path';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Operator diaries, teardowns, free playbooks and opinion on running ecommerce with AI-connected systems."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="Blog"
+      title="Notes from running stores on connected systems"
+      lede={`${PILLARS.map((p) => PILLAR_LABELS[p]).join(', ')}. Written by an operator, from real work.`}
+    />
+
+    <section aria-labelledby="posts-title">
+      <h2 id="posts-title" class="visually-hidden">
+        Posts
+      </h2>
+      {posts.length > 0 ? (
+        <PostList posts={posts} headingLevel={3} />
+      ) : (
+        <div class="empty">
+          <p class="empty__title">No posts yet.</p>
+          <p class="empty__text">
+            The first posts are being written. In the meantime, see what Springboard is or read the
+            free Path guide.
+          </p>
+          <div class="actions">
+            <Button href="/springboard">What is Springboard?</Button>
+            <Button href="/path" variant="secondary">
+              The Path
+            </Button>
+          </div>
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .empty {
+    max-width: var(--width-prose);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border-strong);
+    border-radius: var(--radius-lg);
+  }
+
+  .empty__title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+  }
+
+  .empty__text {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+</style>
