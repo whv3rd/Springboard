@@ -19,7 +19,7 @@ export const KLAVIYO_SOURCE = 'Springboard Score';
 export interface ScoreProfileProperties {
   springboard_score: number;
   springboard_level: string;
-  /** Track slug of the weakest checkpoint, e.g. `design-system`. */
+  /** Track slug of the weakest checkpoint, e.g. `design-system`, or `none` on a perfect score. */
   weakest_checkpoint: string;
 }
 

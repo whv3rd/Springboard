@@ -3,7 +3,13 @@
 
 import { PUBLIC_KLAVIYO_LIST_ID, PUBLIC_KLAVIYO_SITE_KEY } from 'astro:env/client';
 import { hasKlaviyoConfig, subscribe } from '@/lib/klaviyo';
-import { CHECKPOINTS, MAX_RATING, resultFromRatings, scoreAnswers } from '@/lib/score';
+import {
+  CHECKPOINTS,
+  isAllClear,
+  resultFromRatings,
+  scoreAnswers,
+  weakestCheckpointProperty,
+} from '@/lib/score';
 import type { ScoreResult } from '@/lib/score';
 
 const STORAGE_KEY = 'springboard:score';
@@ -110,12 +116,12 @@ function init(): void {
     await subscribe(klaviyo, email, {
       springboard_score: score.total,
       springboard_level: score.level.name,
-      weakest_checkpoint: score.weakest.track,
+      weakest_checkpoint: weakestCheckpointProperty(score),
     });
   }
 
   function showResult(score: ScoreResult, moveFocus = true): void {
-    const allClear = score.ratings.every((r) => r === MAX_RATING);
+    const allClear = isAllClear(score);
     $<HTMLElement>(result, '[data-total]').textContent = String(score.total);
     $<HTMLElement>(result, '[data-level-name]').textContent = score.level.name;
     $<HTMLElement>(result, '[data-level-meaning]').textContent = `${score.level.meaning}.`;
