@@ -23,9 +23,10 @@ Status: draft for Will's review. Dates, cadence and titles are proposals.
 
 ## Cadence
 
-- **Pre-launch:** write the launch set (below) before the site goes live.
-- **After launch (proposal):** one post a week, rotating pillars, plus an optional short monthly "What changed in AI commerce" roundup built from the research agent's digests.
-- If time is tight, drop to two posts a month before dropping quality.
+- **Launch:** eight foundational posts, backdated August–October 2026 (PR #4), covering what Springboard is, the checkpoints, the Score, the tiers, and Will's background.
+- **Ongoing:** 2–3 posts a week, drafted by the content agent from the research digests and the backlog below, rotating pillars. Each draft arrives as a PR; merging it publishes it.
+- **Will's part:** review each draft, add the practitioner detail only he has (screenshots, real numbers, what actually happened), and merge. Operator diaries and Teardowns of real brands always need Will's input before publishing.
+- If review time gets tight, reduce volume before reducing quality. Thin, generic AI posts hurt trust and search rankings more than a slower cadence does.
 
 ## Launch set (from the handoff)
 
