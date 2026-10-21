@@ -88,6 +88,54 @@ a:hover {
   padding-inline: var(--gutter);
 }
 
+/* A standard page: vertical rhythm between the header and each section. */
+.page {
+  padding-block: var(--space-7) var(--space-9);
+}
+
+.page > * + * {
+  margin-top: var(--space-8);
+}
+
+.page > .breadcrumb + * {
+  margin-top: var(--space-4);
+}
+
+.section-title {
+  font-size: var(--text-xl);
+}
+
+.section-lede {
+  max-width: 60ch;
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.section-title + :is(ol, ul, div),
+.section-lede + :is(ol, ul, div) {
+  margin-top: var(--space-5);
+}
+
+/* Responsive grid of cards; columns never get narrower than the min. */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.card-grid > li {
+  display: grid;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
