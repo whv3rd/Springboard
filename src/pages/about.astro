@@ -1,0 +1,126 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Callout from '@/components/Callout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+const page = await getEntry('pages', 'about');
+if (!page) throw new Error('Missing src/content/pages/about.md');
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <div class="container page">
+    <PageHeader eyebrow="About and advisory" title={page.data.title} lede={page.data.description} />
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <section aria-labelledby="background-title">
+      <h2 id="background-title" class="section-title">
+        Background and proof
+      </h2>
+      {/* DRAFT COPY: facts from docs/concept.md. Employer and brand names are left out until
+          Will decides what can be shown publicly (open decision in CLAUDE.md). */}
+      <ul class="facts">
+        <li>About 18 years in ecommerce.</li>
+        <li>Deep on Shopify, Magento and Salesforce.</li>
+        <li>Consulting work behind more than $1.5B in realized ecommerce revenue.</li>
+        <li>
+          Leads digital experience and technology at a mid-sized ecommerce brand, and runs a brand
+          portfolio that is being built to Springboard now.
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="cases-title">
+      <h2 id="cases-title" class="section-title">
+        Case studies
+      </h2>
+      {/* PLACEHOLDER: case studies depend on what can be shown publicly. */}
+      <Callout title="Coming soon">
+        <p>Case studies are being written up.</p>
+      </Callout>
+    </section>
+
+    <section aria-labelledby="log-title">
+      <h2 id="log-title" class="section-title">
+        Public build log
+      </h2>
+      {/* PLACEHOLDER: which portfolio brand becomes the build log is an open decision. */}
+      <Callout title="Coming soon">
+        <p>
+          One brand will be built to Springboard in public, checkpoint by checkpoint, with real
+          numbers. The log starts here once that brand is chosen.
+        </p>
+      </Callout>
+    </section>
+
+    <section id="advisory" class="advisory" aria-labelledby="advisory-title">
+      <p class="eyebrow">Springs Advisory</p>
+      <h2 id="advisory-title" class="section-title">
+        Advisory: done with you
+      </h2>
+      <p class="section-lede">
+        For businesses that want help getting to Springboard. Priced by quote after a first call.
+      </p>
+      <ul class="facts">
+        <li>
+          <strong>Readiness audit.</strong> Where each of the five checkpoints stands today.
+        </li>
+        <li>
+          <strong>Hands-on build.</strong> Getting the checkpoints in place, together.
+        </li>
+        <li>
+          <strong>Optional ongoing operation.</strong> Running it with you after the build.
+        </li>
+      </ul>
+      {/* PLACEHOLDER: no booking service is set up yet. Adding one (e.g. a scheduler) needs
+          Will's approval under the ask-before-paid-service rule. */}
+      <Callout type="tip" title="Book a call">
+        <p>
+          Booking opens soon. In the meantime, take the Score so the first call starts with data.
+        </p>
+        <p>
+          <a href="/score">Take the Score</a>
+        </p>
+      </Callout>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .facts {
+    max-width: var(--width-prose);
+    padding-left: 1.2em;
+    font-size: var(--text-md);
+  }
+
+  .facts li + li {
+    margin-top: var(--space-2);
+  }
+
+  .facts li::marker {
+    color: var(--color-accent);
+  }
+
+  .section-title + .facts,
+  .section-lede + .facts,
+  .facts + :global(.callout),
+  .section-title + :global(.callout) {
+    margin-top: var(--space-5);
+  }
+
+  .advisory {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    scroll-margin-top: var(--space-5);
+  }
+
+  .advisory .section-title {
+    margin-top: var(--space-2);
+  }
+</style>
