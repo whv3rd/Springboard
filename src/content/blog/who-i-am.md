@@ -9,7 +9,7 @@ I'm Will Vinton. I've worked in ecommerce for about eighteen years.
 
 Most of that time has been spent on the parts of the business customers never see: platforms, catalogs, integrations, site builds, and the teams and vendors that keep them running. I've worked deeply on Shopify, Magento and Salesforce Commerce, and my consulting work has been behind more than $1.5 billion in realized ecommerce revenue.
 
-Today I lead Digital Experience & Technology at Mishimoto, and I run the Brecks Brothers brand portfolio.
+Today I direct ecommerce and consult across multiple brands, including a portfolio of my own. That mix keeps me close to both sides of the problem: the team that has to run the store every day, and the owner who has to pay for it.
 
 ## What I've seen
 
