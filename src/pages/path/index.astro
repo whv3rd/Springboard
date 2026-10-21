@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AccessBadge from '@/components/AccessBadge.astro';
+import Card from '@/components/Card.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { PART_ACCESS, PART_LABELS, PARTS, TRACK_INFO, TRACKS, trackHref } from '@/lib/path';
+
+const start = TRACK_INFO['start-here'];
+const tracks = TRACKS.filter((t) => TRACK_INFO[t].checkpoint !== null);
+---
+
+<BaseLayout
+  title="The Path"
+  description="Five tracks, one per Springboard checkpoint, each in the same six parts. Overviews, requirements and checklists are free."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="The Path"
+      title="One track per checkpoint"
+      lede="Each track builds one of the five Springboard checkpoints. Every track has the same six parts. The overview, requirements and checklist are free. The build guide, templates and workflows are in the Path."
+    />
+
+    <section aria-labelledby="start-title">
+      <h2 id="start-title" class="visually-hidden">
+        Start here
+      </h2>
+      <Card
+        eyebrow="Free guide"
+        title={start.title}
+        description={start.description}
+        href={trackHref('start-here')}
+      />
+    </section>
+
+    <section aria-labelledby="tracks-title">
+      <h2 id="tracks-title" class="section-title">
+        The five tracks
+      </h2>
+      <ol class="card-grid card-grid--five">
+        {tracks.map((track) => (
+          <li>
+            <Card
+              eyebrow={`Track ${TRACK_INFO[track].checkpoint}`}
+              title={TRACK_INFO[track].title}
+              description={TRACK_INFO[track].description}
+              href={trackHref(track)}
+            />
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section aria-labelledby="parts-title">
+      <h2 id="parts-title" class="section-title">
+        The same six parts in every track
+      </h2>
+      <p class="section-lede">
+        Anything that explains what or why is free. Anything you could follow step by step to build
+        it is paid.
+      </p>
+      <ol class="parts">
+        {PARTS.map((part, i) => (
+          <li>
+            <span class="parts__number">{i + 1}</span>
+            <span class="parts__label">{PART_LABELS[part]}</span>
+            <AccessBadge access={PART_ACCESS[part]} />
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .parts {
+    max-width: 32rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .parts li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .parts__number {
+    min-width: 1.5em;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .parts__label {
+    flex: 1;
+  }
+</style>

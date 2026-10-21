@@ -1,0 +1,27 @@
+---
+import Card from './Card.astro';
+import { CHECKPOINTS } from '@/lib/score';
+import { trackHref } from '@/lib/path';
+
+interface Props {
+  headingLevel?: 2 | 3 | 4;
+  /** Link each checkpoint to the Path track that builds it. */
+  linkTracks?: boolean;
+}
+
+const { headingLevel = 3, linkTracks = true } = Astro.props;
+---
+
+<ol class="card-grid card-grid--five">
+  {CHECKPOINTS.map((cp) => (
+    <li>
+      <Card
+        eyebrow={`Checkpoint ${cp.number}`}
+        title={cp.name}
+        description={cp.description}
+        href={linkTracks ? trackHref(cp.track) : undefined}
+        headingLevel={headingLevel}
+      />
+    </li>
+  ))}
+</ol>

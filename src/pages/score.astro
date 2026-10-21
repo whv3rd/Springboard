@@ -1,0 +1,124 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import Callout from '@/components/Callout.astro';
+import Card from '@/components/Card.astro';
+import CheckpointList from '@/components/CheckpointList.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { LEVELS, RATINGS } from '@/lib/score';
+---
+
+<BaseLayout
+  title="The Springboard Score"
+  description="A free self-assessment: five checkpoints rated 0 to 4, totalled to a score out of 100 and a level."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="The Score"
+      title="The Springboard Score"
+      lede="A free self-assessment. Rate each of the five checkpoints from 0 to 4. The total, times five, is your score out of 100."
+    />
+
+    {/* PLACEHOLDER: replaced by the interactive quiz in M3. */}
+    <Callout type="warning" title="The quiz isn't live yet">
+      <p>
+        The interactive Score arrives with the next milestone (M3). Until then, this page explains
+        how it works, so you can rate yourself against the tables below.
+      </p>
+    </Callout>
+
+    <section aria-labelledby="checkpoints-title">
+      <h2 id="checkpoints-title" class="section-title">
+        What gets scored
+      </h2>
+      <CheckpointList />
+    </section>
+
+    <section aria-labelledby="ratings-title">
+      <h2 id="ratings-title" class="section-title">
+        Rating each checkpoint, 0 to 4
+      </h2>
+      <div class="prose">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Rating</th>
+              <th scope="col">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RATINGS.map((r) => (
+              <tr>
+                <td>{r.value}</td>
+                <td>{r.meaning}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="levels-title">
+      <h2 id="levels-title" class="section-title">
+        Your level
+      </h2>
+      <p class="section-lede">Five checkpoints × 0–4, times five, gives a score from 0 to 100.</p>
+      <div class="prose">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Score</th>
+              <th scope="col">Level</th>
+              <th scope="col">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {LEVELS.map((l) => (
+              <tr>
+                <td class="nowrap">
+                  {l.min}–{l.max}
+                </td>
+                <th scope="row">{l.name}</th>
+                <td>{l.meaning}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="results-title">
+      <h2 id="results-title" class="section-title">
+        What you get
+      </h2>
+      <ul class="card-grid">
+        <li>
+          <Card
+            eyebrow="Free"
+            title="Score, level and one next step"
+            description="Your total out of 100, your level, and the single most useful thing to do next."
+          />
+        </li>
+        <li>
+          <Card
+            eyebrow="Path"
+            title="Full gap report"
+            description="Every checkpoint broken down, with links into the matching Path tracks."
+          />
+        </li>
+      </ul>
+      <div class="actions">
+        <Button href="/path">Browse the Path</Button>
+        <Button href="/pricing" variant="secondary">
+          Pricing
+        </Button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .nowrap {
+    white-space: nowrap;
+  }
+</style>
