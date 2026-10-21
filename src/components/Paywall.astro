@@ -35,12 +35,9 @@ const { teaser, title = 'This part is in the Path' } = Astro.props;
     max-width: var(--width-prose);
   }
 
+  /* The teaser is a complete pitch, not an excerpt of the body, so it shows in full. */
   .paywall__teaser {
-    position: relative;
     font-size: var(--text-md);
-    max-height: 9em;
-    overflow: hidden;
-    mask-image: linear-gradient(to bottom, black 40%, transparent);
   }
 
   .paywall__gate {
