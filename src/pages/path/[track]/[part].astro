@@ -1,0 +1,124 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AccessBadge from '@/components/AccessBadge.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Paywall from '@/components/Paywall.astro';
+import { getTrackEntries } from '@/lib/path-content';
+import { PART_LABELS, TRACK_INFO, partHref, trackHref } from '@/lib/path';
+
+// Only parts that have a content file get a route.
+export const getStaticPaths = (async () => {
+  const entries = await getCollection('path');
+  return entries.map((entry) => ({
+    params: { track: entry.data.track, part: entry.data.part },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { track, part, title, description, access, teaser } = entry.data;
+const info = TRACK_INFO[track];
+
+// Paid parts never render their body, so it can't leak into the static HTML.
+const Content = access === 'free' ? (await render(entry)).Content : null;
+
+// Prev/next among the parts of this track that exist.
+const entries = await getTrackEntries(track);
+const available = info.parts.filter((p) => entries[p]);
+const index = available.indexOf(part);
+const prev = available[index - 1];
+const next = available[index + 1];
+
+const position = info.parts.indexOf(part) + 1;
+const eyebrow =
+  info.parts.length > 1 ? `Part ${position} of ${info.parts.length} · ${info.title}` : 'Free guide';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container page">
+    <Breadcrumb
+      items={[
+        { label: 'The Path', href: '/path' },
+        { label: info.title, href: trackHref(track) },
+        { label: PART_LABELS[part] },
+      ]}
+    />
+    <div>
+      <PageHeader eyebrow={eyebrow} title={title} lede={description} />
+      <p class="part-access">
+        <AccessBadge access={access} />
+      </p>
+    </div>
+
+    {Content ? (
+      <div class="prose">
+        <Content />
+      </div>
+    ) : (
+      <Paywall teaser={teaser} />
+    )}
+
+    {(prev || next) && (
+      <nav class="part-nav" aria-label="Parts in this track">
+        {prev && (
+          <a class="part-nav__link" href={partHref(track, prev)} rel="prev">
+            <span class="part-nav__dir">Previous</span>
+            <span>{PART_LABELS[prev]}</span>
+          </a>
+        )}
+        {next && (
+          <a class="part-nav__link part-nav__link--next" href={partHref(track, next)} rel="next">
+            <span class="part-nav__dir">Next</span>
+            <span>{PART_LABELS[next]}</span>
+          </a>
+        )}
+      </nav>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .part-access {
+    margin-top: var(--space-4);
+  }
+
+  .part-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+    gap: var(--space-4);
+    max-width: var(--width-prose);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .part-nav__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    color: var(--color-text);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+  }
+
+  .part-nav__link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .part-nav__link--next {
+    grid-column: -2;
+    text-align: right;
+  }
+
+  .part-nav__dir {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-regular);
+  }
+</style>
