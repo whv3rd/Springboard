@@ -5,7 +5,26 @@ import Callout from '@/components/Callout.astro';
 import Card from '@/components/Card.astro';
 import CheckpointList from '@/components/CheckpointList.astro';
 import PageHeader from '@/components/PageHeader.astro';
-import { LEVELS, RATINGS } from '@/lib/score';
+import { getTrackEntries } from '@/lib/path-content';
+import { TRACK_INFO, partHref, trackHref } from '@/lib/path';
+import { CHECKPOINTS, LEVELS, RATINGS } from '@/lib/score';
+import { NEXT_STEPS, QUESTIONS } from '@/lib/score-questions';
+
+const questionCount = QUESTIONS.flat().length;
+
+// The next step links to the track overview once it's written (M4), else to the track page.
+const nextSteps = await Promise.all(
+  CHECKPOINTS.map(async (cp) => {
+    const entries = await getTrackEntries(cp.track);
+    const title = TRACK_INFO[cp.track].title;
+    return {
+      track: cp.track,
+      text: NEXT_STEPS[cp.track],
+      href: entries.overview ? partHref(cp.track, 'overview') : trackHref(cp.track),
+      linkText: entries.overview ? `Read the ${title} overview` : `Go to the ${title} track`,
+    };
+  }),
+);
 ---
 
 <BaseLayout
@@ -13,19 +32,151 @@ import { LEVELS, RATINGS } from '@/lib/score';
   description="A free self-assessment: five checkpoints rated 0 to 4, totalled to a score out of 100 and a level."
 >
   <div class="container page">
+    {/* DRAFT COPY: lede. */}
     <PageHeader
       eyebrow="The Score"
       title="The Springboard Score"
-      lede="A free self-assessment. Rate each of the five checkpoints from 0 to 4. The total, times five, is your score out of 100."
+      lede={`${questionCount} questions on how your store runs today, across the five checkpoints. About five minutes. You get a score out of 100, your level and the one thing to do next.`}
     />
 
-    {/* PLACEHOLDER: replaced by the interactive quiz in M3. */}
-    <Callout type="warning" title="The quiz isn't live yet">
-      <p>
-        The interactive Score arrives with the next milestone (M3). Until then, this page explains
-        how it works, so you can rate yourself against the tables below.
-      </p>
-    </Callout>
+    <noscript>
+      <Callout type="note" title="The interactive Score needs JavaScript">
+        <p>
+          You can still rate yourself: score each checkpoint from 0 to 4 using the
+          <a href="#ratings-title">ratings table</a>, add the five ratings up and multiply by five.
+          Then find your level in the <a href="#levels-title">levels table</a>.
+        </p>
+      </Callout>
+    </noscript>
+
+    {/* Shown by the script; without JavaScript the explanation below still works. */}
+    <section class="quiz" aria-label="Score questions" data-quiz hidden>
+      <form class="quiz__form" data-form novalidate>
+        <div class="quiz__progress">
+          <p class="quiz__progress-text" data-progress aria-live="polite">
+            Step 1 of {CHECKPOINTS.length}: {CHECKPOINTS[0].name}
+          </p>
+          <div class="quiz__bar" aria-hidden="true">
+            <span class="quiz__bar-fill" data-progress-bar></span>
+          </div>
+        </div>
+
+        {CHECKPOINTS.map((cp, i) => (
+          <div class="quiz__step" data-step={i} hidden={i !== 0}>
+            <p class="eyebrow">Checkpoint {cp.number}</p>
+            <h2 class="quiz__title" tabindex="-1">
+              {cp.name}
+            </h2>
+            <p class="quiz__description">{cp.description}</p>
+            {QUESTIONS[i].map((q) => (
+              <fieldset class="question" data-question>
+                <legend class="question__prompt">{q.prompt}</legend>
+                <div class="question__options">
+                  {q.answers.map((answer, value) => (
+                    <label class="option">
+                      <input type="radio" name={q.id} value={value} />
+                      <span>{answer}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+        ))}
+
+        {/* DRAFT COPY: email step and consent line. */}
+        <div class="quiz__step" data-step="email" hidden>
+          <p class="eyebrow">Last step</p>
+          <h2 class="quiz__title" tabindex="-1">
+            Where should we send your result?
+          </h2>
+          <p class="quiz__description">
+            Your score shows on the next screen straight away. We'll email you a copy.
+          </p>
+          <div class="field">
+            <label class="field__label" for="score-email">
+              Email address
+            </label>
+            <input
+              class="field__input"
+              id="score-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              spellcheck="false"
+              required
+              aria-describedby="score-email-error score-consent"
+              data-email
+            />
+            <p class="field__error" id="score-email-error" data-email-error hidden></p>
+          </div>
+          <p class="consent" id="score-consent">
+            You'll get your result by email, plus occasional Springboard emails: new playbooks and
+            build notes. Unsubscribe anytime.
+          </p>
+        </div>
+
+        <p class="quiz__error" data-step-error role="alert"></p>
+
+        <div class="quiz__nav">
+          <Button variant="secondary" data-back hidden>
+            Back
+          </Button>
+          <Button type="submit" data-next>
+            Next
+          </Button>
+        </div>
+      </form>
+
+      {/* DRAFT COPY: result labels, all-clear line and gap report line. */}
+      <section class="result" data-result aria-labelledby="result-title" hidden>
+        <h2 id="result-title" class="result__heading" tabindex="-1">
+          Your Springboard Score
+        </h2>
+        <p class="result__score">
+          <span class="result__total" data-total></span>
+          <span class="result__out-of">out of 100</span>
+        </p>
+        <p class="result__level">
+          Level: <strong data-level-name></strong>
+        </p>
+        <p class="result__meaning" data-level-meaning></p>
+
+        <div class="result__next">
+          <h3 class="result__subheading">Your next step</h3>
+          <p data-weakest-line>
+            Your weakest checkpoint is <strong data-weakest-name></strong>.
+          </p>
+          {nextSteps.map((step) => (
+            <div class="result__step" data-next-step={step.track} hidden>
+              <p>{step.text}</p>
+              <p>
+                <a href={step.href}>{step.linkText}</a>
+              </p>
+            </div>
+          ))}
+          <div class="result__step" data-next-step="all-clear" hidden>
+            <p>
+              Every checkpoint is at 4. Keep it there: retake the Score each quarter and use the
+              track checklists to catch drift.
+            </p>
+          </div>
+        </div>
+
+        <div class="result__upsell">
+          <p>
+            The full gap report, with every checkpoint rated and linked to the matching Path
+            modules, is part of the Path.
+          </p>
+          <div class="actions">
+            <Button href="/pricing">See Path pricing</Button>
+            <Button variant="secondary" data-retake>
+              Retake the Score
+            </Button>
+          </div>
+        </div>
+      </section>
+    </section>
 
     <section aria-labelledby="checkpoints-title">
       <h2 id="checkpoints-title" class="section-title">
@@ -38,6 +189,10 @@ import { LEVELS, RATINGS } from '@/lib/score';
       <h2 id="ratings-title" class="section-title">
         Rating each checkpoint, 0 to 4
       </h2>
+      <p class="section-lede">
+        Each question's answers map to these ratings. A checkpoint's rating is the average of its
+        answers, rounded to the nearest whole number (halves round up).
+      </p>
       <div class="prose">
         <table>
           <thead>
@@ -117,8 +272,259 @@ import { LEVELS, RATINGS } from '@/lib/score';
   </div>
 </BaseLayout>
 
+<script>
+  import '@/scripts/score-quiz';
+</script>
+
 <style>
   .nowrap {
     white-space: nowrap;
+  }
+
+  .quiz {
+    max-width: 44rem;
+  }
+
+  .quiz__progress-text {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .quiz__bar {
+    height: 6px;
+    margin-top: var(--space-2);
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .quiz__bar-fill {
+    display: block;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: var(--color-accent);
+    border-radius: inherit;
+    transition: width var(--duration-fast) var(--ease-out);
+  }
+
+  .quiz__step,
+  .result {
+    margin-top: var(--space-5);
+    padding: var(--space-5) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .quiz__title {
+    margin-top: var(--space-1);
+    font-size: var(--text-xl);
+  }
+
+  /* Focus lands here on each step change; the heading itself needs no ring. */
+  .quiz__title:focus,
+  .result__heading:focus {
+    outline: none;
+  }
+
+  .quiz__description {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .question {
+    min-inline-size: 0;
+    margin-top: var(--space-6);
+    padding: 0;
+    border: 0;
+  }
+
+  .question__prompt {
+    padding: 0;
+    font-size: var(--text-md);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+  }
+
+  .question__options {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    line-height: var(--leading-snug);
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .option:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .option:has(input:checked) {
+    border-color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+
+  .option:has(input:focus-visible) {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .option input {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0.1em 0 0;
+    accent-color: var(--color-accent);
+  }
+
+  /* The label carries the visible focus ring. */
+  .option input:focus-visible {
+    outline: none;
+  }
+
+  .question.is-missing .question__prompt::after {
+    content: ' (needs an answer)';
+    font-weight: var(--weight-regular);
+    color: var(--color-danger-border);
+  }
+
+  .field {
+    margin-top: var(--space-5);
+  }
+
+  .field__label {
+    display: block;
+    font-weight: var(--weight-semibold);
+  }
+
+  .field__input {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+  }
+
+  .field__input[aria-invalid='true'] {
+    border-color: var(--color-danger-border);
+  }
+
+  .field__error,
+  .quiz__error {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-danger-border);
+  }
+
+  .quiz__error:empty {
+    display: none;
+  }
+
+  .consent {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .quiz__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  /* Next stays on the right when Back is hidden on the first step. */
+  .quiz__nav :global([data-next]) {
+    margin-left: auto;
+  }
+
+  .result__heading {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .result__score {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .result__total {
+    font-size: clamp(3.5rem, 2.5rem + 5vw, 5rem);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent);
+  }
+
+  .result__out-of {
+    color: var(--color-text-muted);
+  }
+
+  .result__level {
+    margin-top: var(--space-3);
+    font-size: var(--text-lg);
+  }
+
+  .result__meaning {
+    color: var(--color-text-muted);
+  }
+
+  .result__next {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .result__subheading {
+    font-size: var(--text-lg);
+  }
+
+  .result__next > * + * {
+    margin-top: var(--space-2);
+  }
+
+  .result__step > * + * {
+    margin-top: var(--space-2);
+  }
+
+  .result__step a {
+    font-weight: var(--weight-semibold);
+  }
+
+  .result__upsell {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 40rem) {
+    .quiz__step,
+    .result {
+      padding: var(--space-6);
+    }
   }
 </style>
