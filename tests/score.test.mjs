@@ -14,6 +14,7 @@ import {
   scoreAnswers,
   totalScore,
   weakestCheckpoint,
+  weakestCheckpointProperty,
 } from '../src/lib/score.ts';
 import { NEXT_STEPS, QUESTIONS } from '../src/lib/score-questions.ts';
 
@@ -139,4 +140,10 @@ test('question data: 2–3 questions per checkpoint, five answers each, unique i
 
 test('every checkpoint has a next step', () => {
   for (const cp of CHECKPOINTS) assert.ok(NEXT_STEPS[cp.track], cp.track);
+});
+
+test('weakest_checkpoint property is none on a perfect score, the track slug otherwise', () => {
+  assert.equal(weakestCheckpointProperty(scoreAnswers(answersFor(4))), 'none');
+  assert.equal(weakestCheckpointProperty(resultFromRatings([4, 4, 3, 4, 4])), 'platform-mcp');
+  assert.equal(weakestCheckpointProperty(scoreAnswers(answersFor(0))), 'design-system');
 });

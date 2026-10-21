@@ -163,6 +163,16 @@ export function resultFromRatings(ratings: readonly number[]): ScoreResult {
   };
 }
 
+/** True when every checkpoint is rated 4: there is no gap to point at. */
+export function isAllClear(result: ScoreResult): boolean {
+  return result.ratings.every((r) => r === MAX_RATING);
+}
+
+/** Value for Klaviyo's `weakest_checkpoint`: the track slug, or `none` on a perfect score. */
+export function weakestCheckpointProperty(result: ScoreResult): string {
+  return isAllClear(result) ? 'none' : result.weakest.track;
+}
+
 /** Answers grouped by checkpoint, in checkpoint order → the full result. */
 export function scoreAnswers(answersByCheckpoint: readonly (readonly number[])[]): ScoreResult {
   return resultFromRatings(answersByCheckpoint.map(checkpointRating));
