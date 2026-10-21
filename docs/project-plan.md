@@ -82,6 +82,18 @@ From free to high-touch, each step leads to the Springboard foundation. Prices a
 
 **Commerce backend:** Shopify Basic, per the handoff, with customer accounts gating paid content (Ghost is the fallback). Running it on Shopify also makes it a live Track 3 demo.
 
+## Launch gate
+
+Nothing launches until Will says so. Before the public launch, Claude checks in with Will at least twice: once when the site is feature-complete, and once just before going live. The launch checklist:
+
+- [ ] M3 Score quiz is live and sends results to Klaviyo
+- [ ] Will has reviewed and approved every published post and page (see `docs/review-queue.md`)
+- [ ] No employer names or private details in public content
+- [ ] All `DRAFT COPY` and `PLACEHOLDER` markers resolved or accepted
+- [ ] Domain decided and `site` URL updated
+- [ ] M5 checks done: Lighthouse 95+, meta and OG tags, sitemap, RSS
+- [ ] Will gives an explicit go
+
 ## Open decisions
 
 - Brand and domain (Springs Consulting / Springs Digital / other)

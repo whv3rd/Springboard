@@ -73,6 +73,15 @@ Seeds for Playbooks and Teardowns. The research pipeline adds to this.
 - **Marketing MCP:** segment building, flow audits, campaign drafting, post-send analysis.
 - **Processes:** process mapping format, weekly operator rituals, handoff docs any operator can follow.
 
+## Will's voice in every post
+
+Will talks, Claude tidies. The fastest way to get real practitioner content without Will writing from scratch:
+
+1. Claude queues up the spots in a draft where only Will can speak (what happened, what it cost, what he'd do differently).
+2. Will answers by voice or quick typing, stream of thought, even from his phone.
+3. Claude fixes grammar and structure but keeps Will's wording, opinions and rhythm. No rewriting his voice into generic AI prose.
+4. Will gives the final read before the post's PR is merged.
+
 ## Research pipeline
 
 A research agent watches AI-in-ecommerce use cases on a schedule and files findings for Will to review. Each run produces:
