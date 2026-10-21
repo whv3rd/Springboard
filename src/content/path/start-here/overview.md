@@ -29,9 +29,9 @@ Every track has the same six parts, so once you know your way around one, you kn
 | -------------------- | ----------------------------------------------- | ------ |
 | Overview             | What the checkpoint is, and why it matters      | Free   |
 | Requirements         | What you need in place before you start         | Free   |
-| Build guide          | The build, step by step                         | Path   |
-| Templates and assets | Figma files, prompts, MCP configs, process maps | Path   |
-| Workflows            | Day-to-day recipes once the checkpoint is built | Path   |
+| Build guide          | The build, step by step                         | Paid   |
+| Templates and assets | Figma files, prompts, MCP configs, process maps | Paid   |
+| Workflows            | Day-to-day recipes once the checkpoint is built | Paid   |
 | Checklist            | What earns a 4, so you know when you're done    | Free   |
 
 ## What's free, and why
