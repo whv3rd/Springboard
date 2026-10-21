@@ -1,20 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AccessBadge from '@/components/AccessBadge.astro';
 import Button from '@/components/Button.astro';
+import CheckpointList from '@/components/CheckpointList.astro';
+import PostList from '@/components/PostList.astro';
+import { getPublishedPosts } from '@/lib/blog';
+import { PART_ACCESS, PART_LABELS, PARTS } from '@/lib/path';
+
+const latest = (await getPublishedPosts()).slice(0, 3);
 ---
 
 <BaseLayout
   title="Springboard"
   description="The point where one operator or a small team can run an ecommerce business on AI-connected design, platform and marketing systems."
 >
+  {/* DRAFT COPY: the whole home page is draft copy built from docs/concept.md. */}
   <section class="container hero">
-    <p class="eyebrow">Placeholder home · M1</p>
+    <p class="eyebrow">Springboard</p>
     <h1>Run the store with one operator, not five vendors.</h1>
     <p class="hero__lede">
-      Springboard is the point where your design, platform and marketing systems are connected to
-      AI. The real home page arrives in M2.
+      Springboard is the point where a small or mid-sized ecommerce business has its design,
+      platform and marketing systems connected to AI, so one operator or a small team can run it.
     </p>
-    <div class="hero__actions">
+    <div class="actions">
       <Button href="/score" size="lg">
         Take the Score
       </Button>
@@ -23,11 +31,114 @@ import Button from '@/components/Button.astro';
       </Button>
     </div>
   </section>
+
+  <div class="container page home">
+    <section class="promise" aria-labelledby="promise-title">
+      <div>
+        <p class="eyebrow">The problem</p>
+        <h2 id="promise-title" class="section-title">
+          Running a store still takes dev teams, merchandisers and creatives
+        </h2>
+        <p class="section-lede">
+          Every page build, catalog change and campaign waits on someone else's queue. That cost and
+          that delay are built into how most stores run.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">The promise</p>
+        <ul class="promise__list">
+          <li>Less vendor dependence.</li>
+          <li>Faster execution.</li>
+          <li>The same platforms you already use.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="checkpoints-title">
+      <h2 id="checkpoints-title" class="section-title">
+        Five checkpoints
+      </h2>
+      <p class="section-lede">
+        Springboard rests on five systems, each connected to Claude through an MCP. Each one has a
+        track in the Path.
+      </p>
+      <CheckpointList />
+    </section>
+
+    <section class="band" aria-labelledby="score-title">
+      <p class="eyebrow">The Springboard Score</p>
+      <h2 id="score-title" class="section-title">
+        How close is your store?
+      </h2>
+      <p class="section-lede">
+        Rate each checkpoint from 0 to 4. Get a score out of 100, a level from Grounded to
+        Springboard, and one next step.
+      </p>
+      <div class="actions">
+        <Button href="/score">Take the Score</Button>
+      </div>
+    </section>
+
+    <section aria-labelledby="path-title">
+      <h2 id="path-title" class="section-title">
+        The Path
+      </h2>
+      <p class="section-lede">
+        One track per checkpoint, each in the same six parts. What and why is free. Step-by-step
+        build is paid.
+      </p>
+      <ol class="parts">
+        {PARTS.map((part) => (
+          <li>
+            <span>{PART_LABELS[part]}</span>
+            <AccessBadge access={PART_ACCESS[part]} />
+          </li>
+        ))}
+      </ol>
+      <div class="actions">
+        <Button href="/path/start-here" variant="secondary">
+          Start here
+        </Button>
+        <Button href="/path" variant="ghost">
+          All tracks
+        </Button>
+      </div>
+    </section>
+
+    {latest.length > 0 && (
+      <section aria-labelledby="latest-title">
+        <h2 id="latest-title" class="section-title">
+          Latest from the blog
+        </h2>
+        <PostList posts={latest} headingLevel={3} />
+        <div class="actions">
+          <Button href="/blog" variant="ghost">
+            All posts
+          </Button>
+        </div>
+      </section>
+    )}
+
+    <section class="band band--quiet" aria-labelledby="advisory-title">
+      <p class="eyebrow">Springs Advisory</p>
+      <h2 id="advisory-title" class="section-title">
+        Want help getting there?
+      </h2>
+      <p class="section-lede">
+        A readiness audit, a hands-on build, and optional ongoing operation. Done with you.
+      </p>
+      <div class="actions">
+        <Button href="/about#advisory" variant="secondary">
+          Book a call
+        </Button>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
   .hero {
-    padding-block: var(--space-9);
+    padding-block: var(--space-9) var(--space-7);
   }
 
   .hero h1 {
@@ -43,10 +154,76 @@ import Button from '@/components/Button.astro';
     color: var(--color-text-muted);
   }
 
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
+  .hero .actions {
     margin-top: var(--space-6);
+  }
+
+  .home {
+    padding-top: 0;
+  }
+
+  .promise {
+    display: grid;
+    gap: var(--space-6);
+    padding-top: var(--space-7);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .promise .section-title {
+    max-width: 28ch;
+    margin-top: var(--space-2);
+  }
+
+  .promise__list {
+    margin-top: var(--space-3);
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+  }
+
+  .promise__list li + li {
+    margin-top: var(--space-2);
+  }
+
+  .band {
+    padding: var(--space-6);
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .band--quiet {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+  }
+
+  .band .section-title {
+    margin-top: var(--space-2);
+  }
+
+  .parts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-2) var(--space-5);
+    max-width: 52rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .parts li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 48rem) {
+    .promise {
+      grid-template-columns: 3fr 2fr;
+      align-items: end;
+    }
   }
 </style>
