@@ -1,0 +1,91 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import Button from '@/components/Button.astro';
+import { formatDate, getPublishedPosts } from '@/lib/blog';
+import { PILLAR_LABELS } from '@/lib/path';
+
+// Drafts are filtered out, so they never get a route.
+export const getStaticPaths = (async () => {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { title, description, date, updated, pillar } = post.data;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container page">
+    <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: title }]} />
+    <header>
+      <p class="post-meta">
+        <span class="post-meta__pillar">{PILLAR_LABELS[pillar]}</span>
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {updated && (
+          <span>
+            Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+          </span>
+        )}
+      </p>
+      <h1 class="post-title">{title}</h1>
+      <p class="post-lede">{description}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <aside class="post-cta" aria-labelledby="post-cta-title">
+      <h2 id="post-cta-title" class="section-title">
+        Where does your store stand?
+      </h2>
+      <p class="section-lede">
+        The Springboard Score rates your design, platform, marketing and process systems from 0 to
+        100.
+      </p>
+      <div class="actions">
+        <Button href="/score">Take the Score</Button>
+      </div>
+    </aside>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .post-meta__pillar {
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+  }
+
+  .post-title {
+    max-width: 24ch;
+    margin-top: var(--space-2);
+    font-size: var(--text-2xl);
+  }
+
+  .post-lede {
+    max-width: 60ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .post-cta {
+    max-width: var(--width-prose);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+</style>

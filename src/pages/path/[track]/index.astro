@@ -1,0 +1,122 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AccessBadge from '@/components/AccessBadge.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import Button from '@/components/Button.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { getTrackEntries } from '@/lib/path-content';
+import { PART_ACCESS, PART_LABELS, TRACK_INFO, TRACKS, partHref, type Track } from '@/lib/path';
+
+// Every track gets a page, even before any of its parts are written.
+export const getStaticPaths = (() =>
+  TRACKS.map((track) => ({ params: { track } }))) satisfies GetStaticPaths;
+
+const track = Astro.params.track as Track;
+const info = TRACK_INFO[track];
+const entries = await getTrackEntries(track);
+const eyebrow = info.checkpoint
+  ? `Track ${info.checkpoint} · Checkpoint ${info.checkpoint}`
+  : 'Free guide';
+---
+
+<BaseLayout title={info.title} description={info.description}>
+  <div class="container page">
+    <Breadcrumb items={[{ label: 'The Path', href: '/path' }, { label: info.title }]} />
+    <PageHeader eyebrow={eyebrow} title={info.title} lede={info.description} />
+
+    <section aria-labelledby="parts-title">
+      <h2 id="parts-title" class="section-title">
+        {info.parts.length === 1 ? 'Contents' : `The ${info.parts.length} parts`}
+      </h2>
+      <ol class="track-parts">
+        {info.parts.map((part, i) => {
+          const entry = entries[part];
+          const access = entry?.data.access ?? PART_ACCESS[part];
+          return (
+            <li class="track-part">
+              <span class="track-part__number">{i + 1}</span>
+              <div class="track-part__body">
+                <h3 class="track-part__title">
+                  {entry ? (
+                    <a href={partHref(track, part)}>{PART_LABELS[part]}</a>
+                  ) : (
+                    PART_LABELS[part]
+                  )}
+                </h3>
+                {entry ? (
+                  <p class="track-part__description">{entry.data.description}</p>
+                ) : (
+                  <p class="track-part__description">Coming soon</p>
+                )}
+              </div>
+              <AccessBadge access={access} />
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+
+    <section class="track-cta" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="section-title">
+        Not sure where you stand?
+      </h2>
+      <p class="section-lede">
+        The Springboard Score rates each checkpoint from 0 to 4 and points you to the track to start
+        with.
+      </p>
+      <div class="actions">
+        <Button href="/score">Take the Score</Button>
+        <Button href="/path" variant="secondary">
+          All tracks
+        </Button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .track-parts {
+    max-width: var(--width-prose);
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .track-part {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .track-part__number {
+    min-width: 1.5em;
+    color: var(--color-text-muted);
+    font-weight: var(--weight-semibold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .track-part__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .track-part__title {
+    font-size: var(--text-md);
+  }
+
+  .track-part__description {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .track-cta {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+</style>

@@ -1,0 +1,164 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import Callout from '@/components/Callout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+interface Tier {
+  name: string;
+  audience: string;
+  price: string;
+  unlocks: string[];
+  cta?: { label: string; href: string };
+}
+
+// Tiers from docs/site-blueprint.md. Path and Path Team prices are an open decision.
+const tiers: Tier[] = [
+  {
+    name: 'Free',
+    audience: 'Anyone',
+    price: '$0',
+    unlocks: [
+      'The blog',
+      'The Springboard pages',
+      'Score total and level',
+      'Track overviews, requirements and checklists',
+      'The newsletter',
+    ],
+    cta: { label: 'Take the Score', href: '/score' },
+  },
+  {
+    name: 'Path',
+    audience: 'Solo operators',
+    price: 'Coming soon',
+    unlocks: [
+      'All build guides',
+      'Templates, prompts and MCP configs',
+      'Workflows',
+      'The full Score gap report',
+    ],
+  },
+  {
+    name: 'Path Team',
+    audience: 'Small teams',
+    price: 'Coming soon',
+    unlocks: ['The Path for multiple seats', 'Team Score tracking', 'Quarterly live Q&A'],
+  },
+  {
+    name: 'Springs Advisory',
+    audience: 'Done-with-you',
+    price: 'Quoted',
+    unlocks: ['Readiness audit', 'Hands-on build', 'Optional ongoing operation'],
+    cta: { label: 'Book a call', href: '/about#advisory' },
+  },
+];
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Free, Path, Path Team and Springs Advisory. What each tier unlocks."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="Pricing"
+      title="Learn free. Pay for the build."
+      lede="Anything that explains what Springboard is or why it matters is free. Anything you could follow step by step to build it is in the Path."
+    />
+
+    <section aria-labelledby="tiers-title">
+      <h2 id="tiers-title" class="visually-hidden">
+        Tiers
+      </h2>
+      <ul class="tiers">
+        {tiers.map((tier) => (
+          <li class="tier">
+            <p class="eyebrow">{tier.audience}</p>
+            <h3 class="tier__name">{tier.name}</h3>
+            <p class:list={['tier__price', { 'tier__price--soon': tier.price === 'Coming soon' }]}>
+              {tier.price}
+            </p>
+            <ul class="tier__unlocks">
+              {tier.unlocks.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {tier.cta && (
+              <div class="tier__cta">
+                <Button
+                  href={tier.cta.href}
+                  variant={tier.name === 'Free' ? 'secondary' : 'primary'}
+                >
+                  {tier.cta.label}
+                </Button>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {/* PLACEHOLDER: Path and Path Team pricing is an open decision (CLAUDE.md). */}
+    <Callout title="Path pricing isn't set yet">
+      <p>
+        The Path and Path Team open after the free tracks are published. Until then, every track
+        overview, requirements list and checklist is free to read.
+      </p>
+    </Callout>
+  </div>
+</BaseLayout>
+
+<style>
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .tier {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tier__name {
+    margin-top: var(--space-2);
+    font-size: var(--text-xl);
+  }
+
+  .tier__price {
+    margin-top: var(--space-3);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+  }
+
+  .tier__price--soon {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+  }
+
+  .tier__unlocks {
+    margin-top: var(--space-4);
+    padding-left: 1.2em;
+    font-size: var(--text-sm);
+  }
+
+  .tier__unlocks li + li {
+    margin-top: var(--space-2);
+  }
+
+  .tier__unlocks li::marker {
+    color: var(--color-accent);
+  }
+
+  .tier__cta {
+    margin-top: auto;
+    padding-top: var(--space-5);
+  }
+</style>

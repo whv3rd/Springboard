@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import Card from '@/components/Card.astro';
+import CheckpointList from '@/components/CheckpointList.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+// Audience and tiers from docs/concept.md.
+// DRAFT COPY: the one-line descriptions are drafts for Will to review.
+const audiences = [
+  {
+    title: 'Solo owner-operators',
+    description: 'You run the store yourself and buy in design, dev and marketing help.',
+  },
+  {
+    title: 'Directors of ecommerce',
+    description: 'You run ecommerce at a mid-sized brand with a small team and a stack of vendors.',
+  },
+  {
+    title: 'Freelance operators',
+    description: 'You run stores for clients and want one setup you can repeat across them.',
+  },
+];
+---
+
+<BaseLayout
+  title="What is Springboard?"
+  description="Springboard is the point where an ecommerce business has its design, platform and marketing systems connected to AI, so one operator or a small team can run it."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="Springboard"
+      title="A threshold you reach, not a product you buy"
+      lede="Springboard is the point where a small or mid-sized ecommerce business has its design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run what used to take dev teams, merchandisers and creatives."
+    />
+
+    <section aria-labelledby="what-title">
+      <h2 id="what-title" class="section-title">
+        What changes when you get there
+      </h2>
+      {/* DRAFT COPY: headings are the promise from docs/concept.md; descriptions are drafts. */}
+      <ul class="card-grid">
+        <li>
+          <Card
+            title="Less vendor dependence"
+            description="Page builds, catalog changes and campaigns stop waiting in someone else's queue."
+          />
+        </li>
+        <li>
+          <Card
+            title="Faster execution"
+            description="Work that took a brief, a handoff and a review cycle gets done by the person who had the idea."
+          />
+        </li>
+        <li>
+          <Card
+            title="Same platforms"
+            description="No replatforming. Your design files, store and email platform stay. They get connected."
+          />
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="checkpoints-title">
+      <h2 id="checkpoints-title" class="section-title">
+        The five checkpoints
+      </h2>
+      <p class="section-lede">
+        Springboard rests on five checkpoints. Each one has a matching track in the Path.
+      </p>
+      <CheckpointList />
+    </section>
+
+    <section aria-labelledby="who-title">
+      <h2 id="who-title" class="section-title">
+        Who it's for
+      </h2>
+      <ul class="card-grid">
+        {audiences.map((a) => (
+          <li>
+            <Card title={a.title} description={a.description} />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="tiers-title">
+      <h2 id="tiers-title" class="section-title">
+        Solo and team tiers
+      </h2>
+      <p class="section-lede">The same five checkpoints, run at two sizes.</p>
+      <div class="prose">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Tier</th>
+              <th scope="col">Who runs it</th>
+              <th scope="col">Who it serves</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Solo</th>
+              <td>A single operator</td>
+              <td>A solo owner-entrepreneur</td>
+            </tr>
+            <tr>
+              <th scope="row">Team</th>
+              <td>Director of ecommerce plus a couple of operators</td>
+              <td>A mid-sized business</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="section-title">
+        How close are you?
+      </h2>
+      <p class="section-lede">
+        The Springboard Score rates each checkpoint from 0 to 4 and gives you a level and one next
+        step.
+      </p>
+      <div class="actions">
+        <Button href="/score">Take the Score</Button>
+        <Button href="/path" variant="secondary">
+          See the Path
+        </Button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .cta {
+    padding: var(--space-6);
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { PILLAR_LABELS } from '@/lib/path';
+import { formatDate } from '@/lib/blog';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  headingLevel?: 2 | 3;
+}
+
+const { posts, headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+<ul class="posts">
+  {posts.map((post) => (
+    <li class="post">
+      <p class="post__meta">
+        <span>{PILLAR_LABELS[post.data.pillar]}</span>
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </p>
+      <Heading class="post__title">
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      </Heading>
+      <p class="post__description">{post.data.description}</p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .posts {
+    padding: 0;
+    list-style: none;
+  }
+
+  .post {
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post:first-child {
+    padding-top: 0;
+  }
+
+  .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .post__meta span {
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+  }
+
+  .post__title {
+    margin-top: var(--space-2);
+    font-size: var(--text-lg);
+  }
+
+  .post__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .post__title a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .post__description {
+    max-width: 60ch;
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+</style>
