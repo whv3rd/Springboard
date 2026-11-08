@@ -3,6 +3,18 @@ title: Who I am, and why I'm building Springboard
 description: Eighteen years in ecommerce across Shopify, Magento and Salesforce, and why I think the operating model is about to change.
 date: 2026-09-22
 pillar: diary
+takeaways:
+  - 'Will Vinton has worked in ecommerce for about 18 years, deeply on Shopify, Magento and Salesforce Commerce.'
+  - 'His consulting work has been behind more than $1.5 billion in realized ecommerce revenue.'
+  - 'The pattern he sees everywhere: the business wants to move faster than its dependencies allow.'
+  - 'AI connected to Figma, Shopify and Klaviyo lets the operator with the idea do much of the specialist work, as long as the foundations are in place.'
+faq:
+  - question: 'Who writes Springboard?'
+    answer: 'Will Vinton, an ecommerce operator with about 18 years in the industry. He directs ecommerce, consults across multiple brands and runs a portfolio of his own brands that he is building to Springboard.'
+  - question: 'Who is Springboard for?'
+    answer: 'People who run an online store, solo or with a small team, and want to move faster than their agencies, developers and designers allow.'
+  - question: 'Why does Springboard matter now?'
+    answer: 'Because AI connected to the tools a store already uses, such as Figma, Shopify and Klaviyo, means a lot of the specialist-shaped work between an idea and a live change can be done by the operator who had the idea.'
 ---
 
 I'm Will Vinton. I've worked in ecommerce for about eighteen years.

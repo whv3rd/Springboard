@@ -3,6 +3,20 @@ title: 'Start with a theme, build the system, then just talk'
 description: How a flexible base theme, a real component library and the Figma MCP can put a non-designer in the seat of an experienced UI/UX designer.
 date: 2026-10-20
 pillar: shift
+takeaways:
+  - "Start from a base theme that's flexible enough for your ecommerce and conversion goals, not one that matches your brand perfectly today."
+  - 'Build it out as a component library, and set up the style guide and design system at the very beginning.'
+  - 'Connect Claude to Figma through the Figma MCP and give it your rules, so everything it makes stays on-system.'
+  - 'With that foundation, a non-designer can do much of the work of an experienced UI/UX designer just by talking to Claude.'
+faq:
+  - question: 'Can a non-designer use AI to design an ecommerce site?'
+    answer: 'Yes, if the foundation is right: a flexible base theme, built out as a component library with a style guide and design system, and Claude connected to Figma and given those rules. Then you can work by describing what you want.'
+  - question: 'How do I connect Claude to Figma?'
+    answer: 'Through the Figma MCP, alongside whatever other AI tools you use. Give it your design system, your component library and the rules it has to follow.'
+  - question: 'How do I keep AI-generated designs on-brand?'
+    answer: "Keep Claude in compliance with your design system and component library. The system is the source of truth, not the AI's taste, so nothing drifts off-brand."
+  - question: "What's a good first design task to give Claude?"
+    answer: 'Something simple like your site navigation: ask for an analysis of its current UI/UX, then what leading competitors do, then the options. Pick, refine and build step by step.'
 ---
 
 If you're an ecommerce person who isn't a designer, this is the post I'd want you to read first. Because the way you set up your design foundation decides whether AI becomes your design team or just another toy.
