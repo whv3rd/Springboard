@@ -20,6 +20,7 @@ npm run dev        # http://localhost:4321
 | `npm run preview`      | Serve the built site locally                        |
 | `npm run check`        | Type-check `.astro`/`.ts` files and content schemas |
 | `npm run lint`         | ESLint                                              |
+| `npm test`             | Score and Klaviyo tests (Node's built-in runner)    |
 | `npm run format`       | Prettier (write)                                    |
 | `npm run format:check` | Prettier (check only)                               |
 
@@ -50,7 +51,7 @@ The site is fully static, so no adapter is needed. One-time setup in the Cloudfl
    - Build command: `npm run build`
    - Build output directory: `dist`
    - Production branch: `main`
-3. Environment variables (Production and Preview): `NODE_VERSION` = `22`.
+3. Environment variables (Production and Preview): `NODE_VERSION` = `22`, plus `PUBLIC_KLAVIYO_SITE_KEY` and `PUBLIC_KLAVIYO_LIST_ID` for the Score's email gate (see `.env.example`). Without the Klaviyo keys the Score still works but sends nothing to Klaviyo. They are read at build time, so redeploy after changing them.
 4. Save and deploy.
 
 After that, every push to `main` deploys to production, and every PR gets a preview deployment with its own URL, posted on the PR.
