@@ -1,29 +1,52 @@
 ---
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('blog', ({ data }) => !data.draft);
-const parts = await getCollection('path');
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Springboard</title>
-    <meta
-      name="description"
-      content="Springboard — the point where one operator can run the store."
-    />
-  </head>
-  <body>
-    <main>
-      <h1>Springboard</h1>
-      <p>Scaffold (M0). Real pages arrive in M1–M2.</p>
-      <p>
-        {posts.length} published posts · {parts.length} Path parts
-      </p>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="Springboard"
+  description="The point where one operator or a small team can run an ecommerce business on AI-connected design, platform and marketing systems."
+>
+  <section class="container hero">
+    <p class="eyebrow">Placeholder home · M1</p>
+    <h1>Run the store with one operator, not five vendors.</h1>
+    <p class="hero__lede">
+      Springboard is the point where your design, platform and marketing systems are connected to
+      AI. The real home page arrives in M2.
+    </p>
+    <div class="hero__actions">
+      <Button href="/score" size="lg">
+        Take the Score
+      </Button>
+      <Button href="/springboard" variant="secondary" size="lg">
+        What is Springboard?
+      </Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-9);
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-3xl);
+  }
+
+  .hero__lede {
+    max-width: 52ch;
+    margin-top: var(--space-4);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+</style>
