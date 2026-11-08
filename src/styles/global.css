@@ -236,6 +236,27 @@ a:hover {
   color: var(--color-text-muted);
 }
 
+/* GFM task lists (`- [ ]`), used by the Path checklists. Read-only boxes, no bullet. */
+.prose ul:has(> .task-list-item) {
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose .task-list-item {
+  position: relative;
+  padding-left: 1.75em;
+}
+
+.prose .task-list-item input[type='checkbox'] {
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
 .prose blockquote {
   padding-left: var(--space-4);
   border-left: 3px solid var(--color-accent);

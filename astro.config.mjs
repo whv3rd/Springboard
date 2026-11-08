@@ -1,13 +1,14 @@
 // @ts-check
 import { defineConfig, envField } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import stripReviewNotes from './integrations/strip-review-notes.mjs';
 
 export default defineConfig({
   // Placeholder until the brand and domain are decided (see CLAUDE.md, open decisions).
   site: 'https://springboard.pages.dev',
   output: 'static',
   trailingSlash: 'ignore',
-  integrations: [mdx()],
+  integrations: [mdx(), stripReviewNotes()],
   env: {
     schema: {
       // Klaviyo, for the Score's email gate. Both are public by design: the client
