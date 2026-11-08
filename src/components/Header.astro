@@ -25,7 +25,7 @@ const { pathname } = Astro.url;
       <ul>
         {PRIMARY_NAV.map((item) => (
           <li>
-            <a href={item.href} aria-current={isCurrent(item.href, pathname) ? 'page' : undefined}>
+            <a href={item.href} aria-current={isCurrent(item.href, pathname, import.meta.env.BASE_URL) ? 'page' : undefined}>
               {item.label}
             </a>
           </li>

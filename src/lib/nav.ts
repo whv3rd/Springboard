@@ -13,7 +13,15 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: 'About', href: '/about' },
 ];
 
-export function isCurrent(href: string, pathname: string): boolean {
-  const path = pathname.replace(/\/$/, '') || '/';
+/**
+ * Whether a nav href is the current section. `base` is the site's base path
+ * (import.meta.env.BASE_URL), stripped from the pathname first so the check still
+ * works when the site is served from a subdirectory such as /springboard.
+ */
+export function isCurrent(href: string, pathname: string, base = '/'): boolean {
+  const prefix = base.replace(/\/$/, '');
+  const inBase = prefix && (pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const local = inBase ? pathname.slice(prefix.length) : pathname;
+  const path = local.replace(/\/$/, '') || '/';
   return path === href || path.startsWith(`${href}/`);
 }
