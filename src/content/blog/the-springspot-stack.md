@@ -3,6 +3,7 @@ title: 'The Springspot Stack: run a store on about $100 a month'
 description: You don't need a six-figure commerce platform to run a real store. Here is what the Springspot Stack covers, roughly what it costs, and why starting small is the point.
 date: 2026-11-09
 pillar: shift
+gate: stack-breakdown
 takeaways:
   - 'Most US businesses are one person. They need AI help they can afford and run themselves, not an enterprise platform.'
   - 'The Springspot Stack covers design, development, the store, email and SMS, and reviews for roughly $100 a month to start.'
@@ -46,7 +47,7 @@ The Springspot Stack covers every job a store runs on:
 - **Email and SMS automation**: flows and campaigns that run on their own.
 - **Reviews and social proof**, collected and shown automatically.
 
-All of it, connected to AI, runs for roughly $100 a month to start. You pay the tool vendors directly, and you own every account.
+All of it, connected to AI, runs for roughly $100 a month to start. You pay the tool vendors directly, and you own every account. For what each part costs to start, what to look for and when to move up a plan, [get the Springspot Stack breakdown](#post-stack-title) at the end of this post.
 
 ## Your tools, not our favourites
 

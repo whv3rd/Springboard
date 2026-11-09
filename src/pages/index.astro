@@ -1,5 +1,7 @@
 ---
 import BrandText from '@/components/BrandText.astro';
+import StackBreakdown from '@/components/StackBreakdown.astro';
+import { STACK_JOBS } from '@/lib/stack';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AccessBadge from '@/components/AccessBadge.astro';
 import Button from '@/components/Button.astro';
@@ -9,19 +11,6 @@ import { getPublishedPosts } from '@/lib/blog';
 import { PART_ACCESS, PART_LABELS, PARTS } from '@/lib/path';
 
 const latest = (await getPublishedPosts()).slice(0, 3);
-
-// The Springspot Stack: the jobs it covers. Tools and prices stay off the public site;
-// they are chosen per business in the Springspot Startup (see docs/concept.md).
-const SPRINGSPOT_STACK = [
-  {
-    job: 'AI operator and developer',
-    detail: 'Does the specialist work: pages, catalog, campaigns',
-  },
-  { job: 'Design system', detail: 'Every page and asset on-brand, without a designer on call' },
-  { job: 'Store and catalog', detail: 'Storefront, checkout and products on a platform you own' },
-  { job: 'Email and SMS automation', detail: 'Flows and campaigns that run on their own' },
-  { job: 'Reviews and social proof', detail: 'Collected and shown automatically' },
-];
 ---
 
 <BaseLayout
@@ -99,7 +88,7 @@ const SPRINGSPOT_STACK = [
         </div>
       </div>
       <dl class="stack__list">
-        {SPRINGSPOT_STACK.map((item) => (
+        {STACK_JOBS.map((item) => (
           <div class="stack__row">
             <dt>
               {item.job}
@@ -113,6 +102,8 @@ const SPRINGSPOT_STACK = [
         </div>
       </dl>
     </section>
+
+    <StackBreakdown id="home-stack" />
 
     <section class="band" aria-labelledby="score-title">
       <p class="eyebrow">The Springspot Score</p>

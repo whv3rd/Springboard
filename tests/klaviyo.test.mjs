@@ -4,7 +4,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSubscriptionRequest, hasKlaviyoConfig } from '../src/lib/klaviyo.ts';
+import {
+  buildSubscriptionRequest,
+  hasKlaviyoConfig,
+  KLAVIYO_STACK_SOURCE,
+} from '../src/lib/klaviyo.ts';
 
 test('config needs both keys, non-empty', () => {
   assert.equal(hasKlaviyoConfig({}), false);
@@ -46,5 +50,18 @@ test('subscription request matches the documented shape', () => {
       },
       relationships: { list: { data: { type: 'list', id: 'LIST1' } } },
     },
+  });
+});
+
+test('other gates set their own source and properties', () => {
+  const req = buildSubscriptionRequest(
+    { siteKey: 'ABC123', listId: 'LIST1' },
+    'op@example.com',
+    { requested: 'stack_breakdown' },
+    KLAVIYO_STACK_SOURCE,
+  );
+  assert.equal(req.body.data.attributes.custom_source, 'Springspot Stack breakdown');
+  assert.deepEqual(req.body.data.attributes.profile.data.attributes.properties, {
+    requested: 'stack_breakdown',
   });
 });

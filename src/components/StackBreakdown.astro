@@ -1,0 +1,224 @@
+---
+// The Springspot Stack breakdown, gated behind an email (Klaviyo, source
+// "Springspot Stack breakdown"). The form unlocks the breakdown in place and the
+// browser remembers it. Logic: src/scripts/stack-gate.ts. Data: src/lib/stack.ts.
+import Button from '@/components/Button.astro';
+import BrandText from '@/components/BrandText.astro';
+import { STACK_JOBS, STACK_TOTAL } from '@/lib/stack';
+
+interface Props {
+  /** Unique per page, for the form's ids. */
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section class="gate" aria-labelledby={`${id}-title`} data-stack-gate>
+  <div class="gate__locked" data-locked>
+    <p class="eyebrow">Free breakdown</p>
+    <h2 id={`${id}-title`} class="gate__title" tabindex="-1">
+      Get the Springspot Stack breakdown
+    </h2>
+    <p class="gate__lede">
+      <BrandText text="What each part of the Springspot Stack costs to start, what to look for when you choose or keep a tool, and when it's worth moving up a plan. Unlocks here straight away." />
+    </p>
+    <form class="gate__form" novalidate data-form>
+      <div class="field">
+        <label class="field__label" for={`${id}-email`}>
+          Email address
+        </label>
+        <div class="gate__row">
+          <input
+            class="field__input"
+            id={`${id}-email`}
+            name="email"
+            type="email"
+            autocomplete="email"
+            spellcheck="false"
+            required
+            aria-describedby={`${id}-error ${id}-consent`}
+            data-email
+          />
+          <Button type="submit" data-submit>
+            Unlock the breakdown
+          </Button>
+        </div>
+        <p class="field__error" id={`${id}-error`} data-error hidden></p>
+      </div>
+      <p class="gate__consent" id={`${id}-consent`}>
+        You'll also get occasional Springspot emails: new playbooks and build notes. Unsubscribe
+        anytime.
+      </p>
+    </form>
+  </div>
+
+  <div class="gate__unlocked" data-unlocked hidden>
+    <p class="eyebrow">The breakdown</p>
+    <h2 class="gate__title" tabindex="-1" data-unlocked-title>
+      <BrandText text="The Springspot Stack, job by job" />
+    </h2>
+    <ol class="breakdown">
+      {STACK_JOBS.map((item) => (
+        <li class="breakdown__item">
+          <div class="breakdown__head">
+            <h3>{item.job}</h3>
+            <span class="breakdown__cost">{item.cost}</span>
+          </div>
+          <p>{item.detail}.</p>
+          <dl>
+            <dt>What to look for</dt>
+            <dd>{item.lookFor}</dd>
+            <dt>When to move up</dt>
+            <dd>{item.moveUp}</dd>
+          </dl>
+        </li>
+      ))}
+    </ol>
+    <p class="breakdown__total">
+      To start: <strong>{STACK_TOTAL}</strong>, paid directly to the tool vendors.
+    </p>
+    <p class="gate__lede">
+      <BrandText text="Already have tools for some of these jobs? Keep them. The Springspot Startup looks at what you have and layers in only what's missing." />
+    </p>
+    <p>
+      <a href="/startup">See the Springspot Startup</a>
+    </p>
+  </div>
+</section>
+
+<script>
+  import '@/scripts/stack-gate';
+</script>
+
+<style>
+  .gate {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: 2px solid var(--color-brand-stack);
+    border-radius: var(--radius-lg);
+  }
+
+  .gate__title {
+    margin-top: var(--space-2);
+    font-size: var(--text-xl);
+  }
+
+  .gate__lede {
+    max-width: 60ch;
+    margin-top: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .field {
+    margin-top: var(--space-4);
+  }
+
+  .field__label {
+    display: block;
+    font-weight: var(--weight-semibold);
+  }
+
+  .gate__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .field__input {
+    flex: 1 1 16rem;
+    min-height: 2.75rem;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+  }
+
+  .field__input[aria-invalid='true'] {
+    border-color: var(--color-danger-border);
+  }
+
+  .field__error {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-danger-border);
+  }
+
+  .gate__consent {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .breakdown {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .breakdown__item {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .breakdown__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .breakdown__head h3 {
+    font-size: var(--text-lg);
+  }
+
+  .breakdown__cost {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-brand-stack);
+  }
+
+  .breakdown__item p {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+  }
+
+  .breakdown dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-1) var(--space-4);
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .breakdown dt {
+    font-weight: var(--weight-semibold);
+  }
+
+  .breakdown dd {
+    margin: 0;
+  }
+
+  .breakdown__total {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 2px solid var(--color-text);
+  }
+
+  @media (max-width: 40rem) {
+    .breakdown dl {
+      grid-template-columns: 1fr;
+    }
+
+    .breakdown dd + dt {
+      margin-top: var(--space-2);
+    }
+  }
+</style>

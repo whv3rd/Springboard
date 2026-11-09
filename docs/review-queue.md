@@ -19,7 +19,10 @@ Last updated: 2026-10-21.
 
 ## Gating
 
-- [ ] Decide what moves behind an email or paywall. Candidates: the Springspot Stack breakdown, the Score's next-step detail, track requirements and checklists, and some Playbook posts. Claude can add a reusable email gate (Klaviyo) once you pick. 📱
+- [ ] **Set the Klaviyo keys so the email gates actually collect.** In whv3rd/willvinton.com → Settings → Secrets and variables → Actions → Variables, add `PUBLIC_KLAVIYO_SITE_KEY` (Klaviyo public API key / site ID) and `PUBLIC_KLAVIYO_LIST_ID` (the list to subscribe to), then re-run Deploy site. As of 2026-11-09 the live build has neither, so Score and breakdown emails go nowhere.
+- [ ] In Klaviyo, build a flow for source "Springspot Stack breakdown" (profile property `requested = stack_breakdown`) if you want to email the breakdown or follow up. Score signups keep the source "Springboard Score".
+- [ ] Confirm the per-job cost ranges in `src/lib/stack.ts` (only the AI plan's price was checked live). Name example tools in the gated breakdown, or keep it product-free? 📱
+- [ ] More to gate later? Candidates: track requirements and checklists, some Playbook posts.
 
 ## Security without a DevOps team
 

@@ -1,4 +1,5 @@
-// Klaviyo client-side subscription for the Score's email gate.
+// Klaviyo client-side subscription for the site's email gates (the Score, the Springspot
+// Stack breakdown).
 //
 // Endpoint: Create Client Subscription, POST https://a.klaviyo.com/client/subscriptions
 // Docs: https://developers.klaviyo.com/en/reference/create_client_subscription
@@ -16,8 +17,13 @@ export const KLAVIYO_REVISION = '2026-10-15';
 /** Stored on the consent record, so Will can see where the subscriber came from. */
 // Kept from the original Springboard name so existing Klaviyo segments and flows still match.
 export const KLAVIYO_SOURCE = 'Springboard Score';
+/** Source for the Springspot Stack breakdown gate. */
+export const KLAVIYO_STACK_SOURCE = 'Springspot Stack breakdown';
 
-export interface ScoreProfileProperties {
+/** Custom profile properties: what Klaviyo segments and flows key on. */
+export type ProfileProperties = Record<string, string | number>;
+
+export interface ScoreProfileProperties extends ProfileProperties {
   springboard_score: number;
   springboard_level: string;
   /** Track slug of the weakest checkpoint, e.g. `design-system`, or `none` on a perfect score. */
@@ -46,7 +52,8 @@ export interface KlaviyoRequest {
 export function buildSubscriptionRequest(
   config: { siteKey: string; listId: string },
   email: string,
-  properties: ScoreProfileProperties,
+  properties: ProfileProperties,
+  source: string = KLAVIYO_SOURCE,
 ): KlaviyoRequest {
   const url = `${KLAVIYO_ENDPOINT}?company_id=${encodeURIComponent(config.siteKey.trim())}`;
   return {
@@ -60,7 +67,7 @@ export function buildSubscriptionRequest(
       data: {
         type: 'subscription',
         attributes: {
-          custom_source: KLAVIYO_SOURCE,
+          custom_source: source,
           profile: {
             data: {
               type: 'profile',
@@ -90,9 +97,10 @@ const TIMEOUT_MS = 8000;
 export async function subscribe(
   config: { siteKey: string; listId: string },
   email: string,
-  properties: ScoreProfileProperties,
+  properties: ProfileProperties,
+  source: string = KLAVIYO_SOURCE,
 ): Promise<boolean> {
-  const request = buildSubscriptionRequest(config, email, properties);
+  const request = buildSubscriptionRequest(config, email, properties, source);
   try {
     const response = await fetch(request.url, {
       method: 'POST',

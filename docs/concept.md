@@ -18,7 +18,7 @@ Springspot is a **threshold a business reaches, not a product it buys**. It is t
 
 The Springspot Stack is the minimum Springspot runs on, and a core selling point.
 
-**Public copy names no products and no prices.** It says the stack covers design, development, the store, email and SMS, and reviews for roughly $100 a month to start; that owners can bring their own tools; and that missing pieces are layered in based on business requirements, not anyone's favourites, in the Springspot Startup. The breakdown below is internal reference only:
+**Public copy names no products and no prices.** The per-job breakdown (starting cost, what to look for, when to move up) is gated behind an email on the home page and the Springspot Stack post (`src/lib/stack.ts`, `StackBreakdown.astro`). It says the stack covers design, development, the store, email and SMS, and reviews for roughly $100 a month to start; that owners can bring their own tools; and that missing pieces are layered in based on business requirements, not anyone's favourites, in the Springspot Startup. The breakdown below is internal reference only:
 
 | Job                           | Tool                    | To start           |
 | ----------------------------- | ----------------------- | ------------------ |

@@ -13,6 +13,8 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     pillar: z.enum(PILLARS),
     draft: z.boolean().default(false),
+    /** An email-gated block shown after the post, e.g. the Springspot Stack breakdown. */
+    gate: z.enum(['stack-breakdown']).optional(),
     // Defaults to Will. Set `author: <slug>` for anyone else in src/content/authors/.
     author: reference('authors').default({ collection: 'authors', id: 'will-vinton' }),
     // Shown as a "Key takeaways" box under the title. Lead with the answer.

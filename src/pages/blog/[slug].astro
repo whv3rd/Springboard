@@ -1,5 +1,6 @@
 ---
 import BrandText from '@/components/BrandText.astro';
+import StackBreakdown from '@/components/StackBreakdown.astro';
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -24,7 +25,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { title, description, date, updated, pillar, takeaways, faq } = post.data;
+const { title, description, date, updated, pillar, takeaways, faq, gate } = post.data;
 const { Content } = await render(post);
 
 const author = await getPostAuthor(post.data.author);
@@ -103,6 +104,12 @@ const schema = graph([
     <div class="prose">
       <Content />
     </div>
+
+    {gate === 'stack-breakdown' && (
+      <div class="post-gate">
+        <StackBreakdown id="post-stack" />
+      </div>
+    )}
 
     {faq?.length ? (
       <section class="faq" aria-labelledby="faq-title">
@@ -248,6 +255,11 @@ const schema = graph([
   .faq__answer {
     margin: var(--space-2) 0 0;
     color: var(--color-text-muted);
+  }
+
+  .post-gate {
+    max-width: var(--width-prose);
+    margin-top: var(--space-7);
   }
 
   .post-cta {
