@@ -144,7 +144,11 @@ const schema = graph([
   }
 
   .post-meta__pillar {
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-accent);
   }
 
@@ -157,7 +161,8 @@ const schema = graph([
   .post-lede {
     max-width: 60ch;
     margin-top: var(--space-3);
-    font-size: var(--text-md);
+    font-family: var(--font-serif);
+    font-size: var(--text-prose);
     color: var(--color-text-muted);
   }
 
@@ -203,6 +208,8 @@ const schema = graph([
   }
 
   .takeaways__title {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-semibold);
     font-size: var(--text-md);
   }
 
@@ -227,6 +234,8 @@ const schema = graph([
   }
 
   .faq__question {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-semibold);
     font-size: var(--text-md);
   }
 
