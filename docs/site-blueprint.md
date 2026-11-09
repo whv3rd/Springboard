@@ -40,8 +40,9 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 | 26–50  | Loading      | Foundations exist but aren't connected         |
 | 51–75  | Coiled       | Key systems connected; processes still manual  |
 | 76–95  | Launch-ready | Mostly automated; a few gaps to close          |
-| 96–100 | Springsboard  | One operator or a small team can run it all    |
+| 96–100 | Springsboard | One operator or a small team can run it all    |
 
+- **The seal:** a stack that reaches the Springsboard level (96–100) is **Springsboard-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Micro Stack" in `concept.md`).
 - **Free result:** total, level, one next step.
 - **Paid result:** full gap report per checkpoint, with links into matching Path modules.
 
@@ -70,12 +71,12 @@ A short **Start here** guide (free) sits above all tracks.
 
 ## Pricing tiers
 
-| Tier             | For            | Unlocks                                                                                             | Price  |
-| ---------------- | -------------- | --------------------------------------------------------------------------------------------------- | ------ |
+| Tier             | For            | Unlocks                                                                                              | Price  |
+| ---------------- | -------------- | ---------------------------------------------------------------------------------------------------- | ------ |
 | Free             | Anyone         | Blog, Springsboard pages, Score total + level, track overviews, requirements, checklists, newsletter | $0     |
-| Path             | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                       | TBD    |
-| Path Team        | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                    | TBD    |
-| Springs Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                         | Quoted |
+| Path             | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                        | TBD    |
+| Path Team        | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                     | TBD    |
+| Springs Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                          | Quoted |
 
 ## Content pillars
 

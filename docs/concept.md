@@ -12,6 +12,30 @@ Springsboard is a **threshold a business reaches, not a product it buys**. It is
 - **Promise:** less vendor dependence, faster execution, same platforms they already use.
 - **Voice:** practitioner, not pundit. Real workflows, real screenshots, real numbers.
 
+## The Micro Stack
+
+**It's not our stack, it's theirs.** Springsboard is a standard a business's own stack meets, not software it rents from us. The owner keeps every account and every connection.
+
+The Micro Stack is the minimum Springsboard runs on, and a core selling point:
+
+| Job                           | Tool                    | To start           |
+| ----------------------------- | ----------------------- | ------------------ |
+| AI operator and developer     | Claude Pro              | $20/month          |
+| Design system and page design | Figma Professional seat | ~$20/month         |
+| Store, checkout and catalog   | Shopify Basic           | ~$39/month         |
+| Email and SMS automation      | Klaviyo                 | free tier to start |
+| Product reviews               | Judge.me                | free plan to start |
+| **Total**                     |                         | **~$100/month**    |
+
+Claude Pro checked 2026-11-09; the rest need confirming (see `review-queue.md`).
+
+- **Why it sells:** a one-person store gets design, development, marketing automation and reviews for tens of dollars a month per tool, instead of enterprise platforms like Salesforce Commerce Cloud or Adobe Experience Manager that are typically licensed in the six figures a year.
+- **Start minimum, automate, then scale:** start on the cheapest plan of each tool, connect it to Claude, automate the routine work, and move up a plan only when revenue or volume asks for it. No replatforming.
+- **Cheap stacks make cheap iterations:** the bigger win is how cheap it is to change course. Iteration often happens before launch, while the operator is still learning; we reserve the right to get smarter along the way.
+- **Audience:** the roughly 33 million US small businesses (SBA), most with no employees; Springsboard serves the ones that sell online.
+- **The seal:** reaching the top Score level makes a stack **Springsboard-ready** (see `site-blueprint.md`).
+- Post: `src/content/blog/the-micro-stack.md`.
+
 ## Tiers of operation
 
 | Tier   | Who runs it                                      | Who it serves             |

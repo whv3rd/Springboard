@@ -8,6 +8,15 @@ import { getPublishedPosts } from '@/lib/blog';
 import { PART_ACCESS, PART_LABELS, PARTS } from '@/lib/path';
 
 const latest = (await getPublishedPosts()).slice(0, 3);
+
+// The Micro Stack: what Springsboard runs on, at starting prices (see the-micro-stack post).
+const MICRO_STACK = [
+  { tool: 'Claude Pro', job: 'AI operator and developer', cost: '$20 a month' },
+  { tool: 'Figma Professional', job: 'Design system and pages', cost: 'about $20 a month' },
+  { tool: 'Shopify Basic', job: 'Store, checkout and catalog', cost: 'about $39 a month' },
+  { tool: 'Klaviyo', job: 'Email and SMS automation', cost: 'free to start' },
+  { tool: 'Judge.me', job: 'Product reviews', cost: 'free to start' },
+];
 ---
 
 <BaseLayout
@@ -53,6 +62,7 @@ const latest = (await getPublishedPosts()).slice(0, 3);
           <li>Less vendor dependence.</li>
           <li>Faster execution.</li>
           <li>The same platforms you already use.</li>
+          <li>A stack you own, from about $100 a month.</li>
         </ul>
       </div>
     </section>
@@ -66,6 +76,39 @@ const latest = (await getPublishedPosts()).slice(0, 3);
         track in the Path.
       </p>
       <CheckpointList />
+    </section>
+
+    <section class="stack" aria-labelledby="stack-title">
+      <div>
+        <p class="eyebrow">The Micro Stack</p>
+        <h2 id="stack-title" class="section-title">
+          Run the whole store for about $100 a month
+        </h2>
+        <p class="section-lede">
+          It's not our stack, it's yours. Five tools cover design, development, the store, email and
+          reviews. Start on the smallest plans, automate the routine work, and move up a plan when
+          revenue asks for it. No six-figure commerce platform required.
+        </p>
+        <p class="stack__more">
+          <a href="/blog/the-micro-stack">Read: The Micro Stack</a>
+        </p>
+      </div>
+      {/* WILL: prices other than Claude Pro are from memory; confirm before merging (see the post). */}
+      <dl class="stack__list">
+        {MICRO_STACK.map((item) => (
+          <div class="stack__row">
+            <dt>
+              {item.tool}
+              <span>{item.job}</span>
+            </dt>
+            <dd>{item.cost}</dd>
+          </div>
+        ))}
+        <div class="stack__row stack__row--total">
+          <dt>Total to start</dt>
+          <dd>about $100 a month</dd>
+        </div>
+      </dl>
     </section>
 
     <section class="band" aria-labelledby="score-title">
@@ -196,6 +239,60 @@ const latest = (await getPublishedPosts()).slice(0, 3);
 
   .promise__list li + li {
     margin-top: var(--space-2);
+  }
+
+  .stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--space-5) var(--space-7);
+    align-items: start;
+  }
+
+  .stack__more {
+    margin-top: var(--space-4);
+    font-weight: var(--weight-medium);
+  }
+
+  .stack__list {
+    margin: 0;
+    border-top: 2px solid var(--color-text);
+  }
+
+  .stack__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .stack__row dt {
+    font-weight: var(--weight-semibold);
+  }
+
+  .stack__row dt span {
+    display: block;
+    font-weight: var(--weight-regular);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .stack__row dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+
+  .stack__row--total {
+    border-bottom: 2px solid var(--color-text);
+  }
+
+  .stack__row--total dt,
+  .stack__row--total dd {
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
   }
 
   .band {
