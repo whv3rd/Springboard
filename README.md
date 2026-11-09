@@ -28,16 +28,22 @@ npm run dev        # http://localhost:4321
 
 All content is Markdown or MDX in `src/content/`, validated by the schemas in `src/content.config.ts`. A frontmatter mistake fails the build.
 
-| Collection | Location                             | Key frontmatter                                                      |
-| ---------- | ------------------------------------ | -------------------------------------------------------------------- |
-| `blog`     | `src/content/blog/<slug>.md`         | `title`, `description`, `date`, `pillar`, `draft`                    |
-| `path`     | `src/content/path/<track>/<part>.md` | `title`, `description`, `track`, `part`, `order`, `access`, `teaser` |
-| `pages`    | `src/content/pages/<slug>.md`        | `title`, `description`                                               |
+| Collection | Location                             | Key frontmatter                                                                 |
+| ---------- | ------------------------------------ | ------------------------------------------------------------------------------- |
+| `blog`     | `src/content/blog/<slug>.md`         | `title`, `description`, `date`, `pillar`, `draft`, `author`, `takeaways`, `faq` |
+| `authors`  | `src/content/authors/<slug>.md`      | `name`, `role`, `bio`, `image`, `links`                                         |
+| `path`     | `src/content/path/<track>/<part>.md` | `title`, `description`, `track`, `part`, `order`, `access`, `teaser`            |
+| `pages`    | `src/content/pages/<slug>.md`        | `title`, `description`                                                          |
 
 - `pillar`: `diary` | `teardown` | `playbook` | `shift`
 - `track`: `start-here` | `design-system` | `ai-design` | `platform-mcp` | `marketing-mcp` | `processes`
 - `part`: `overview` | `requirements` | `build-guide` | `templates` | `workflows` | `checklist`
 - `access`: `free` | `paid` — paid parts render `teaser` plus a paywall linking to `/pricing`.
+- `author`: an `authors` slug; defaults to `will-vinton`. Each author gets a page at `/authors/<slug>` listing their posts.
+- `takeaways`: optional list of short sentences, shown as a "Key takeaways" box under the title. Lead with the answer.
+- `faq`: optional list of `question` / `answer` pairs, shown after the post. Answers should stand on their own, since search and AI tools quote them out of context.
+
+Blog posts and author pages emit schema.org JSON-LD (`BlogPosting`, `Person`, `BreadcrumbList`, `FAQPage`, `ProfilePage`) from `src/lib/schema.ts`. It needs `site` set for absolute URLs.
 
 Paywall rule: anything that explains _what_ or _why_ is free; anything you could follow step by step to _build_ it is paid. Default access per part lives in `src/lib/path.ts`.
 

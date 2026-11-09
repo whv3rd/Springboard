@@ -3,6 +3,20 @@ title: 'Solo or small team: the two shapes of Springboard'
 description: Springboard looks different for a solo owner-operator than for a director of ecommerce with a couple of operators. Here's how.
 date: 2026-10-01
 pillar: shift
+takeaways:
+  - 'Springboard comes in two shapes: a single operator, and a director of ecommerce with a couple of operators.'
+  - 'For a solo operator it means fewer freelancers and less waiting. The biggest risk is undocumented process.'
+  - 'For a small team it means time spent deciding and reviewing instead of briefing and waiting. The biggest risk is inconsistency.'
+  - 'Both shapes use the same five checkpoints and the same Score. Solo operators usually need the most help with processes, small teams with standards.'
+faq:
+  - question: 'Is Springboard only for one-person businesses?'
+    answer: 'No. It also fits a mid-sized business with a director of ecommerce and a small team, the shape that used to need an agency roster, a dev team and in-house creatives.'
+  - question: "What's the biggest risk for a solo operator using AI?"
+    answer: "Undocumented process. When everything lives in one head, it's hard to hand anything to an AI, or to anyone else."
+  - question: "What's the biggest risk for a small ecommerce team using AI?"
+    answer: 'Inconsistency. If each operator uses AI their own way, quality drifts, which is why the design system and documented processes matter even more at that size.'
+  - question: 'Does the Springboard Score work differently for solo operators and teams?'
+    answer: 'No. Both go through the same five checkpoints and the Score works the same way. What changes is where the time goes.'
 ---
 
 Springboard isn't only for one-person businesses. It shows up in two shapes, and the difference is mostly about who does the work and how much coordination there is.

@@ -4,8 +4,17 @@ import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import Button from '@/components/Button.astro';
+import { authorInfo, authorPath, getPostAuthor } from '@/lib/authors';
 import { formatDate, getPublishedPosts } from '@/lib/blog';
 import { PILLAR_LABELS } from '@/lib/path';
+import {
+  absoluteUrl,
+  blogPostingSchema,
+  breadcrumbSchema,
+  faqSchema,
+  graph,
+  personSchema,
+} from '@/lib/schema';
 
 // Drafts are filtered out, so they never get a route.
 export const getStaticPaths = (async () => {
@@ -14,11 +23,35 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { title, description, date, updated, pillar } = post.data;
+const { title, description, date, updated, pillar, takeaways, faq } = post.data;
 const { Content } = await render(post);
+
+const author = await getPostAuthor(post.data.author);
+const base = import.meta.env.BASE_URL;
+const info = authorInfo(author, Astro.site, base);
+const url = absoluteUrl(`/blog/${post.id}`, Astro.site!, base);
+
+const schema = graph([
+  blogPostingSchema({
+    url,
+    title,
+    description,
+    date,
+    updated,
+    section: PILLAR_LABELS[pillar],
+    author: info,
+    siteUrl: absoluteUrl('/', Astro.site!, base),
+  }),
+  personSchema(info),
+  breadcrumbSchema([
+    { name: 'Blog', url: absoluteUrl('/blog', Astro.site!, base) },
+    { name: title, url },
+  ]),
+  ...(faq?.length ? [faqSchema(faq, url)] : []),
+]);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} ogType="article" schema={schema}>
   <article class="container page">
     <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: title }]} />
     <header>
@@ -33,11 +66,58 @@ const { Content } = await render(post);
       </p>
       <h1 class="post-title">{title}</h1>
       <p class="post-lede">{description}</p>
+      <a class="byline" href={authorPath(author.id)} rel="author">
+        {author.data.image && (
+          <img
+            class="byline__photo"
+            src={author.data.image}
+            alt=""
+            width="48"
+            height="48"
+            decoding="async"
+          />
+        )}
+        <span>
+          <span class="byline__name">By {author.data.name}</span>
+          <span class="byline__role">{author.data.role}</span>
+        </span>
+      </a>
     </header>
+
+    {takeaways?.length ? (
+      <aside class="takeaways" aria-labelledby="takeaways-title">
+        <h2 id="takeaways-title" class="takeaways__title">
+          Key takeaways
+        </h2>
+        <ul>
+          {takeaways.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    ) : null}
 
     <div class="prose">
       <Content />
     </div>
+
+    {faq?.length ? (
+      <section class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="section-title">
+          Frequently asked questions
+        </h2>
+        <dl>
+          {faq.map((item) => (
+            <div class="faq__item">
+              <dt>
+                <h3 class="faq__question">{item.question}</h3>
+              </dt>
+              <dd class="faq__answer">{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ) : null}
 
     <aside class="post-cta" aria-labelledby="post-cta-title">
       <h2 id="post-cta-title" class="section-title">
@@ -64,7 +144,11 @@ const { Content } = await render(post);
   }
 
   .post-meta__pillar {
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-accent);
   }
 
@@ -77,7 +161,86 @@ const { Content } = await render(post);
   .post-lede {
     max-width: 60ch;
     margin-top: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: var(--text-prose);
+    color: var(--color-text-muted);
+  }
+
+  .byline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .byline:hover .byline__name {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .byline__photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .byline__name {
+    display: block;
+    font-weight: var(--weight-semibold);
+  }
+
+  .byline__role {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .takeaways {
+    max-width: var(--width-prose);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .takeaways__title {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-semibold);
     font-size: var(--text-md);
+  }
+
+  .takeaways ul {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding-left: 1.25rem;
+  }
+
+  .faq {
+    max-width: var(--width-prose);
+  }
+
+  .faq dl {
+    margin: var(--space-4) 0 0;
+  }
+
+  .faq__item {
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq__question {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-md);
+  }
+
+  .faq__answer {
+    margin: var(--space-2) 0 0;
     color: var(--color-text-muted);
   }
 

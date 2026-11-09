@@ -3,29 +3,51 @@ import Button from './Button.astro';
 import { PRIMARY_NAV, isCurrent } from '@/lib/nav';
 
 const { pathname } = Astro.url;
+
+// The two sites share this header: the active tab is this site, the other links across.
+// Swap SITE_LABEL for the domain (e.g. springboard.ai) once it is registered.
+const SITE_LABEL = 'Springboard';
+const WILLVINTON_URL = 'https://www.willvinton.com/';
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="/" class="site-header__brand" aria-label="Springboard home">
-      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-        <rect width="32" height="32" rx="7" fill="currentColor"></rect>
-        <path
-          d="M8 22h16M11 22l5-12 5 12"
-          stroke="var(--color-bg)"
-          stroke-width="2.5"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></path>
-      </svg>
-      <span>Springboard</span>
-    </a>
+    <nav class="site-tabs" aria-label="Sites">
+      <a href={WILLVINTON_URL} class="site-tab">
+        <span class="site-tab__mark site-tab__mark--wv" aria-hidden="true">
+          W
+        </span>
+        <span class="site-tab__label">willvinton.com</span>
+        <svg class="site-tab__out" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+          <path d="M7 7h10v10M7 17 17 7"></path>
+        </svg>
+      </a>
+      <span class="site-tabs__divider" aria-hidden="true"></span>
+      <a href="/" class="site-tab site-tab--active" aria-current="true">
+        <svg class="site-tab__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="currentColor"></rect>
+          <path
+            d="M8 22h16M11 22l5-12 5 12"
+            stroke="var(--color-bg)"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        <span class="site-tab__label">{SITE_LABEL}</span>
+      </a>
+    </nav>
     <nav class="site-header__nav" aria-label="Primary">
       <ul>
         {PRIMARY_NAV.map((item) => (
           <li>
-            <a href={item.href} aria-current={isCurrent(item.href, pathname, import.meta.env.BASE_URL) ? 'page' : undefined}>
+            <a
+              href={item.href}
+              aria-current={
+                isCurrent(item.href, pathname, import.meta.env.BASE_URL) ? 'page' : undefined
+              }
+            >
               {item.label}
             </a>
           </li>
@@ -48,27 +70,102 @@ const { pathname } = Astro.url;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-3) var(--space-5);
-    padding-block: var(--space-3);
+    gap: 0 var(--space-5);
   }
 
-  .site-header__brand {
+  .site-tabs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .site-tabs__divider {
+    width: 1px;
+    height: 1.25rem;
+    background: var(--color-border);
+  }
+
+  .site-tab {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    color: var(--color-text);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-md);
+    min-height: 4.5rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
     text-decoration: none;
+    white-space: nowrap;
   }
 
-  .site-header__brand:hover {
+  .site-tab:hover {
     color: var(--color-text);
+  }
+
+  .site-tab--active {
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    font-size: var(--text-md);
+    font-weight: var(--weight-semibold);
+  }
+
+  .site-tab--active::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 2px;
+    background: var(--color-accent);
+  }
+
+  .site-tab__mark {
+    flex: none;
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+
+  .site-tab__mark--wv {
+    display: inline-grid;
+    place-items: center;
+    border-radius: 5px;
+    background: var(--color-text-muted);
+    color: var(--color-bg);
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .site-tab:hover .site-tab__mark--wv {
+    background: var(--color-text);
+  }
+
+  .site-tab__out {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 30rem) {
+    .site-header__inner :global(.site-header__cta) {
+      display: none;
+    }
+
+    .site-tab:not(.site-tab--active) .site-tab__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
   }
 
   .site-header__nav {
     order: 3;
     flex-basis: 100%;
+    padding-bottom: var(--space-3);
   }
 
   .site-header__nav ul {
@@ -110,6 +207,7 @@ const { pathname } = Astro.url;
       order: 0;
       flex-basis: auto;
       margin-left: auto;
+      padding-bottom: 0;
     }
 
     .site-header__nav ul {

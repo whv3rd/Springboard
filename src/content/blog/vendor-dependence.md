@@ -3,6 +3,18 @@ title: The real cost of vendor dependence
 description: Most ecommerce teams don't pay for vendors so much as they pay for waiting. Here's why that matters more than the invoice.
 date: 2026-10-15
 pillar: shift
+takeaways:
+  - 'The biggest cost of agencies and freelancers is usually waiting, not the invoice.'
+  - "When every change goes through someone else's queue, the business moves at the pace of its slowest dependency."
+  - "Dependence compounds: tests that need three vendors don't get run, and teams stop asking for changes that would matter."
+  - "Springboard doesn't cut every vendor. It removes the handoff for routine work, so specialists are used for strategy and hard problems."
+faq:
+  - question: 'What is the real cost of vendor dependence in ecommerce?'
+    answer: 'Time. A homepage update waits for the designer, a bulk product fix for the developer, a new segment for the email specialist. Together these set the pace of the whole business.'
+  - question: 'Should I cut all my agencies and freelancers?'
+    answer: 'No. Good specialists are still worth paying for, especially for strategy and hard problems. The point is that routine, specialist-shaped work stops needing a handoff.'
+  - question: "How do I measure my store's vendor dependence?"
+    answer: "List the last ten changes your team wanted to make to the site, catalog or email program. For each, note who had to be involved and how long it took to go live. If most of that time was waiting, you're paying for dependence."
 ---
 
 When ecommerce teams talk about the cost of agencies and freelancers, they usually talk about invoices. The bigger cost is time.

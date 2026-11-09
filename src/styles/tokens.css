@@ -1,9 +1,9 @@
 /*
  * Springboard design tokens.
  *
- * PLACEHOLDER VALUES. No Springboard Figma file was available when these were
- * written (M1). When the Figma design system exists, replace the values here
- * and keep the token names stable so components don't change.
+ * Source of truth: the Springboard design system in Figma (editorial direction:
+ * warm paper, brick accent, Newsreader + IBM Plex). Keep these names in step with
+ * the Figma variables; components use the semantic tokens below.
  *
  * Naming: --color-*, --font-*, --text-*, --space-*, --radius-*, --shadow-*.
  * Components use semantic tokens (--color-text, --color-surface), never raw palette values.
@@ -40,24 +40,44 @@
   --palette-red-50: #fdecea;
   --palette-red-950: #2d0b08;
 
-  /* ---- Semantic color: light ---- */
-  --color-bg: var(--palette-white);
-  --color-surface: var(--palette-ink-50);
-  --color-surface-raised: var(--palette-white);
-  --color-border: var(--palette-ink-200);
-  --color-border-strong: var(--palette-ink-300);
-  --color-text: var(--palette-ink-900);
-  --color-text-muted: var(--palette-ink-500);
-  --color-accent: var(--palette-spring-700);
-  --color-accent-hover: var(--palette-spring-600);
-  --color-accent-contrast: var(--palette-white);
-  --color-accent-subtle: var(--palette-spring-50);
-  --color-focus: var(--palette-spring-600);
+  /* Editorial palette: warm paper neutrals and a brick accent */
+  --palette-paper-50: #fbf9f4;
+  --palette-paper-100: #f3efe6;
+  --palette-paper-200: #e5ded0;
+  --palette-paper-300: #cfc5b3;
+  --palette-paper-400: #a3998a;
+  --palette-paper-500: #6e665b;
+  --palette-paper-700: #38322b;
+  --palette-paper-800: #24201b;
+  --palette-paper-900: #1b1814;
+  --palette-paper-950: #121009;
+  --palette-paper-cream: #eee8dc;
 
-  --color-note-bg: var(--palette-ink-50);
-  --color-note-border: var(--palette-ink-400);
-  --color-tip-bg: var(--palette-spring-50);
-  --color-tip-border: var(--palette-spring-700);
+  --palette-brick-950: #2a0e06;
+  --palette-brick-700: #a6351a;
+  --palette-brick-600: #c0421f;
+  --palette-brick-300: #ee8b6e;
+  --palette-brick-200: #f5b8a4;
+  --palette-brick-50: #f7e8e1;
+
+  /* ---- Semantic color: light ---- */
+  --color-bg: var(--palette-paper-50);
+  --color-surface: var(--palette-paper-100);
+  --color-surface-raised: var(--palette-paper-50);
+  --color-border: var(--palette-paper-200);
+  --color-border-strong: var(--palette-paper-300);
+  --color-text: var(--palette-paper-900);
+  --color-text-muted: var(--palette-paper-500);
+  --color-accent: var(--palette-brick-700);
+  --color-accent-hover: var(--palette-brick-600);
+  --color-accent-contrast: var(--palette-paper-50);
+  --color-accent-subtle: var(--palette-brick-50);
+  --color-focus: var(--palette-brick-600);
+
+  --color-note-bg: var(--palette-paper-100);
+  --color-note-border: var(--palette-paper-400);
+  --color-tip-bg: var(--palette-brick-50);
+  --color-tip-border: var(--palette-brick-700);
   --color-warning-bg: var(--palette-amber-50);
   --color-warning-border: var(--palette-amber-700);
   --color-danger-bg: var(--palette-red-50);
@@ -66,9 +86,11 @@
   color-scheme: light;
 
   /* ---- Typography ---- */
+  /* Loaded from Google Fonts in BaseLayout.astro */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+    'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Fluid type scale, ~1.2 ratio at small sizes widening to ~1.25 */
   --text-xs: 0.8125rem;
@@ -76,11 +98,13 @@
   --text-base: 1rem;
   --text-md: 1.125rem;
   --text-lg: clamp(1.25rem, 1.15rem + 0.4vw, 1.375rem);
-  --text-xl: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
-  --text-2xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.25rem);
-  --text-3xl: clamp(2.25rem, 1.7rem + 2.4vw, 3rem);
+  --text-xl: clamp(1.5rem, 1.3rem + 0.9vw, 1.875rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.2vw, 2.75rem);
+  --text-3xl: clamp(2.5rem, 1.7rem + 3.4vw, 3.75rem);
+  /* Serif reading size for ledes and long-form prose */
+  --text-prose: 1.25rem;
 
-  --leading-tight: 1.15;
+  --leading-tight: 1.1;
   --leading-snug: 1.35;
   --leading-normal: 1.6;
 
@@ -101,14 +125,16 @@
   --space-9: 6rem;
 
   /* ---- Radius ---- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
-  --radius-full: 999px;
+  /* Editorial: near-square corners everywhere, pills included */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-full: 3px;
 
   /* ---- Elevation ---- */
-  --shadow-sm: 0 1px 2px rgb(11 15 14 / 0.06);
-  --shadow-md: 0 4px 16px rgb(11 15 14 / 0.08);
+  /* Editorial: flat, no drop shadows */
+  --shadow-sm: none;
+  --shadow-md: none;
 
   /* ---- Layout ---- */
   --width-prose: 68ch;
@@ -123,30 +149,27 @@
 /* ---- Semantic color: dark ---- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-bg: var(--palette-ink-950);
-    --color-surface: var(--palette-ink-900);
-    --color-surface-raised: var(--palette-ink-800);
-    --color-border: var(--palette-ink-700);
-    --color-border-strong: var(--palette-ink-500);
-    --color-text: var(--palette-ink-100);
-    --color-text-muted: var(--palette-ink-400);
-    --color-accent: var(--palette-spring-300);
-    --color-accent-hover: var(--palette-spring-200);
-    --color-accent-contrast: var(--palette-spring-950);
-    --color-accent-subtle: var(--palette-spring-950);
-    --color-focus: var(--palette-spring-300);
+    --color-bg: var(--palette-paper-950);
+    --color-surface: var(--palette-paper-900);
+    --color-surface-raised: var(--palette-paper-800);
+    --color-border: var(--palette-paper-700);
+    --color-border-strong: var(--palette-paper-500);
+    --color-text: var(--palette-paper-cream);
+    --color-text-muted: var(--palette-paper-400);
+    --color-accent: var(--palette-brick-300);
+    --color-accent-hover: var(--palette-brick-200);
+    --color-accent-contrast: var(--palette-brick-950);
+    --color-accent-subtle: var(--palette-brick-950);
+    --color-focus: var(--palette-brick-300);
 
-    --color-note-bg: var(--palette-ink-900);
-    --color-note-border: var(--palette-ink-500);
-    --color-tip-bg: var(--palette-spring-950);
-    --color-tip-border: var(--palette-spring-300);
+    --color-note-bg: var(--palette-paper-900);
+    --color-note-border: var(--palette-paper-500);
+    --color-tip-bg: var(--palette-brick-950);
+    --color-tip-border: var(--palette-brick-300);
     --color-warning-bg: var(--palette-amber-950);
     --color-warning-border: var(--palette-amber-300);
     --color-danger-bg: var(--palette-red-950);
     --color-danger-border: var(--palette-red-300);
-
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.45);
 
     color-scheme: dark;
   }
@@ -154,30 +177,27 @@
 
 /* Explicit override, for a future theme toggle */
 :root[data-theme='dark'] {
-  --color-bg: var(--palette-ink-950);
-  --color-surface: var(--palette-ink-900);
-  --color-surface-raised: var(--palette-ink-800);
-  --color-border: var(--palette-ink-700);
-  --color-border-strong: var(--palette-ink-500);
-  --color-text: var(--palette-ink-100);
-  --color-text-muted: var(--palette-ink-400);
-  --color-accent: var(--palette-spring-300);
-  --color-accent-hover: var(--palette-spring-200);
-  --color-accent-contrast: var(--palette-spring-950);
-  --color-accent-subtle: var(--palette-spring-950);
-  --color-focus: var(--palette-spring-300);
+  --color-bg: var(--palette-paper-950);
+  --color-surface: var(--palette-paper-900);
+  --color-surface-raised: var(--palette-paper-800);
+  --color-border: var(--palette-paper-700);
+  --color-border-strong: var(--palette-paper-500);
+  --color-text: var(--palette-paper-cream);
+  --color-text-muted: var(--palette-paper-400);
+  --color-accent: var(--palette-brick-300);
+  --color-accent-hover: var(--palette-brick-200);
+  --color-accent-contrast: var(--palette-brick-950);
+  --color-accent-subtle: var(--palette-brick-950);
+  --color-focus: var(--palette-brick-300);
 
-  --color-note-bg: var(--palette-ink-900);
-  --color-note-border: var(--palette-ink-500);
-  --color-tip-bg: var(--palette-spring-950);
-  --color-tip-border: var(--palette-spring-300);
+  --color-note-bg: var(--palette-paper-900);
+  --color-note-border: var(--palette-paper-500);
+  --color-tip-bg: var(--palette-brick-950);
+  --color-tip-border: var(--palette-brick-300);
   --color-warning-bg: var(--palette-amber-950);
   --color-warning-border: var(--palette-amber-300);
   --color-danger-bg: var(--palette-red-950);
   --color-danger-border: var(--palette-red-300);
-
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.45);
 
   color-scheme: dark;
 }
