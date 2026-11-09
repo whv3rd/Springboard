@@ -46,7 +46,7 @@ export const PART_LABELS: Record<Part, string> = {
 export interface TrackInfo {
   title: string;
   description: string;
-  /** The Springboard checkpoint this track builds. Start here has none. */
+  /** The Springsboard checkpoint this track builds. Start here has none. */
   checkpoint: number | null;
   /** The parts this track is made of, in reading order. */
   parts: readonly Part[];

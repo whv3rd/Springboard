@@ -13,7 +13,7 @@ Will's notes so far, to build the post around:
 - As an ecommerce person, you're not necessarily creative, not necessarily a great developer, not necessarily a great writer, not necessarily great at project management.
 - AI can solve all of these challenges for you if you're just willing to speak. Just talk.
 - Lock yourself in a room, or walk around your neighborhood talking to AI and recording yourself.
-- That's a huge piece of what AI can do, and it's part of the underlying theme of Springboard: set up the foundation, then talk.
+- That's a huge piece of what AI can do, and it's part of the underlying theme of Springsboard: set up the foundation, then talk.
 
 Questions for Will (answer by voice; Claude tidies the grammar and keeps your words):
 

@@ -1,4 +1,4 @@
-# Springboard — Blog Roadmap
+# Springsboard — Blog Roadmap
 
 The blog does job one of the site: **earn trust**. Every post should leave an operator with something they could use on Monday, and point toward the Score or a Path track.
 
@@ -6,7 +6,7 @@ Status: draft for Will's review. Dates, cadence and titles are proposals.
 
 ## The core theme
 
-Set up the foundation right, give AI the rules, then just talk. It applies to every checkpoint (design, platform, marketing, processes), and it is the underlying theme of Springboard. Most posts should come back to it.
+Set up the foundation right, give AI the rules, then just talk. It applies to every checkpoint (design, platform, marketing, processes), and it is the underlying theme of Springsboard. Most posts should come back to it.
 
 ## Principles
 
@@ -23,11 +23,11 @@ Set up the foundation right, give AI the rules, then just talk. It applies to ev
 | Operator diaries | Show the work as it happens at Will's own brands        | What I tried this week, what broke, what it cost  | Public build log  |
 | Teardowns        | Score a real store against the five checkpoints         | Public-info audit, score per checkpoint, gaps     | The Score         |
 | Playbooks        | One complete, free workflow                             | Problem → setup → prompt/config → result → limits | Matching track    |
-| The shift        | Point of view on where ecommerce operations are heading | Thesis, evidence, what operators should do        | Springboard pages |
+| The shift        | Point of view on where ecommerce operations are heading | Thesis, evidence, what operators should do        | Springsboard pages |
 
 ## Cadence
 
-- **Launch:** eight foundational posts, backdated August–October 2026 (PR #4), covering what Springboard is, the checkpoints, the Score, the tiers, and Will's background.
+- **Launch:** eight foundational posts, backdated August–October 2026 (PR #4), covering what Springsboard is, the checkpoints, the Score, the tiers, and Will's background.
 - **Ongoing:** 2–3 posts a week, drafted by the content agent from the research digests and the backlog below, rotating pillars. Each draft arrives as a PR; merging it publishes it.
 - **Will's part:** review each draft, add the practitioner detail only he has (screenshots, real numbers, what actually happened), and merge. Operator diaries and Teardowns of real brands always need Will's input before publishing.
 - If review time gets tight, reduce volume before reducing quality. Thin, generic AI posts hurt trust and search rankings more than a slower cadence does.
@@ -36,8 +36,8 @@ Set up the foundation right, give AI the rules, then just talk. It applies to ev
 
 | #   | Post                                                     | Pillar    | Next step           | Needs from Will                       |
 | --- | -------------------------------------------------------- | --------- | ------------------- | ------------------------------------- |
-| 1   | The Springboard manifesto                                | The shift | What is Springboard | Point of view, final edit             |
-| 2   | Introducing the Springboard Score                        | The shift | Take the Score      | Final questions (open decision)       |
+| 1   | The Springsboard manifesto                                | The shift | What is Springsboard | Point of view, final edit             |
+| 2   | Introducing the Springsboard Score                        | The shift | Take the Score      | Final questions (open decision)       |
 | 3   | Playbook: audit your page templates before Figma         | Playbook  | Track 1             | A real audit example                  |
 | 4   | Playbook: your first on-system page with Claude + Figma  | Playbook  | Track 2             | Screenshots                           |
 | 5   | Playbook: query your Shopify catalog through an MCP      | Playbook  | Track 3             | Screenshots, safe example data        |
@@ -74,7 +74,7 @@ Draft files in `src/content/blog/` with Will's notes and open questions. Each ge
 | Post                                                     | Theme                                                       |
 | -------------------------------------------------------- | ----------------------------------------------------------- |
 | You don't have to be a designer, developer or writer     | Just talk: AI covers the skills you don't have              |
-| The Springboard concept applies to development, too      | Platform MCPs plus a connected repo for non-developers      |
+| The Springsboard concept applies to development, too      | Platform MCPs plus a connected repo for non-developers      |
 | Vibe coding vs. agentic development                      | Attention, explicit permission, full history                |
 | Teams 1: your backlog is the bottleneck                  | Jira or Linear in the stack, business requests, audit trail |
 | Teams 2: Claude as your scrum master and project manager | Running Agile, SAFe, Scrum or Kanban with AI                |

@@ -12,6 +12,7 @@ import {
 } from '@/lib/score';
 import type { ScoreResult } from '@/lib/score';
 
+// Pre-rename key, kept so returning visitors keep their saved answers.
 const STORAGE_KEY = 'springboard:score';
 // Loose on purpose: the browser's type=email check accepts `a@b`, this also wants a dot.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -107,7 +108,7 @@ function init(): void {
     if (!hasKlaviyoConfig(klaviyo)) {
       if (!warnedNoKlaviyo) {
         console.warn(
-          'Springboard Score: PUBLIC_KLAVIYO_SITE_KEY / PUBLIC_KLAVIYO_LIST_ID not set; not sending to Klaviyo.',
+          'Springsboard Score: PUBLIC_KLAVIYO_SITE_KEY / PUBLIC_KLAVIYO_LIST_ID not set; not sending to Klaviyo.',
         );
         warnedNoKlaviyo = true;
       }
