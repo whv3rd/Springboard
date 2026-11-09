@@ -1,6 +1,6 @@
 # Springsboard
 
-Education-first site (blog + docs + paid library) for **Springsboard**: the threshold where a small/mid-sized ecommerce business has design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run it. Brand: **Springsboard AI** (renamed from Springboard; domain not yet registered). Tagline: "Your jumping point into more efficient, more voluminous, and more scalable growth." Owner: Will Vinton.
+Education-first site (blog + docs + paid library) for **Springsboard**: the threshold where a small/mid-sized ecommerce business has design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run it. Brand: **Springsboard AI** (renamed from Springboard; domain not yet registered). Tagline: "Your jumping-off point to run leaner, launch more and scale without adding headcount." Owner: Will Vinton.
 
 Detail lives in `docs/`:
 
