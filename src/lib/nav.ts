@@ -5,7 +5,7 @@ export interface NavItem {
 
 // Primary nav, from the sitemap in docs/site-blueprint.md.
 export const PRIMARY_NAV: NavItem[] = [
-  { label: 'Springsboard', href: '/springsboard' },
+  { label: 'Springspot', href: '/springspot' },
   { label: 'The Score', href: '/score' },
   { label: 'The Path', href: '/path' },
   { label: 'Blog', href: '/blog' },
@@ -16,7 +16,7 @@ export const PRIMARY_NAV: NavItem[] = [
 /**
  * Whether a nav href is the current section. `base` is the site's base path
  * (import.meta.env.BASE_URL), stripped from the pathname first so the check still
- * works when the site is served from a subdirectory such as /springsboard.
+ * works when the site is served from a subdirectory such as /springspot.
  */
 export function isCurrent(href: string, pathname: string, base = '/'): boolean {
   const prefix = base.replace(/\/$/, '');

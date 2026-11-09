@@ -1,16 +1,16 @@
 ---
 title: 'The Micro Stack: run a store on about $100 a month'
-description: You don't need a six-figure commerce platform to run a real store. Here is the stack Springsboard is built on, what each piece costs, and why starting small is the point.
+description: You don't need a six-figure commerce platform to run a real store. Here is the stack Springspot is built on, what each piece costs, and why starting small is the point.
 date: 2026-11-09
 pillar: shift
 takeaways:
   - 'Most US businesses are one person. They need AI help they can afford and run themselves, not an enterprise platform.'
   - 'The Micro Stack is Claude, Figma, Shopify, Klaviyo and Judge.me: design, development, store, email and reviews for about $100 a month to start.'
-  - "It's not our stack, it's yours. Springsboard is a standard your stack meets, not software you rent from us."
+  - "It's not our stack, it's yours. Springspot is a standard your stack meets, not software you rent from us."
   - 'Start with the minimum, automate it, then scale the plans you already use. You add cost when revenue asks for it, not before.'
   - 'A cheap, connected stack makes iteration cheap. Often the most valuable iteration happens before launch, while you are still learning.'
 faq:
-  - question: 'What is the Springsboard Micro Stack?'
+  - question: 'What is the Springspot Micro Stack?'
     answer: 'A minimum set of tools that covers design, development, the store, email marketing and reviews: Claude, Figma, Shopify, Klaviyo and Judge.me. Connected to Claude through MCPs, it lets one operator run what used to take several specialists.'
   - question: 'How much does the Micro Stack cost to start?'
     answer: 'About $100 a month: Claude Pro at $20, a Figma Professional seat at about $20, Shopify Basic at about $39, and the free tiers of Klaviyo and Judge.me until your list and order volume grow.'
@@ -18,8 +18,8 @@ faq:
     answer: 'No. Those platforms are built for large teams and are typically licensed in the six figures a year. A small business gets the same outcomes, an on-brand site, automated email and collected reviews, from tools that cost tens of dollars a month.'
   - question: 'Does the Micro Stack scale?'
     answer: 'Yes. Every tool in it has larger plans. You move up a plan when volume or revenue asks for it, without replatforming, and the processes you automated on day one keep working.'
-  - question: 'Is Springsboard a piece of software I buy?'
-    answer: "No. Springsboard is a standard your stack meets. You own every account and every connection. When your stack reaches the top level on the Springsboard Score, it's Springsboard-ready."
+  - question: 'Is Springspot a piece of software I buy?'
+    answer: "No. Springspot is a standard your stack meets. You own every account and every connection. When your stack reaches the top level on the Springspot Score, it's Springspot-ready."
 ---
 
 <!-- WILL: Prices below were checked against claude.com on 2026-11-09 (Claude Pro $20/month, $17/month billed yearly). Figma, Shopify, Klaviyo and Judge.me pricing pages were blocked from my session, so those figures are from memory: please confirm each before publishing. -->
@@ -28,17 +28,17 @@ A number Mark Cuban likes to repeat: there are about 33 million businesses in th
 
 <!-- WILL: The SBA's Office of Advocacy is the source for ~33 million small businesses, most with no employees. Want to link it, or keep it as the Cuban line? -->
 
-For the ones that sell online, that's who Springsboard is for. And the first thing I want them to know is how little it takes to start.
+For the ones that sell online, that's who Springspot is for. And the first thing I want them to know is how little it takes to start.
 
 ## It's not our stack. It's yours.
 
-Springsboard isn't software you rent from me. It's a standard your stack meets: design, platform and marketing connected to AI, with the core processes running through those connections. You own every account. You own every connection. If you stopped reading this blog tomorrow, everything would keep working.
+Springspot isn't software you rent from me. It's a standard your stack meets: design, platform and marketing connected to AI, with the core processes running through those connections. You own every account. You own every connection. If you stopped reading this blog tomorrow, everything would keep working.
 
-When your stack reaches the top level on the [Springsboard Score](/score), it's Springsboard-ready. That's the seal. It doesn't come from a vendor; it comes from what your stack can actually do.
+When your stack reaches the top level on the [Springspot Score](/score), it's Springspot-ready. That's the seal. It doesn't come from a vendor; it comes from what your stack can actually do.
 
 ## The Micro Stack
 
-Here is the minimum stack Springsboard is built on, and what it costs to start.
+Here is the minimum stack Springspot is built on, and what it costs to start.
 
 | Job                           | Tool                    | To start                |
 | ----------------------------- | ----------------------- | ----------------------- |
@@ -79,4 +79,4 @@ Sometimes the iteration happens before you even launch. You're learning as you b
 
 ## Where to start
 
-[Take the Springsboard Score](/score). It takes a few minutes and tells you which part of your stack to connect first. If you're starting from nothing, start with the Micro Stack and the [Start here track](/path/start-here).
+[Take the Springspot Score](/score). It takes a few minutes and tells you which part of your stack to connect first. If you're starting from nothing, start with the Micro Stack and the [Start here track](/path/start-here).

@@ -1,4 +1,4 @@
-# Springsboard — Project Plan
+# Springspot — Project Plan
 
 The working plan across every workstream. The handoff (`docs/SPRINGBOARD_HANDOFF.md`) stays the original record; this file is what we update as decisions get made.
 
@@ -9,7 +9,7 @@ Last updated: 2026-10-21.
 - **Organic first, paid later.** Earn trust with content, the Score and LinkedIn before spending on ads.
 - **Agents draft, Will approves.** Nothing goes out under Will's name without his review. Agents deliver work as PRs or drafts.
 - **Near-free until revenue.** Free tiers where they exist. Ask before any paid service.
-- **Build to the Springsboard standard.** The site, the email program and the agents are themselves the live demo.
+- **Build to the Springspot standard.** The site, the email program and the agents are themselves the live demo.
 
 ## Workstreams
 
@@ -54,7 +54,7 @@ See `docs/blog-roadmap.md`. Launch with eight backdated foundational posts, then
 **Goal:** build Will's presence where directors of ecommerce actually are, and drive people to the Score.
 
 - **LinkedIn agent drafts, Will posts.** LinkedIn restricts automated posting to approved apps, so the agent prepares posts and Will publishes them (or schedules them in LinkedIn's own scheduler).
-- **First steps:** review Will's profile and headline against the Springsboard positioning; build a weekly plan (for example 3 short posts a week) drawn from blog posts, research digests and the build log.
+- **First steps:** review Will's profile and headline against the Springspot positioning; build a weekly plan (for example 3 short posts a week) drawn from blog posts, research digests and the build log.
 - **Formats:** short takes on news, one-workflow tips, build log updates, Score teardowns, and links to new posts.
 
 ## 6. Paid marketing
@@ -66,19 +66,19 @@ After organic is working: site live, Score converting, email flows running.
 
 ## 7. Offers and commerce
 
-From free to high-touch, each step leads to the Springsboard foundation. Prices are open.
+From free to high-touch, each step leads to the Springspot foundation. Prices are open.
 
-| Offer              | What it is                                                                  | Phase        |
-| ------------------ | --------------------------------------------------------------------------- | ------------ |
-| Free               | Blog, Springsboard pages, Score total and level, free Path parts, newsletter | Now          |
-| Path               | Paid build guides, templates, prompts, MCP configs, workflows, gap report   | Phase 2      |
-| Path Team          | Path for multiple seats, team Score tracking, quarterly live Q&A            | Phase 2      |
-| Insider membership | Will's daily insights and research digests, early access, member community  | Phase 2      |
-| Live sessions      | Recurring live streams and Q&A on building to Springsboard                   | Phase 2      |
-| Courses            | Structured, self-paced courses per checkpoint or for a whole team           | Phase 2+     |
-| 1:1 calls          | Paid personal calls with Will                                               | Phase 2      |
-| Springs Advisory   | Readiness audit, hands-on build, optional ongoing operation                 | Now (quoted) |
-| Workshops          | Remote or on-site workshops introducing AI to a team, aimed at Springsboard  | Now (quoted) |
+| Offer               | What it is                                                                 | Phase        |
+| ------------------- | -------------------------------------------------------------------------- | ------------ |
+| Free                | Blog, Springspot pages, Score total and level, free Path parts, newsletter | Now          |
+| Path                | Paid build guides, templates, prompts, MCP configs, workflows, gap report  | Phase 2      |
+| Path Team           | Path for multiple seats, team Score tracking, quarterly live Q&A           | Phase 2      |
+| Insider membership  | Will's daily insights and research digests, early access, member community | Phase 2      |
+| Live sessions       | Recurring live streams and Q&A on building to Springspot                   | Phase 2      |
+| Courses             | Structured, self-paced courses per checkpoint or for a whole team          | Phase 2+     |
+| 1:1 calls           | Paid personal calls with Will                                              | Phase 2      |
+| Springspot Advisory | Readiness audit, hands-on build, optional ongoing operation                | Now (quoted) |
+| Workshops           | Remote or on-site workshops introducing AI to a team, aimed at Springspot  | Now (quoted) |
 
 **Commerce backend:** Shopify Basic, per the handoff, with customer accounts gating paid content (Ghost is the fallback). Running it on Shopify also makes it a live Track 3 demo.
 

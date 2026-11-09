@@ -1,5 +1,5 @@
 ---
-title: Who I am, and why I'm building Springsboard
+title: Who I am, and why I'm building Springspot
 description: Eighteen years in ecommerce across Shopify, Magento and Salesforce, and why I think the operating model is about to change.
 date: 2026-09-22
 pillar: diary
@@ -9,11 +9,11 @@ takeaways:
   - 'The pattern he sees everywhere: the business wants to move faster than its dependencies allow.'
   - 'AI connected to Figma, Shopify and Klaviyo lets the operator with the idea do much of the specialist work, as long as the foundations are in place.'
 faq:
-  - question: 'Who writes Springsboard?'
-    answer: 'Will Vinton, an ecommerce operator with about 18 years in the industry. He directs ecommerce, consults across multiple brands and runs a portfolio of his own brands that he is building to Springsboard.'
-  - question: 'Who is Springsboard for?'
+  - question: 'Who writes Springspot?'
+    answer: 'Will Vinton, an ecommerce operator with about 18 years in the industry. He directs ecommerce, consults across multiple brands and runs a portfolio of his own brands that he is building to Springspot.'
+  - question: 'Who is Springspot for?'
     answer: 'People who run an online store, solo or with a small team, and want to move faster than their agencies, developers and designers allow.'
-  - question: 'Why does Springsboard matter now?'
+  - question: 'Why does Springspot matter now?'
     answer: 'Because AI connected to the tools a store already uses, such as Figma, Shopify and Klaviyo, means a lot of the specialist-shaped work between an idea and a live change can be done by the operator who had the idea.'
 ---
 
@@ -33,10 +33,10 @@ For most of my career, the answer was to hire more specialists or find better ve
 
 AI connected to the tools a store already uses changes the shape of the problem. When Claude can work inside Figma, Shopify and Klaviyo, a lot of the specialist-shaped work between an idea and a live change can be done by the operator who had the idea.
 
-That only works if the foundations are in place. Springsboard is my name for the point where they are.
+That only works if the foundations are in place. Springspot is my name for the point where they are.
 
 ## Why I'm the one writing this
 
-I'm not writing from the sidelines. I'm building to Springsboard at my own brands right now, and I'll share what works, what breaks and what it actually takes, including the parts that don't make it into a highlight reel.
+I'm not writing from the sidelines. I'm building to Springspot at my own brands right now, and I'll share what works, what breaks and what it actually takes, including the parts that don't make it into a highlight reel.
 
 If you run a store, solo or with a small team, this is written for you.

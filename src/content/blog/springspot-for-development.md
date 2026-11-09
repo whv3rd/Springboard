@@ -1,5 +1,5 @@
 ---
-title: 'The Springsboard concept applies to development, too'
+title: 'The Springspot concept applies to development, too'
 description: Once your theme and design system are in place, the same foundation-first approach works for building and developing on Shopify, WordPress, Magento and more.
 date: 2026-11-03
 pillar: shift
@@ -10,7 +10,7 @@ draft: true
 
 Will's notes so far:
 
-- After your theme is squared away and things start looking the way you want, you realize the same Springsboard concept applies to the actual build and development on many platforms: Shopify, WordPress, even Magento to an extent.
+- After your theme is squared away and things start looking the way you want, you realize the same Springspot concept applies to the actual build and development on many platforms: Shopify, WordPress, even Magento to an extent.
 - MCPs exist for several of these (Adobe has MCPs), and many platforms that don't have one yet are coming out with them.
 - If you have a GitHub or Bitbucket repo and connect it, you can get everything hooked up so that it's less vibe coding and more agentic development.
 - Share the tips and the things Will had to work through and figure out as a non-developer.

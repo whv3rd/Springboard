@@ -57,8 +57,8 @@ This is where it gets good. Creating clickable prototypes, and going from where 
 
 You've spent your time acting like a true, experienced ecommerce veteran, just by speaking with Claude a little bit, because you took the time to set up your foundation right.
 
-## This is Springsboard
+## This is Springspot
 
-That same concept applies in many different areas: your platform, your marketing, your processes. Set the foundation up right, give AI the rules, then talk. That's really the underlying theme of Springsboard.
+That same concept applies in many different areas: your platform, your marketing, your processes. Set the foundation up right, give AI the rules, then talk. That's really the underlying theme of Springspot.
 
 The design system is Checkpoint 1 for a reason. If you want to see where yours stands, take the Score.

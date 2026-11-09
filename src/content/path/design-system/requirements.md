@@ -35,7 +35,7 @@ None of this is the build itself. It's what you need to hand so you don't stop h
 - **Base theme.** Keep the theme you have, or move to a more flexible one before you build the system around it.
 - **Scope of the first pass.** Every template eventually. The most-visited ones first.
 - **Naming.** One naming convention for variables and components, agreed before anything is built. People and AI both rely on it.
-- **Source of truth.** When Figma and the live theme disagree, which one wins. For Springsboard, it's Figma, kept in step with the theme.
+- **Source of truth.** When Figma and the live theme disagree, which one wins. For Springspot, it's Figma, kept in step with the theme.
 - **Modes and variants.** Whether you need more than one mode or brand now, such as dark mode, a second store or another market, or whether that can wait.
 - **Ownership.** Who approves a change to the system, and how a change gets from Figma to the live theme.
 

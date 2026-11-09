@@ -28,14 +28,14 @@ const nextSteps = await Promise.all(
 ---
 
 <BaseLayout
-  title="The Springsboard Score"
+  title="The Springspot Score"
   description="A free self-assessment: five checkpoints rated 0 to 4, totalled to a score out of 100 and a level."
 >
   <div class="container page">
     {/* DRAFT COPY: lede. */}
     <PageHeader
       eyebrow="The Score"
-      title="The Springsboard Score"
+      title="The Springspot Score"
       lede={`${questionCount} questions on how your store runs today, across the five checkpoints. About five minutes. You get a score out of 100, your level and the one thing to do next.`}
     />
 
@@ -111,7 +111,7 @@ const nextSteps = await Promise.all(
             <p class="field__error" id="score-email-error" data-email-error hidden></p>
           </div>
           <p class="consent" id="score-consent">
-            You'll get your result by email, plus occasional Springsboard emails: new playbooks and
+            You'll get your result by email, plus occasional Springspot emails: new playbooks and
             build notes. Unsubscribe anytime.
           </p>
         </div>
@@ -131,7 +131,7 @@ const nextSteps = await Promise.all(
       {/* DRAFT COPY: result labels, all-clear line and gap report line. */}
       <section class="result" data-result aria-labelledby="result-title" hidden>
         <h2 id="result-title" class="result__heading" tabindex="-1">
-          Your Springsboard Score
+          Your Springspot Score
         </h2>
         <p class="result__score">
           <span class="result__total" data-total></span>

@@ -1,4 +1,4 @@
-# Springsboard — Site Blueprint
+# Springspot — Site Blueprint
 
 Source: `docs/SPRINGBOARD_HANDOFF.md` §2.
 
@@ -7,7 +7,7 @@ Source: `docs/SPRINGBOARD_HANDOFF.md` §2.
 An education-first hub (blog + docs + paid library) that does three jobs, in order:
 
 1. **Earn trust** — blog proving expertise in ecommerce + AI.
-2. **Define the destination** — what Springsboard is, and the Springsboard Score.
+2. **Define the destination** — what Springspot is, and the Springspot Score.
 3. **Sell the route** — the Path docs (paid), plus advisory.
 
 **Paywall rule:** anything that explains **what** or **why** is free. Anything you could follow step by step to **build** it is paid.
@@ -16,13 +16,13 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 
 - **Home**
 - **Blog** — Operator diaries, Teardowns, Free playbooks, The shift
-- **Springsboard** — What it is, The five checkpoints, Who it's for, Solo and team tiers
+- **Springspot** — What it is, The five checkpoints, Who it's for, Solo and team tiers
 - **The Score** — Free self-assessment, Total score and level, Gap report (paid)
 - **The Path** (paid core) — Start here (free), Track 1–5 (one per checkpoint)
-- **Pricing** — Free, Path, Path Team, Springs Advisory
+- **Pricing** — Free, Path, Path Team, Springspot Advisory
 - **About & Advisory** — Background and proof, Case studies, Public build log, Book a call
 
-## The Springsboard Score
+## The Springspot Score
 
 0–100. Each of the five checkpoints is rated 0–4; total × 5.
 
@@ -40,9 +40,9 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 | 26–50  | Loading      | Foundations exist but aren't connected         |
 | 51–75  | Coiled       | Key systems connected; processes still manual  |
 | 76–95  | Launch-ready | Mostly automated; a few gaps to close          |
-| 96–100 | Springsboard | One operator or a small team can run it all    |
+| 96–100 | Springspot   | One operator or a small team can run it all    |
 
-- **The seal:** a stack that reaches the Springsboard level (96–100) is **Springsboard-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Micro Stack" in `concept.md`).
+- **The seal:** a stack that reaches the Springspot level (96–100) is **Springspot-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Micro Stack" in `concept.md`).
 - **Free result:** total, level, one next step.
 - **Paid result:** full gap report per checkpoint, with links into matching Path modules.
 
@@ -71,12 +71,12 @@ A short **Start here** guide (free) sits above all tracks.
 
 ## Pricing tiers
 
-| Tier             | For            | Unlocks                                                                                              | Price  |
-| ---------------- | -------------- | ---------------------------------------------------------------------------------------------------- | ------ |
-| Free             | Anyone         | Blog, Springsboard pages, Score total + level, track overviews, requirements, checklists, newsletter | $0     |
-| Path             | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                        | TBD    |
-| Path Team        | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                     | TBD    |
-| Springs Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                          | Quoted |
+| Tier                | For            | Unlocks                                                                                            | Price  |
+| ------------------- | -------------- | -------------------------------------------------------------------------------------------------- | ------ |
+| Free                | Anyone         | Blog, Springspot pages, Score total + level, track overviews, requirements, checklists, newsletter | $0     |
+| Path                | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                      | TBD    |
+| Path Team           | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                   | TBD    |
+| Springspot Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                        | Quoted |
 
 ## Content pillars
 
@@ -85,7 +85,7 @@ A short **Start here** guide (free) sits above all tracks.
 - **Playbooks** — free single-workflow guides
 - **The shift** — opinion
 
-**Launch set:** Springsboard manifesto post, the Score, one free playbook per track, two operator diaries.
+**Launch set:** Springspot manifesto post, the Score, one free playbook per track, two operator diaries.
 
 ## Conversion flow
 

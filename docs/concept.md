@@ -1,22 +1,22 @@
-# Springsboard — Concept
+# Springspot — Concept
 
 Source: `docs/SPRINGBOARD_HANDOFF.md` §1.
 
-## What Springsboard is
+## What Springspot is
 
-Springsboard is a **threshold a business reaches, not a product it buys**. It is the point where a small or mid-sized ecommerce business has its design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run what used to take dev teams, merchandisers and creatives.
+Springspot is a **threshold a business reaches, not a product it buys**. It is the point where a small or mid-sized ecommerce business has its design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run what used to take dev teams, merchandisers and creatives.
 
 - **Brand:** lives under **Springs** (Springs Consulting / Springs Digital — name not final).
-- **Owner:** Will Vinton. About 18 years in ecommerce; deep on Shopify, Magento and Salesforce; consulting work behind more than $1.5B in realized ecommerce revenue. Leads Digital Experience & Technology at Mishimoto and runs the Brecks Brothers brand portfolio, where he is building to Springsboard now.
+- **Owner:** Will Vinton. About 18 years in ecommerce; deep on Shopify, Magento and Salesforce; consulting work behind more than $1.5B in realized ecommerce revenue. Leads Digital Experience & Technology at Mishimoto and runs the Brecks Brothers brand portfolio, where he is building to Springspot now.
 - **Audience:** solo owner-operators, directors of ecommerce at mid-sized brands, and freelance operators.
 - **Promise:** less vendor dependence, faster execution, same platforms they already use.
 - **Voice:** practitioner, not pundit. Real workflows, real screenshots, real numbers.
 
 ## The Micro Stack
 
-**It's not our stack, it's theirs.** Springsboard is a standard a business's own stack meets, not software it rents from us. The owner keeps every account and every connection.
+**It's not our stack, it's theirs.** Springspot is a standard a business's own stack meets, not software it rents from us. The owner keeps every account and every connection.
 
-The Micro Stack is the minimum Springsboard runs on, and a core selling point:
+The Micro Stack is the minimum Springspot runs on, and a core selling point:
 
 | Job                           | Tool                    | To start           |
 | ----------------------------- | ----------------------- | ------------------ |
@@ -32,8 +32,8 @@ Claude Pro checked 2026-11-09; the rest need confirming (see `review-queue.md`).
 - **Why it sells:** a one-person store gets design, development, marketing automation and reviews for tens of dollars a month per tool, instead of enterprise platforms like Salesforce Commerce Cloud or Adobe Experience Manager that are typically licensed in the six figures a year.
 - **Start minimum, automate, then scale:** start on the cheapest plan of each tool, connect it to Claude, automate the routine work, and move up a plan only when revenue or volume asks for it. No replatforming.
 - **Cheap stacks make cheap iterations:** the bigger win is how cheap it is to change course. Iteration often happens before launch, while the operator is still learning; we reserve the right to get smarter along the way.
-- **Audience:** the roughly 33 million US small businesses (SBA), most with no employees; Springsboard serves the ones that sell online.
-- **The seal:** reaching the top Score level makes a stack **Springsboard-ready** (see `site-blueprint.md`).
+- **Audience:** the roughly 33 million US small businesses (SBA), most with no employees; Springspot serves the ones that sell online.
+- **The seal:** reaching the top Score level makes a stack **Springspot-ready** (see `site-blueprint.md`).
 - Post: `src/content/blog/the-micro-stack.md`.
 
 ## Tiers of operation
@@ -43,7 +43,7 @@ Claude Pro checked 2026-11-09; the rest need confirming (see `review-queue.md`).
 | Small  | A single operator                                | A solo owner-entrepreneur |
 | Medium | Director of ecommerce plus a couple of operators | A mid-sized business      |
 
-## The five checkpoints (the Springsboard foundation)
+## The five checkpoints (the Springspot foundation)
 
 1. **Design system** — design system, component library and every page template in Figma.
 2. **AI ↔ design** — Claude connected to Figma, producing on-system pages and assets.

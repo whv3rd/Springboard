@@ -1,4 +1,4 @@
-// The Springsboard Score: five checkpoints rated 0–4, total × 5 → 0–100.
+// The Springspot Score: five checkpoints rated 0–4, total × 5 → 0–100.
 // Tables from docs/site-blueprint.md. The quiz questions live in ./score-questions.ts.
 //
 // Everything here is pure (no DOM, no Astro imports) so `npm test` can load this
@@ -77,7 +77,7 @@ export const LEVELS: Level[] = [
   { name: 'Coiled', min: 51, max: 75, meaning: 'Key systems connected; processes still manual' },
   { name: 'Launch-ready', min: 76, max: 95, meaning: 'Mostly automated; a few gaps to close' },
   {
-    name: 'Springsboard',
+    name: 'Springspot',
     min: 96,
     max: 100,
     meaning: 'One operator or a small team can run it all',

@@ -9,7 +9,7 @@ access: free
 
 Processes is checkpoint 5. It's your core workflows mapped, run through the MCPs you've connected, and repeatable by any operator.
 
-This is the checkpoint that turns the other four into a business that runs without heroics. If a workflow only works when one specific person does it, you haven't reached Springsboard yet.
+This is the checkpoint that turns the other four into a business that runs without heroics. If a workflow only works when one specific person does it, you haven't reached Springspot yet.
 
 ## What it is
 

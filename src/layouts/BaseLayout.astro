@@ -16,7 +16,7 @@ interface Props {
 }
 
 const { title, description, noindex = false, ogType = 'website', schema } = Astro.props;
-const BRAND = 'Springsboard AI';
+const BRAND = 'Springspot AI';
 const fullTitle = title === BRAND ? title : `${title} · ${BRAND}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---

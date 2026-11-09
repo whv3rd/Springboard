@@ -9,7 +9,7 @@ Last updated: 2026-10-21.
 - [ ] Confirm starting prices: Figma Professional seat, Shopify Basic, Klaviyo free tier and first paid plan, Judge.me free plan and first paid plan. Claude Pro ($20/month, $17 billed yearly) was checked 2026-11-09. If the total moves, update the post, the home page `MICRO_STACK` list and `docs/concept.md`.
 - [ ] Add a real enterprise number from your experience (Commerce Cloud or AEM contract) if you can share one. 📱
 - [ ] Keep the Mark Cuban framing for the 33 million figure, or cite the SBA directly? 📱
-- [ ] Naming: "Micro Stack" for the stack and "Springsboard-ready" for the seal. Keep, or riff? 📱
+- [ ] Naming: "Micro Stack" for the stack and "Springspot-ready" for the seal. Keep, or riff? 📱
 
 ## Security without a DevOps team
 
@@ -39,7 +39,7 @@ Read all eight. Then, in your own words (voice notes are fine, Claude will tidy 
 - [ ] "Start with a theme, build the system, then just talk": your dictated Figma post, tidied. Check it still sounds like you, and add a real navigation example or screenshot if you have one
 - [ ] "Just talk" draft: answer the five questions in the post by voice (📱 works), then Claude writes it up
 - [ ] Queued drafts: answer the questions at the top of each by voice (📱 works), one post at a time. Claude writes each one up in your words:
-  - [ ] Springsboard for development (Shopify, WordPress, Magento, GitHub/Bitbucket)
+  - [ ] Springspot for development (Shopify, WordPress, Magento, GitHub/Bitbucket)
   - [ ] Vibe coding vs. agentic development
   - [ ] Teams series 1: your backlog is the bottleneck (Jira/Linear)
   - [ ] Teams series 2: Claude as your scrum master
@@ -52,7 +52,7 @@ Search the code for `DRAFT COPY` and `PLACEHOLDER`. The important ones:
 
 - [ ] Home headline: "Run the store with one operator, not five vendors." The "five" has no source. Keep, change or rewrite. 📱
 - [ ] `/about`: background and proof, case studies, public build log
-- [ ] `/springsboard`: "What changes" cards and the audience one-liners
+- [ ] `/springspot`: "What changes" cards and the audience one-liners
 - [ ] `/pricing`: Path and Path Team prices (open decision)
 
 ## Accounts and setup
