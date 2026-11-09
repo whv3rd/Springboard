@@ -11,6 +11,12 @@ Last updated: 2026-10-21.
 - [ ] Keep the Mark Cuban framing for the 33 million figure, or cite the SBA directly? 📱
 - [ ] Naming: "Micro Stack" for the stack and "Springsboard-ready" for the seal. Keep, or riff? 📱
 
+## Security without a DevOps team
+
+- [ ] Open with a real incident you've been through (no company names): what happened and which habit would have stopped it. 📱
+- [ ] Confirm 90 days as the recommended key-rotation cadence, or give yours. 📱
+- [ ] Anything to add to the four habits (e.g. two-factor on every admin account, backups)? Kept to your four for now. 📱
+
 ## Merge the open PRs
 
 The PRs are stacked. Merge in this order, changing each PR's base to `main` before merging it (or ask Claude to retarget them first, so it's just merge clicks).
