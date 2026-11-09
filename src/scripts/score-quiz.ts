@@ -108,7 +108,7 @@ function init(): void {
     if (!hasKlaviyoConfig(klaviyo)) {
       if (!warnedNoKlaviyo) {
         console.warn(
-          'Springsboard Score: PUBLIC_KLAVIYO_SITE_KEY / PUBLIC_KLAVIYO_LIST_ID not set; not sending to Klaviyo.',
+          'Springspot Score: PUBLIC_KLAVIYO_SITE_KEY / PUBLIC_KLAVIYO_LIST_ID not set; not sending to Klaviyo.',
         );
         warnedNoKlaviyo = true;
       }

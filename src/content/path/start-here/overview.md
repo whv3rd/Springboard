@@ -7,7 +7,7 @@ order: 0
 access: free
 ---
 
-The Path is the route to Springsboard: the point where your design, platform and marketing systems are connected to AI through MCPs, so one operator or a small team can run the store.
+The Path is the route to Springspot: the point where your design, platform and marketing systems are connected to AI through MCPs, so one operator or a small team can run the store.
 
 The idea under all of it is simple. Set the foundation up right, give AI the rules, then just talk. Most of the Path is about the first two. The talking is the easy part once they're done.
 
@@ -15,7 +15,7 @@ The idea under all of it is simple. Set the foundation up right, give AI the rul
 
 ## How the Path is organised
 
-There are five tracks, one for each Springsboard checkpoint:
+There are five tracks, one for each Springspot checkpoint:
 
 1. [Design system in Figma](/path/design-system/overview)
 2. [Connect Claude to Figma](/path/ai-design/overview)
@@ -55,7 +55,7 @@ You don't have to finish one track before starting the next. But a checkpoint bu
 
 ## Use the Score to pick your starting track
 
-The [Springsboard Score](/score) rates each checkpoint from 0 to 4:
+The [Springspot Score](/score) rates each checkpoint from 0 to 4:
 
 | Rating | Meaning                                  |
 | ------ | ---------------------------------------- |

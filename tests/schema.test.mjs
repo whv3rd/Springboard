@@ -15,29 +15,23 @@ import {
 } from '../src/lib/schema.ts';
 
 const author = {
-  url: 'https://willvinton.com/springsboard/authors/will-vinton',
+  url: 'https://willvinton.com/springspot/authors/will-vinton',
   name: 'Will Vinton',
   role: 'Ecommerce operator',
   bio: 'Bio.',
-  image: 'https://willvinton.com/springsboard/authors/will-vinton.jpg',
+  image: 'https://willvinton.com/springspot/authors/will-vinton.jpg',
   sameAs: ['https://www.linkedin.com/in/will-vinton'],
 };
 
 test('absoluteUrl respects the base path', () => {
   const site = 'https://willvinton.com';
+  assert.equal(absoluteUrl('/blog', site, '/springspot'), 'https://willvinton.com/springspot/blog');
   assert.equal(
-    absoluteUrl('/blog', site, '/springsboard'),
-    'https://willvinton.com/springsboard/blog',
+    absoluteUrl('/blog', site, '/springspot/'),
+    'https://willvinton.com/springspot/blog',
   );
-  assert.equal(
-    absoluteUrl('/blog', site, '/springsboard/'),
-    'https://willvinton.com/springsboard/blog',
-  );
-  assert.equal(
-    absoluteUrl('blog', site, '/springsboard'),
-    'https://willvinton.com/springsboard/blog',
-  );
-  assert.equal(absoluteUrl('/', site, '/springsboard'), 'https://willvinton.com/springsboard/');
+  assert.equal(absoluteUrl('blog', site, '/springspot'), 'https://willvinton.com/springspot/blog');
+  assert.equal(absoluteUrl('/', site, '/springspot'), 'https://willvinton.com/springspot/');
   assert.equal(absoluteUrl('/blog', site), 'https://willvinton.com/blog');
   assert.equal(
     absoluteUrl('/blog', new URL('https://example.com'), '/'),
@@ -63,13 +57,13 @@ test('person omits empty optional fields', () => {
 
 test('blog posting links to the author and falls back to the publish date', () => {
   const post = blogPostingSchema({
-    url: 'https://willvinton.com/springsboard/blog/x',
+    url: 'https://willvinton.com/springspot/blog/x',
     title: 'T',
     description: 'D',
     date: new Date('2026-09-01T00:00:00Z'),
     section: 'The shift',
     author,
-    siteUrl: 'https://willvinton.com/springsboard/',
+    siteUrl: 'https://willvinton.com/springspot/',
   });
   assert.equal(post['@type'], 'BlogPosting');
   assert.equal(post.datePublished, '2026-09-01T00:00:00.000Z');

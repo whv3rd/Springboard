@@ -6,7 +6,7 @@ pillar: shift
 draft: true
 ---
 
-<!-- DRAFT: Will's notes, captured 2026-10-21. Part 2 of a series on Springsboard for teams. Waiting on Will's voice notes before writing. Not published (draft: true). -->
+<!-- DRAFT: Will's notes, captured 2026-10-21. Part 2 of a series on Springspot for teams. Waiting on Will's voice notes before writing. Not published (draft: true). -->
 
 Will's notes so far:
 

@@ -7,7 +7,7 @@ takeaways:
   - 'The biggest cost of agencies and freelancers is usually waiting, not the invoice.'
   - "When every change goes through someone else's queue, the business moves at the pace of its slowest dependency."
   - "Dependence compounds: tests that need three vendors don't get run, and teams stop asking for changes that would matter."
-  - "Springsboard doesn't cut every vendor. It removes the handoff for routine work, so specialists are used for strategy and hard problems."
+  - "Springspot doesn't cut every vendor. It removes the handoff for routine work, so specialists are used for strategy and hard problems."
 faq:
   - question: 'What is the real cost of vendor dependence in ecommerce?'
     answer: 'Time. A homepage update waits for the designer, a bulk product fix for the developer, a new segment for the email specialist. Together these set the pace of the whole business.'
@@ -29,9 +29,9 @@ When every change goes through someone else's queue, the business can only move 
 
 Dependence also shapes what a team tries. If a test needs three vendors, it doesn't get run. If a landing page takes two weeks, the campaign gets a generic one. Over time, the team stops asking for things that would have made a difference.
 
-## What changes at Springsboard
+## What changes at Springspot
 
-The point of Springsboard isn't to cut every vendor. Good specialists are still worth paying for, especially for strategy and hard problems.
+The point of Springspot isn't to cut every vendor. Good specialists are still worth paying for, especially for strategy and hard problems.
 
 The point is that routine, specialist-shaped work stops needing a handoff. When design, platform and marketing are connected to AI, the operator can make the change, on-system, and move on. Vendors get used for what they're best at, not for every small request.
 

@@ -1,6 +1,6 @@
-# Springsboard
+# Springspot
 
-Education-first site (blog, docs and paid library) for Springsboard — the point where one operator or a small team can run an ecommerce business on AI-connected design, platform and marketing systems. See `CLAUDE.md` and `docs/` for the concept and plan.
+Education-first site (blog, docs and paid library) for Springspot — the point where one operator or a small team can run an ecommerce business on AI-connected design, platform and marketing systems. See `CLAUDE.md` and `docs/` for the concept and plan.
 
 Built with [Astro](https://astro.build) + TypeScript as a static site, deployed on Cloudflare Pages.
 
@@ -62,4 +62,4 @@ The site is fully static, so no adapter is needed. One-time setup in the Cloudfl
 
 After that, every push to `main` deploys to production, and every PR gets a preview deployment with its own URL, posted on the PR.
 
-The `site` URL in `astro.config.mjs` is a placeholder (`https://springsboard.pages.dev`) until the domain is decided. Update it when a custom domain is attached in Pages → Custom domains.
+The `site` URL in `astro.config.mjs` is a placeholder (`https://springspot.pages.dev`) until the domain is decided. Update it when a custom domain is attached in Pages → Custom domains.

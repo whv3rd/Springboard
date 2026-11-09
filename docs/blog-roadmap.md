@@ -1,4 +1,4 @@
-# Springsboard — Blog Roadmap
+# Springspot — Blog Roadmap
 
 The blog does job one of the site: **earn trust**. Every post should leave an operator with something they could use on Monday, and point toward the Score or a Path track.
 
@@ -6,7 +6,7 @@ Status: draft for Will's review. Dates, cadence and titles are proposals.
 
 ## The core theme
 
-Set up the foundation right, give AI the rules, then just talk. It applies to every checkpoint (design, platform, marketing, processes), and it is the underlying theme of Springsboard. Most posts should come back to it.
+Set up the foundation right, give AI the rules, then just talk. It applies to every checkpoint (design, platform, marketing, processes), and it is the underlying theme of Springspot. Most posts should come back to it.
 
 ## Principles
 
@@ -18,33 +18,33 @@ Set up the foundation right, give AI the rules, then just talk. It applies to ev
 
 ## Pillars
 
-| Pillar           | Purpose                                                 | Typical shape                                     | Links to          |
-| ---------------- | ------------------------------------------------------- | ------------------------------------------------- | ----------------- |
-| Operator diaries | Show the work as it happens at Will's own brands        | What I tried this week, what broke, what it cost  | Public build log  |
-| Teardowns        | Score a real store against the five checkpoints         | Public-info audit, score per checkpoint, gaps     | The Score         |
-| Playbooks        | One complete, free workflow                             | Problem → setup → prompt/config → result → limits | Matching track    |
-| The shift        | Point of view on where ecommerce operations are heading | Thesis, evidence, what operators should do        | Springsboard pages |
+| Pillar           | Purpose                                                 | Typical shape                                     | Links to         |
+| ---------------- | ------------------------------------------------------- | ------------------------------------------------- | ---------------- |
+| Operator diaries | Show the work as it happens at Will's own brands        | What I tried this week, what broke, what it cost  | Public build log |
+| Teardowns        | Score a real store against the five checkpoints         | Public-info audit, score per checkpoint, gaps     | The Score        |
+| Playbooks        | One complete, free workflow                             | Problem → setup → prompt/config → result → limits | Matching track   |
+| The shift        | Point of view on where ecommerce operations are heading | Thesis, evidence, what operators should do        | Springspot pages |
 
 ## Cadence
 
-- **Launch:** eight foundational posts, backdated August–October 2026 (PR #4), covering what Springsboard is, the checkpoints, the Score, the tiers, and Will's background.
+- **Launch:** eight foundational posts, backdated August–October 2026 (PR #4), covering what Springspot is, the checkpoints, the Score, the tiers, and Will's background.
 - **Ongoing:** 2–3 posts a week, drafted by the content agent from the research digests and the backlog below, rotating pillars. Each draft arrives as a PR; merging it publishes it.
 - **Will's part:** review each draft, add the practitioner detail only he has (screenshots, real numbers, what actually happened), and merge. Operator diaries and Teardowns of real brands always need Will's input before publishing.
 - If review time gets tight, reduce volume before reducing quality. Thin, generic AI posts hurt trust and search rankings more than a slower cadence does.
 
 ## Launch set (from the handoff)
 
-| #   | Post                                                     | Pillar    | Next step           | Needs from Will                       |
-| --- | -------------------------------------------------------- | --------- | ------------------- | ------------------------------------- |
-| 1   | The Springsboard manifesto                                | The shift | What is Springsboard | Point of view, final edit             |
-| 2   | Introducing the Springsboard Score                        | The shift | Take the Score      | Final questions (open decision)       |
-| 3   | Playbook: audit your page templates before Figma         | Playbook  | Track 1             | A real audit example                  |
-| 4   | Playbook: your first on-system page with Claude + Figma  | Playbook  | Track 2             | Screenshots                           |
-| 5   | Playbook: query your Shopify catalog through an MCP      | Playbook  | Track 3             | Screenshots, safe example data        |
-| 6   | Playbook: build a Klaviyo segment from a prompt          | Playbook  | Track 4             | Screenshots, safe example data        |
-| 7   | Playbook: map one weekly process and run it through MCPs | Playbook  | Track 5             | One real process                      |
-| 8   | Operator diary #1: where Brecks Brothers started         | Diary     | Take the Score      | Starting score, what's public         |
-| 9   | Operator diary #2: the first workflow that stuck         | Diary     | Matching track      | What changed, time saved if shareable |
+| #   | Post                                                     | Pillar    | Next step          | Needs from Will                       |
+| --- | -------------------------------------------------------- | --------- | ------------------ | ------------------------------------- |
+| 1   | The Springspot manifesto                                 | The shift | What is Springspot | Point of view, final edit             |
+| 2   | Introducing the Springspot Score                         | The shift | Take the Score     | Final questions (open decision)       |
+| 3   | Playbook: audit your page templates before Figma         | Playbook  | Track 1            | A real audit example                  |
+| 4   | Playbook: your first on-system page with Claude + Figma  | Playbook  | Track 2            | Screenshots                           |
+| 5   | Playbook: query your Shopify catalog through an MCP      | Playbook  | Track 3            | Screenshots, safe example data        |
+| 6   | Playbook: build a Klaviyo segment from a prompt          | Playbook  | Track 4            | Screenshots, safe example data        |
+| 7   | Playbook: map one weekly process and run it through MCPs | Playbook  | Track 5            | One real process                      |
+| 8   | Operator diary #1: where Brecks Brothers started         | Diary     | Take the Score     | Starting score, what's public         |
+| 9   | Operator diary #2: the first workflow that stuck         | Diary     | Matching track     | What changed, time saved if shareable |
 
 Blocked on open decisions: which brand is the public build log, and what can be shown from Mishimoto and Brecks Brothers (posts 8–9).
 
@@ -71,14 +71,15 @@ The research agent's backlog (`ideas` in its digests) should replace or sharpen 
 
 Draft files in `src/content/blog/` with Will's notes and open questions. Each gets written once Will answers by voice.
 
-| Post                                                     | Theme                                                       |
-| -------------------------------------------------------- | ----------------------------------------------------------- |
-| You don't have to be a designer, developer or writer     | Just talk: AI covers the skills you don't have              |
-| The Springsboard concept applies to development, too      | Platform MCPs plus a connected repo for non-developers      |
-| Vibe coding vs. agentic development                      | Attention, explicit permission, full history                |
-| Teams 1: your backlog is the bottleneck                  | Jira or Linear in the stack, business requests, audit trail |
-| Teams 2: Claude as your scrum master and project manager | Running Agile, SAFe, Scrum or Kanban with AI                |
-| Teams 3: agentic scrum teams for ecommerce               | Which teams to build, how to structure them, how to decide  |
+| Post                                                     | Theme                                                                                                                                                        |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| You don't have to be a designer, developer or writer     | Just talk: AI covers the skills you don't have                                                                                                               |
+| The Springspot concept applies to development, too       | Platform MCPs plus a connected repo for non-developers                                                                                                       |
+| Vibe coding vs. agentic development                      | Attention, explicit permission, full history                                                                                                                 |
+| Teams 1: your backlog is the bottleneck                  | Jira or Linear in the stack, business requests, audit trail                                                                                                  |
+| Teams 2: Claude as your scrum master and project manager | Running Agile, SAFe, Scrum or Kanban with AI                                                                                                                 |
+| Teams 3: agentic scrum teams for ecommerce               | Which teams to build, how to structure them, how to decide                                                                                                   |
+| AI watchers for a small stack's security                 | Follow-up to "Security without a DevOps team": listeners, scheduled jobs and agents that watch for patches and advisories, track key rotation, and scan logs |
 
 The teams series may grow into a Path module or a course (see `docs/project-plan.md`, offers).
 

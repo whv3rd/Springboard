@@ -5,7 +5,7 @@ import stripReviewNotes from './integrations/strip-review-notes.mjs';
 
 export default defineConfig({
   // Placeholder until the brand and domain are decided (see CLAUDE.md, open decisions).
-  site: 'https://springsboard.pages.dev',
+  site: 'https://springspot.pages.dev',
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [mdx(), stripReviewNotes()],

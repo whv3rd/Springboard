@@ -1,12 +1,12 @@
 ---
 title: 'From solo operator to small team: your backlog is the bottleneck'
-description: At the mid-tier, development isn't the problem. Priorities are. Why a real project tool like Jira or Linear belongs in your Springsboard setup.
+description: At the mid-tier, development isn't the problem. Priorities are. Why a real project tool like Jira or Linear belongs in your Springspot setup.
 date: 2026-11-17
 pillar: shift
 draft: true
 ---
 
-<!-- DRAFT: Will's notes, captured 2026-10-21. Part 1 of a series on Springsboard for teams. Waiting on Will's voice notes before writing. Not published (draft: true). -->
+<!-- DRAFT: Will's notes, captured 2026-10-21. Part 1 of a series on Springspot for teams. Waiting on Will's voice notes before writing. Not published (draft: true). -->
 
 Will's notes so far:
 

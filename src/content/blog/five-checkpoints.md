@@ -1,25 +1,25 @@
 ---
-title: The five checkpoints of Springsboard
-description: Design system, AI and design, platform MCP, marketing MCP, and processes. The five foundations every Springsboard business has in place.
+title: The five checkpoints of Springspot
+description: Design system, AI and design, platform MCP, marketing MCP, and processes. The five foundations every Springspot business has in place.
 date: 2026-09-01
 pillar: shift
 takeaways:
-  - 'Springsboard has five checkpoints: design system, AI and design, platform MCP, marketing MCP, and processes.'
+  - 'Springspot has five checkpoints: design system, AI and design, platform MCP, marketing MCP, and processes.'
   - 'The design system usually comes first, because connecting AI to design depends on it.'
   - "Processes come last, because you can't map a workflow through tools that aren't connected yet."
-  - "If a workflow only works when one specific person does it, you haven't reached Springsboard."
+  - "If a workflow only works when one specific person does it, you haven't reached Springspot."
 faq:
-  - question: 'What are the five checkpoints of Springsboard?'
+  - question: 'What are the five checkpoints of Springspot?'
     answer: '1. Design system: a component library and every page template in Figma. 2. AI and design: Claude connected to Figma, producing on-system pages and assets. 3. Platform MCP: your store platform and full catalog connected to Claude. 4. Marketing MCP: Klaviyo connected for campaigns, flows and segments. 5. Processes: core workflows mapped, run through MCPs and repeatable by any operator.'
   - question: 'Which checkpoint should I start with?'
-    answer: 'Usually the design system, because everything visual downstream depends on it. To see which checkpoint is your biggest gap, take the Springsboard Score.'
+    answer: 'Usually the design system, because everything visual downstream depends on it. To see which checkpoint is your biggest gap, take the Springspot Score.'
   - question: 'Can I work on the checkpoints in parallel?'
     answer: 'Yes, but order mostly matters: the design system comes before connecting AI to design, and processes come last, once the tools they run through are connected.'
   - question: 'Why does the design system come before AI design work?'
     answer: 'Without a system, AI produces one-off designs that drift off-brand. With one, it produces pages and assets that already fit.'
 ---
 
-Springsboard breaks down into five checkpoints. Each one is a foundation. Together they're what lets a small team run the whole business with AI doing the specialist work in between.
+Springspot breaks down into five checkpoints. Each one is a foundation. Together they're what lets a small team run the whole business with AI doing the specialist work in between.
 
 ## 1. Design system
 
@@ -49,7 +49,7 @@ Marketing is where small teams feel the squeeze most. Connecting it means the pe
 
 Core workflows mapped, run through MCPs, and repeatable by any operator.
 
-This is the checkpoint that turns the other four into a business that runs without heroics. If a workflow only works when one specific person does it, you haven't reached Springsboard yet.
+This is the checkpoint that turns the other four into a business that runs without heroics. If a workflow only works when one specific person does it, you haven't reached Springspot yet.
 
 ## Order matters, mostly
 

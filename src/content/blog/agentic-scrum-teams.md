@@ -6,14 +6,14 @@ pillar: shift
 draft: true
 ---
 
-<!-- DRAFT: Will's notes, captured 2026-10-21. Part 3 of a series on Springsboard for teams. Waiting on Will's voice notes before writing. Not published (draft: true). Possibly a series of its own, or a Path module or course. -->
+<!-- DRAFT: Will's notes, captured 2026-10-21. Part 3 of a series on Springspot for teams. Waiting on Will's voice notes before writing. Not published (draft: true). Possibly a series of its own, or a Path module or course. -->
 
 Will's notes so far:
 
 - Eventually we get into how you can build agentic scrum teams.
 - Which scrum teams you'd build as an ecommerce owner, and which are the best agentic scrum teams to build.
 - How to structure those teams, the different theories, and the industries where one approach makes more sense than another.
-- How you can decide for yourself, and how Springsboard helps you make that decision.
+- How you can decide for yourself, and how Springspot helps you make that decision.
 
 Questions for Will:
 

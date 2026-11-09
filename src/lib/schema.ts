@@ -40,7 +40,7 @@ export interface Crumb {
 
 /**
  * Absolute URL for a root-relative path, respecting the site's base path.
- * absoluteUrl('/blog', 'https://willvinton.com', '/springsboard') → https://willvinton.com/springsboard/blog
+ * absoluteUrl('/blog', 'https://willvinton.com', '/springspot') → https://willvinton.com/springspot/blog
  */
 export function absoluteUrl(path: string, site: URL | string, base = '/'): string {
   const prefix = base.replace(/\/+$/, '');
@@ -84,7 +84,7 @@ export function blogPostingSchema(post: PostInfo): JsonLd {
       name: post.author.name,
       url: post.author.url,
     },
-    publisher: { '@type': 'Organization', name: 'Springsboard AI', url: post.siteUrl },
+    publisher: { '@type': 'Organization', name: 'Springspot AI', url: post.siteUrl },
     ...(post.author.image && { image: post.author.image }),
   };
 }
