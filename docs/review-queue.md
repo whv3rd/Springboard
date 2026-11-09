@@ -4,12 +4,22 @@ Things that need Will at a computer. Claude adds to this list as work lands; Wil
 
 Last updated: 2026-10-21.
 
-## The Micro Stack post and home section
+## The Springspot Stack post and home section
 
-- [ ] Confirm starting prices: Figma Professional seat, Shopify Basic, Klaviyo free tier and first paid plan, Judge.me free plan and first paid plan. Claude Pro ($20/month, $17 billed yearly) was checked 2026-11-09. If the total moves, update the post, the home page `MICRO_STACK` list and `docs/concept.md`.
+- [ ] Product names and prices are now off the public site. Confirm "roughly $100 a month to start" is the figure you want to stand behind (internal breakdown in `docs/concept.md`; only Claude Pro was checked live). 📱
 - [ ] Add a real enterprise number from your experience (Commerce Cloud or AEM contract) if you can share one. 📱
 - [ ] Keep the Mark Cuban framing for the 33 million figure, or cite the SBA directly? 📱
-- [ ] Naming: "Micro Stack" for the stack and "Springspot-ready" for the seal. Keep, or riff? 📱
+- [ ] Naming: "Springspot Stack" for the stack and "Springspot-ready" for the seal. Keep, or riff? 📱
+
+## Springspot Startup
+
+- [ ] Price: a fixed price, "from $X", or quoted after a call (the page says quoted for now).
+- [ ] Scope and timeline: are the four steps on `/startup` right? How long does a Startup take? 📱
+- [ ] How Startup and Advisory fit together: Advisory is described as the ongoing help after the Startup. 📱
+
+## Gating
+
+- [ ] Decide what moves behind an email or paywall. Candidates: the Springspot Stack breakdown, the Score's next-step detail, track requirements and checklists, and some Playbook posts. Claude can add a reusable email gate (Klaviyo) once you pick. 📱
 
 ## Security without a DevOps team
 

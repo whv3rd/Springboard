@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -91,7 +92,9 @@ const schema = graph([
         </h2>
         <ul>
           {takeaways.map((item) => (
-            <li>{item}</li>
+            <li>
+              <BrandText text={item} />
+            </li>
           ))}
         </ul>
       </aside>
@@ -110,9 +113,13 @@ const schema = graph([
           {faq.map((item) => (
             <div class="faq__item">
               <dt>
-                <h3 class="faq__question">{item.question}</h3>
+                <h3 class="faq__question">
+                  <BrandText text={item.question} />
+                </h3>
               </dt>
-              <dd class="faq__answer">{item.answer}</dd>
+              <dd class="faq__answer">
+                <BrandText text={item.answer} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -124,8 +131,7 @@ const schema = graph([
         Where does your store stand?
       </h2>
       <p class="section-lede">
-        The Springspot Score rates your design, platform, marketing and process systems from 0 to
-        100.
+        <BrandText text="The Springspot Score rates your design, platform, marketing and process systems from 0 to 100." />
       </p>
       <div class="actions">
         <Button href="/score">Take the Score</Button>

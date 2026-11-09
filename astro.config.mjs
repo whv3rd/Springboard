@@ -2,12 +2,15 @@
 import { defineConfig, envField } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import stripReviewNotes from './integrations/strip-review-notes.mjs';
+import { rehypeBrandTerms } from './src/lib/brand-terms.ts';
 
 export default defineConfig({
   // Placeholder until the brand and domain are decided (see CLAUDE.md, open decisions).
   site: 'https://springspot.pages.dev',
   output: 'static',
   trailingSlash: 'ignore',
+  // Bold, colour-coded branded terms (Springspot Score, Stack, Path...) in all Markdown.
+  markdown: { rehypePlugins: [rehypeBrandTerms] },
   integrations: [mdx(), stripReviewNotes()],
   env: {
     schema: {

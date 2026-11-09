@@ -339,3 +339,17 @@ a:hover {
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
 }
+
+/* Branded Springspot terms (see src/lib/brand-terms.ts): bold and colour-coded by family. */
+.brand-term {
+  font-weight: var(--weight-semibold);
+  color: var(--color-brand-score);
+}
+
+.brand-term--stack {
+  color: var(--color-brand-stack);
+}
+
+.brand-term--path {
+  color: var(--color-brand-path);
+}

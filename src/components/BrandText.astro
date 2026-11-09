@@ -1,0 +1,13 @@
+---
+// Plain copy with branded terms (Springspot Score, Stack, Path...) set in bold and
+// colour-coded. Use for any prose string that comes from frontmatter or data.
+import { brandHtml } from '@/lib/brand-terms';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<Fragment set:html={brandHtml(text)} />

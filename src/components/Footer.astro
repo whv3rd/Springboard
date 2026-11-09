@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import { PRIMARY_NAV } from '@/lib/nav';
 
 const year = new Date().getFullYear();
@@ -23,7 +24,9 @@ const year = new Date().getFullYear();
     </nav>
   </div>
   <div class="container site-footer__legal">
-    <p>© {year} Springspot AI. Built to the Springspot standard.</p>
+    <p>
+      © {year} Springspot AI. Built to the <BrandText text="Springspot Standard" />.
+    </p>
   </div>
 </footer>
 

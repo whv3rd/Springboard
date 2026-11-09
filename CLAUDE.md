@@ -21,10 +21,12 @@ Detail lives in `docs/`:
 - **Paywall rule:** explains _what_ or _why_ → free. Step-by-step _how to build_ → paid. Mark with `access: free | paid` frontmatter.
 - **Path content:** 5 tracks × the same 6 parts (overview, requirements, build-guide, templates, workflows, checklist). Overview, requirements, checklist are free; the rest paid.
 - **Score:** 5 checkpoints × 0–4, total × 5 → 0–100. Levels: Grounded, Loading, Coiled, Launch-ready, Springspot (see blueprint).
+- **Branded terms:** Springspot Score, Stack, Startup, Path, Standard, Advisory and Springspot-ready are brands: bold and colour-coded in body copy (automatic in Markdown; `<BrandText>` in Astro copy). See `docs/concept.md`.
+- **Public copy never lists Springspot Stack products or prices** — only roughly what it costs and the jobs it covers.
 - **Voice:** practitioner, not pundit. Real workflows, real numbers. No hype.
 - **Dependencies:** minimal. Ask before adding anything beyond Astro and dev tooling, and before any paid service.
 - **Workflow:** small commits on a branch, one PR per milestone (M0–M5, see handoff §4).
-- The site should itself meet the Springspot standard — fast, on-system, accessible (Lighthouse 95+).
+- The site should itself meet the Springspot Standard — fast, on-system, accessible (Lighthouse 95+).
 
 ## Open decisions
 

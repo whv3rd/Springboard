@@ -9,7 +9,7 @@ Last updated: 2026-10-21.
 - **Organic first, paid later.** Earn trust with content, the Score and LinkedIn before spending on ads.
 - **Agents draft, Will approves.** Nothing goes out under Will's name without his review. Agents deliver work as PRs or drafts.
 - **Near-free until revenue.** Free tiers where they exist. Ask before any paid service.
-- **Build to the Springspot standard.** The site, the email program and the agents are themselves the live demo.
+- **Build to the Springspot Standard.** The site, the email program and the agents are themselves the live demo.
 
 ## Workstreams
 

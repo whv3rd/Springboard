@@ -69,6 +69,10 @@
   --color-text: var(--palette-paper-900);
   --color-text-muted: var(--palette-paper-500);
   --color-accent: var(--palette-brick-700);
+  /* Branded terms, by family: score (measure), stack (run), path (get there). */
+  --color-brand-score: var(--palette-brick-700);
+  --color-brand-stack: var(--palette-spring-700);
+  --color-brand-path: var(--palette-amber-700);
   --color-accent-hover: var(--palette-brick-600);
   --color-accent-contrast: var(--palette-paper-50);
   --color-accent-subtle: var(--palette-brick-50);
@@ -157,6 +161,12 @@
     --color-text: var(--palette-paper-cream);
     --color-text-muted: var(--palette-paper-400);
     --color-accent: var(--palette-brick-300);
+    --color-brand-score: var(--palette-brick-300);
+    --color-brand-stack: var(--palette-spring-300);
+    --color-brand-path: var(--palette-amber-300);
+    --color-brand-score: var(--palette-brick-300);
+    --color-brand-stack: var(--palette-spring-300);
+    --color-brand-path: var(--palette-amber-300);
     --color-accent-hover: var(--palette-brick-200);
     --color-accent-contrast: var(--palette-brick-950);
     --color-accent-subtle: var(--palette-brick-950);

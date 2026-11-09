@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import { getEntry, render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Callout from '@/components/Callout.astro';
@@ -80,7 +81,7 @@ const { Content } = await render(page);
           Will's approval under the ask-before-paid-service rule. */}
       <Callout type="tip" title="Book a call">
         <p>
-          Booking opens soon. In the meantime, take the Score so the first call starts with data.
+          <BrandText text="Booking opens soon. In the meantime, take the Score so the first call starts with data." />
         </p>
         <p>
           <a href="/score">Take the Score</a>
