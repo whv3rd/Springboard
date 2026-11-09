@@ -27,10 +27,10 @@ test('all-zero answers score 0, Grounded', () => {
   assert.deepEqual(result.ratings, [0, 0, 0, 0, 0]);
 });
 
-test('all-four answers score 100, Springboard', () => {
+test('all-four answers score 100, Springsboard', () => {
   const result = scoreAnswers(answersFor(4));
   assert.equal(result.total, 100);
-  assert.equal(result.level.name, 'Springboard');
+  assert.equal(result.level.name, 'Springsboard');
 });
 
 test('total is the sum of ratings × 5', () => {
@@ -51,8 +51,8 @@ test('level boundaries', () => {
     [76, 'Launch-ready'],
     [80, 'Launch-ready'],
     [95, 'Launch-ready'],
-    [96, 'Springboard'],
-    [100, 'Springboard'],
+    [96, 'Springsboard'],
+    [100, 'Springsboard'],
   ];
   for (const [score, name] of cases) assert.equal(levelFor(score).name, name, `score ${score}`);
   assert.throws(() => levelFor(-5), RangeError);
@@ -77,7 +77,7 @@ test('rating bands at each level edge', () => {
   assert.equal(resultFromRatings([3, 3, 3, 3, 3]).level.name, 'Coiled'); // 75
   assert.equal(resultFromRatings([4, 3, 3, 3, 3]).level.name, 'Launch-ready'); // 80
   assert.equal(resultFromRatings([4, 4, 4, 4, 3]).level.name, 'Launch-ready'); // 95
-  assert.equal(resultFromRatings([4, 4, 4, 4, 4]).level.name, 'Springboard'); // 100
+  assert.equal(resultFromRatings([4, 4, 4, 4, 4]).level.name, 'Springsboard'); // 100
 });
 
 test('checkpoint rating is the mean, rounded half up', () => {

@@ -1,6 +1,6 @@
-# Springboard
+# Springsboard
 
-Education-first site (blog + docs + paid library) for **Springboard**: the threshold where a small/mid-sized ecommerce business has design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run it. Brand sits under **Springs** (name not final). Owner: Will Vinton.
+Education-first site (blog + docs + paid library) for **Springsboard**: the threshold where a small/mid-sized ecommerce business has design, platform and marketing systems connected to AI through MCPs, so one operator or a small team can run it. Brand: **Springsboard AI** (renamed from Springboard; domain not yet registered). Tagline: "Your jumping point into more efficient, more voluminous, and more scalable growth." Owner: Will Vinton.
 
 Detail lives in `docs/`:
 
@@ -20,15 +20,15 @@ Detail lives in `docs/`:
 
 - **Paywall rule:** explains _what_ or _why_ → free. Step-by-step _how to build_ → paid. Mark with `access: free | paid` frontmatter.
 - **Path content:** 5 tracks × the same 6 parts (overview, requirements, build-guide, templates, workflows, checklist). Overview, requirements, checklist are free; the rest paid.
-- **Score:** 5 checkpoints × 0–4, total × 5 → 0–100. Levels: Grounded, Loading, Coiled, Launch-ready, Springboard (see blueprint).
+- **Score:** 5 checkpoints × 0–4, total × 5 → 0–100. Levels: Grounded, Loading, Coiled, Launch-ready, Springsboard (see blueprint).
 - **Voice:** practitioner, not pundit. Real workflows, real numbers. No hype.
 - **Dependencies:** minimal. Ask before adding anything beyond Astro and dev tooling, and before any paid service.
 - **Workflow:** small commits on a branch, one PR per milestone (M0–M5, see handoff §4).
-- The site should itself meet the Springboard standard — fast, on-system, accessible (Lighthouse 95+).
+- The site should itself meet the Springsboard standard — fast, on-system, accessible (Lighthouse 95+).
 
 ## Open decisions
 
-- Brand and domain (Springs Consulting / Springs Digital / other)
+- Domain (springsboard.ai or similar; the site is served at willvinton.com/springsboard for now)
 - Final Score questions and weighting
 - Path and Path Team pricing
 - Phase 2 gating (Shopify customer accounts vs Ghost)

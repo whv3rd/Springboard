@@ -14,18 +14,18 @@ test('matches a section and its children at the domain root', () => {
 });
 
 test('strips the base path when served from a subdirectory', () => {
-  for (const base of ['/springboard', '/springboard/']) {
-    assert.equal(isCurrent('/blog', '/springboard/blog/five-checkpoints/', base), true);
-    assert.equal(isCurrent('/score', '/springboard/score/', base), true);
-    assert.equal(isCurrent('/springboard', '/springboard/springboard/', base), true);
-    // The Springboard home page is not the "Springboard" explainer page.
-    assert.equal(isCurrent('/springboard', '/springboard/', base), false);
-    assert.equal(isCurrent('/springboard', '/springboard', base), false);
-    assert.equal(isCurrent('/blog', '/springboard/', base), false);
+  for (const base of ['/springsboard', '/springsboard/']) {
+    assert.equal(isCurrent('/blog', '/springsboard/blog/five-checkpoints/', base), true);
+    assert.equal(isCurrent('/score', '/springsboard/score/', base), true);
+    assert.equal(isCurrent('/springsboard', '/springsboard/springsboard/', base), true);
+    // The Springsboard home page is not the "Springsboard" explainer page.
+    assert.equal(isCurrent('/springsboard', '/springsboard/', base), false);
+    assert.equal(isCurrent('/springsboard', '/springsboard', base), false);
+    assert.equal(isCurrent('/blog', '/springsboard/', base), false);
   }
 });
 
 test('leaves paths outside the base alone', () => {
-  assert.equal(isCurrent('/blog', '/blog/', '/springboard'), true);
-  assert.equal(isCurrent('/blog', '/springboardx/blog/', '/springboard'), false);
+  assert.equal(isCurrent('/blog', '/blog/', '/springsboard'), true);
+  assert.equal(isCurrent('/blog', '/springsboardx/blog/', '/springsboard'), false);
 });

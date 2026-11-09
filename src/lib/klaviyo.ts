@@ -14,6 +14,7 @@ export const KLAVIYO_ENDPOINT = 'https://a.klaviyo.com/client/subscriptions';
 /** API revision the request body is written against. Klaviyo revisions stay supported for two years. */
 export const KLAVIYO_REVISION = '2026-10-15';
 /** Stored on the consent record, so Will can see where the subscriber came from. */
+// Kept from before the Springsboard rename so existing Klaviyo segments and flows still match.
 export const KLAVIYO_SOURCE = 'Springboard Score';
 
 export interface ScoreProfileProperties {

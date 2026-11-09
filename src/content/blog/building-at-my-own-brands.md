@@ -1,25 +1,25 @@
 ---
-title: Why I'm building to Springboard at my own brands first
+title: Why I'm building to Springsboard at my own brands first
 description: Before teaching anyone else the route, I'm walking it myself, in public.
 date: 2026-10-08
 pillar: diary
 takeaways:
-  - 'Will is building to Springboard at his own brands first and documenting it as a public build log.'
+  - 'Will is building to Springsboard at his own brands first and documenting it as a public build log.'
   - "Three reasons: it keeps the advice honest, it shows the messy middle, and it's a real test of the claim."
   - "The log covers starting scores, what was built for each checkpoint and why, the cost in time and tools, and what didn't work."
   - "Nothing that belongs to someone else gets shared, and no numbers that can't be stood behind."
 faq:
-  - question: 'What will the Springboard build log share?'
+  - question: 'What will the Springsboard build log share?'
     answer: "Where each brand started on the five checkpoints, what was built for each checkpoint, in what order and why, what it cost in time and tools, and what didn't work."
   - question: "What won't the build log share?"
     answer: "Anything that belongs to someone else, or numbers that can't be stood behind. When something can't be shown, the post says so."
   - question: 'How can I follow the build log?'
-    answer: 'Build log posts are tagged Operator diaries on the blog. To compare your own starting point, take the Springboard Score.'
+    answer: 'Build log posts are tagged Operator diaries on the blog. To compare your own starting point, take the Springsboard Score.'
 ---
 
-It would be easy to write about Springboard as a theory. I'd rather prove it first.
+It would be easy to write about Springsboard as a theory. I'd rather prove it first.
 
-So I'm building to Springboard at my own brands, starting now, and documenting it here as a public build log.
+So I'm building to Springsboard at my own brands, starting now, and documenting it here as a public build log.
 
 ## Why my own brands
 

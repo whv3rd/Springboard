@@ -11,23 +11,26 @@ const latest = (await getPublishedPosts()).slice(0, 3);
 ---
 
 <BaseLayout
-  title="Springboard"
-  description="The point where one operator or a small team can run an ecommerce business on AI-connected design, platform and marketing systems."
+  title="Springsboard AI"
+  description="Your jumping point into more efficient, more voluminous, and more scalable growth. Design, platform and marketing systems connected to AI, so one operator or a small team can run an ecommerce business."
 >
   {/* DRAFT COPY: the whole home page is draft copy built from docs/concept.md. */}
   <section class="container hero">
-    <p class="eyebrow">Springboard</p>
+    <p class="eyebrow">Springsboard AI</p>
     <h1>Run the store with one operator, not five vendors.</h1>
+    <p class="hero__tagline">
+      Your jumping point into more efficient, more voluminous, and more scalable growth.
+    </p>
     <p class="hero__lede">
-      Springboard is the point where a small or mid-sized ecommerce business has its design,
+      Springsboard is the point where a small or mid-sized ecommerce business has its design,
       platform and marketing systems connected to AI, so one operator or a small team can run it.
     </p>
     <div class="actions">
       <Button href="/score" size="lg">
         Take the Score
       </Button>
-      <Button href="/springboard" variant="secondary" size="lg">
-        What is Springboard?
+      <Button href="/springsboard" variant="secondary" size="lg">
+        What is Springsboard?
       </Button>
     </div>
   </section>
@@ -59,20 +62,20 @@ const latest = (await getPublishedPosts()).slice(0, 3);
         Five checkpoints
       </h2>
       <p class="section-lede">
-        Springboard rests on five systems, each connected to Claude through an MCP. Each one has a
+        Springsboard rests on five systems, each connected to Claude through an MCP. Each one has a
         track in the Path.
       </p>
       <CheckpointList />
     </section>
 
     <section class="band" aria-labelledby="score-title">
-      <p class="eyebrow">The Springboard Score</p>
+      <p class="eyebrow">The Springsboard Score</p>
       <h2 id="score-title" class="section-title">
         How close is your store?
       </h2>
       <p class="section-lede">
         Rate each checkpoint from 0 to 4. Get a score out of 100, a level from Grounded to
-        Springboard, and one next step.
+        Springsboard, and one next step.
       </p>
       <div class="actions">
         <Button href="/score">Take the Score</Button>
@@ -145,6 +148,15 @@ const latest = (await getPublishedPosts()).slice(0, 3);
     max-width: 18ch;
     margin-top: var(--space-3);
     font-size: var(--text-3xl);
+  }
+
+  .hero__tagline {
+    max-width: 34ch;
+    margin-top: var(--space-4);
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-accent);
   }
 
   .hero__lede {
