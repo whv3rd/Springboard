@@ -19,7 +19,8 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 - **Springspot** — What it is, The five checkpoints, Who it's for, Solo and team tiers
 - **The Score** — Free self-assessment, Total score and level, Gap report (paid)
 - **The Path** (paid core) — Start here (free), Track 1–5 (one per checkpoint)
-- **Pricing** — Free, Path, Path Team, Springspot Advisory
+- **Springspot Startup** — The entry package: assessment, stack plan, setup, process handoff
+- **Pricing** — Free, Path, Path Team, Springspot Startup, Springspot Advisory
 - **About & Advisory** — Background and proof, Case studies, Public build log, Book a call
 
 ## The Springspot Score
@@ -42,7 +43,8 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 | 76–95  | Launch-ready | Mostly automated; a few gaps to close          |
 | 96–100 | Springspot   | One operator or a small team can run it all    |
 
-- **The seal:** a stack that reaches the Springspot level (96–100) is **Springspot-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Micro Stack" in `concept.md`).
+- **The seal:** a stack that reaches the Springspot level (96–100) is **Springspot-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Springspot Stack" in `concept.md`).
+- **Email gate:** the whole result (total, level and next step) shows only after the visitor gives an email, which goes to Klaviyo with the score properties. The Klaviyo public key and Email List ID are set in the willvinton.com deploy (repo variables `PUBLIC_KLAVIYO_SITE_KEY` / `PUBLIC_KLAVIYO_LIST_ID` override them).
 - **Free result:** total, level, one next step.
 - **Paid result:** full gap report per checkpoint, with links into matching Path modules.
 
@@ -71,12 +73,13 @@ A short **Start here** guide (free) sits above all tracks.
 
 ## Pricing tiers
 
-| Tier                | For            | Unlocks                                                                                            | Price  |
-| ------------------- | -------------- | -------------------------------------------------------------------------------------------------- | ------ |
-| Free                | Anyone         | Blog, Springspot pages, Score total + level, track overviews, requirements, checklists, newsletter | $0     |
-| Path                | Solo operators | All build guides, templates, prompts, MCP configs, workflows, full gap report                      | TBD    |
-| Path Team           | Small teams    | Path for multiple seats, team Score tracking, quarterly live Q&A                                   | TBD    |
-| Springspot Advisory | Done-with-you  | Readiness audit, hands-on build, optional ongoing operation                                        | Quoted |
+| Tier                | For                    | Unlocks                                                                                                                | Price  |
+| ------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------ |
+| Free                | Anyone                 | Blog, Springspot pages, Score total + level, track overviews, requirements, checklists, newsletter                     | $0     |
+| Path                | Solo operators         | All build guides, templates, prompts, MCP configs, workflows, full gap report                                          | TBD    |
+| Path Team           | Small teams            | Path for multiple seats, team Score tracking, quarterly live Q&A                                                       | TBD    |
+| Springspot Startup  | Getting started        | Business and stack assessment, Springspot Stack chosen for the business, setup connected to AI, processes written down | Quoted |
+| Springspot Advisory | Ongoing, done with you | Readiness audit, hands-on build, optional ongoing operation                                                            | Quoted |
 
 ## Content pillars
 

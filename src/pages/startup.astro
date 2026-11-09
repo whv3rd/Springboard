@@ -1,0 +1,146 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BrandText from '@/components/BrandText.astro';
+import Button from '@/components/Button.astro';
+import Callout from '@/components/Callout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+// The Springspot Startup: the entry package Will sells. DRAFT COPY: scope, price and
+// timeline are open (see docs/review-queue.md).
+const steps = [
+  {
+    title: 'Assess the business',
+    body: 'We start from your Springspot Score and your business requirements: what you sell, how you sell it, who runs it, and what is slowing you down.',
+  },
+  {
+    title: 'Plan your Springspot Stack',
+    body: 'Keep the tools you already have where they do the job. Where something is missing, we layer in a tool chosen for your requirements, not for anyone’s favourites.',
+  },
+  {
+    title: 'Set it up and connect it to AI',
+    body: 'Design system, store and catalog, email and SMS, reviews: set up and connected, so one operator can run the work that used to need specialists.',
+  },
+  {
+    title: 'Hand over the processes',
+    body: 'The core workflows are written down and repeatable, so you or anyone on your team can run them, and grow into the Springspot Path from there.',
+  },
+];
+---
+
+<BaseLayout
+  title="Springspot Startup"
+  description="The Springspot Startup is the package that gets your Springspot Stack chosen for your business, set up, connected to AI and running."
+>
+  <div class="container page">
+    <PageHeader
+      eyebrow="Springspot Startup"
+      title="Start on the right stack, set up for you."
+      lede="The Springspot Startup is where working together begins. We look at your business, choose the Springspot Stack that fits it, and get it set up and running."
+    />
+
+    <section aria-labelledby="steps-title">
+      <h2 id="steps-title" class="section-title">
+        What's in the Springspot Startup
+      </h2>
+      <ol class="steps">
+        {steps.map((step, i) => (
+          <li class="step">
+            <span class="step__number" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3 class="step__title">
+                <BrandText text={step.title} />
+              </h3>
+              <p>
+                <BrandText text={step.body} />
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="band" aria-labelledby="cost-title">
+      <p class="eyebrow">What it costs to run</p>
+      <h2 id="cost-title" class="section-title">
+        About $100 a month in tools to start
+      </h2>
+      <p class="section-lede">
+        <BrandText text="The Springspot Stack runs for roughly $100 a month to start, paid directly to the tool vendors. You own every account and every connection, and you move up a plan only when revenue asks for it." />
+      </p>
+    </section>
+
+    <section aria-labelledby="next-title">
+      <h2 id="next-title" class="section-title">
+        How to start
+      </h2>
+      <p class="section-lede">
+        <BrandText text="Take the Springspot Score first, so the first conversation starts with data. The Springspot Startup is priced after a first call." />
+      </p>
+      {/* WILL: set the Startup's price (or "from $X"), scope and timeline when ready. */}
+      <div class="actions">
+        <Button href="/score">Take the Score</Button>
+        <Button href="/about#advisory" variant="secondary">
+          Book a call
+        </Button>
+      </div>
+      <Callout title="After the Startup">
+        <p>
+          <BrandText text="Want help running it, not just starting it? Springspot Advisory continues with you after the build." />
+        </p>
+      </Callout>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page > section + section {
+    margin-top: var(--space-8);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-5);
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    display: grid;
+    gap: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 2px solid var(--color-text);
+  }
+
+  .step__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-brand-path);
+  }
+
+  .step__title {
+    font-size: var(--text-lg);
+  }
+
+  .step p {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .band {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block: var(--space-5);
+  }
+</style>

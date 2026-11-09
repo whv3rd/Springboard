@@ -40,6 +40,7 @@ function init(): void {
   const emailInput = $<HTMLInputElement>(quiz, '[data-email]');
   const emailError = $<HTMLElement>(quiz, '[data-email-error]');
   const result = $<HTMLElement>(quiz, '[data-result]');
+  const honeypot = quiz.querySelector<HTMLInputElement>('[data-honeypot]');
 
   const checkpointSteps = CHECKPOINTS.length;
   const emailStep = steps.length - 1;
@@ -105,6 +106,8 @@ function init(): void {
   }
 
   async function sendToKlaviyo(email: string, score: ScoreResult): Promise<void> {
+    // A filled honeypot means a bot: show the result, send nothing.
+    if (honeypot?.value) return;
     if (!hasKlaviyoConfig(klaviyo)) {
       if (!warnedNoKlaviyo) {
         console.warn(
@@ -115,8 +118,8 @@ function init(): void {
       return;
     }
     await subscribe(klaviyo, email, {
-      springboard_score: score.total,
-      springboard_level: score.level.name,
+      springspot_score: score.total,
+      springspot_level: score.level.name,
       weakest_checkpoint: weakestCheckpointProperty(score),
     });
   }

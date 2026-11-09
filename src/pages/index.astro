@@ -1,4 +1,7 @@
 ---
+import BrandText from '@/components/BrandText.astro';
+import StackBreakdown from '@/components/StackBreakdown.astro';
+import { STACK_JOBS } from '@/lib/stack';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AccessBadge from '@/components/AccessBadge.astro';
 import Button from '@/components/Button.astro';
@@ -8,15 +11,6 @@ import { getPublishedPosts } from '@/lib/blog';
 import { PART_ACCESS, PART_LABELS, PARTS } from '@/lib/path';
 
 const latest = (await getPublishedPosts()).slice(0, 3);
-
-// The Micro Stack: what Springspot runs on, at starting prices (see the-micro-stack post).
-const MICRO_STACK = [
-  { tool: 'Claude Pro', job: 'AI operator and developer', cost: '$20 a month' },
-  { tool: 'Figma Professional', job: 'Design system and pages', cost: 'about $20 a month' },
-  { tool: 'Shopify Basic', job: 'Store, checkout and catalog', cost: 'about $39 a month' },
-  { tool: 'Klaviyo', job: 'Email and SMS automation', cost: 'free to start' },
-  { tool: 'Judge.me', job: 'Product reviews', cost: 'free to start' },
-];
 ---
 
 <BaseLayout
@@ -72,44 +66,44 @@ const MICRO_STACK = [
         Five checkpoints
       </h2>
       <p class="section-lede">
-        Springspot rests on five systems, each connected to Claude through an MCP. Each one has a
-        track in the Path.
+        <BrandText text="Springspot rests on five systems, each connected to Claude through an MCP. Each one has a track in the Path." />
       </p>
       <CheckpointList />
     </section>
 
     <section class="stack" aria-labelledby="stack-title">
       <div>
-        <p class="eyebrow">The Micro Stack</p>
+        <p class="eyebrow">The Springspot Stack</p>
         <h2 id="stack-title" class="section-title">
-          Run the whole store for about $100 a month
+          The whole store, for about $100 a month
         </h2>
         <p class="section-lede">
-          It's not our stack, it's yours. Five tools cover design, development, the store, email and
-          reviews. Start on the smallest plans, automate the routine work, and move up a plan when
-          revenue asks for it. No six-figure commerce platform required.
+          <BrandText text="The Springspot Stack covers everything a store runs on, for roughly $100 a month to start. Bring the tools you already have, or we layer in new ones based on what your business needs, not on what we like. No six-figure commerce platform required." />
         </p>
-        <p class="stack__more">
-          <a href="/blog/the-micro-stack">Read: The Micro Stack</a>
+        <p class="section-lede">
+          <BrandText text="We choose and set up your stack in the Springspot Startup." />
         </p>
+        <div class="actions">
+          <Button href="/startup">See the Springspot Startup</Button>
+        </div>
       </div>
-      {/* WILL: prices other than Claude Pro are from memory; confirm before merging (see the post). */}
       <dl class="stack__list">
-        {MICRO_STACK.map((item) => (
+        {STACK_JOBS.map((item) => (
           <div class="stack__row">
             <dt>
-              {item.tool}
-              <span>{item.job}</span>
+              {item.job}
+              <span>{item.detail}</span>
             </dt>
-            <dd>{item.cost}</dd>
           </div>
         ))}
         <div class="stack__row stack__row--total">
-          <dt>Total to start</dt>
+          <dt>To start</dt>
           <dd>about $100 a month</dd>
         </div>
       </dl>
     </section>
+
+    <StackBreakdown id="home-stack" />
 
     <section class="band" aria-labelledby="score-title">
       <p class="eyebrow">The Springspot Score</p>
@@ -165,17 +159,17 @@ const MICRO_STACK = [
       </section>
     )}
 
-    <section class="band band--quiet" aria-labelledby="advisory-title">
-      <p class="eyebrow">Springspot Advisory</p>
-      <h2 id="advisory-title" class="section-title">
-        Want help getting there?
+    <section class="band band--quiet" aria-labelledby="startup-title">
+      <p class="eyebrow">Springspot Startup</p>
+      <h2 id="startup-title" class="section-title">
+        Start on the right stack, set up for you
       </h2>
       <p class="section-lede">
-        A readiness audit, a hands-on build, and optional ongoing operation. Done with you.
+        <BrandText text="The Springspot Startup assesses your business, chooses the Springspot Stack that fits it, and gets it set up and connected to AI. Bring your own tools or start fresh." />
       </p>
       <div class="actions">
-        <Button href="/about#advisory" variant="secondary">
-          Book a call
+        <Button href="/startup" variant="secondary">
+          See the Springspot Startup
         </Button>
       </div>
     </section>
@@ -248,9 +242,8 @@ const MICRO_STACK = [
     align-items: start;
   }
 
-  .stack__more {
+  .stack .actions {
     margin-top: var(--space-4);
-    font-weight: var(--weight-medium);
   }
 
   .stack__list {

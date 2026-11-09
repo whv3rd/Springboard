@@ -1,4 +1,5 @@
-// Klaviyo client-side subscription for the Score's email gate.
+// Klaviyo client-side subscription for the site's email gates (the Score, the Springspot
+// Stack breakdown).
 //
 // Endpoint: Create Client Subscription, POST https://a.klaviyo.com/client/subscriptions
 // Docs: https://developers.klaviyo.com/en/reference/create_client_subscription
@@ -11,15 +12,23 @@
 // No DOM or Astro imports here, so `npm test` can load it with Node's type stripping.
 
 export const KLAVIYO_ENDPOINT = 'https://a.klaviyo.com/client/subscriptions';
-/** API revision the request body is written against. Klaviyo revisions stay supported for two years. */
-export const KLAVIYO_REVISION = '2026-10-15';
+/**
+ * API revision the request body is written against. Klaviyo retires revisions after about
+ * two years; 2026-01-15 is the GA revision named in Will's Klaviyo handoff (2026-11-09).
+ */
+export const KLAVIYO_REVISION = '2026-01-15';
 /** Stored on the consent record, so Will can see where the subscriber came from. */
-// Kept from the original Springboard name so existing Klaviyo segments and flows still match.
-export const KLAVIYO_SOURCE = 'Springboard Score';
+// One distinct source per form, so Will can segment and report by form in Klaviyo.
+export const KLAVIYO_SOURCE = 'springspot - score';
+/** Source for the Springspot Stack breakdown gate. */
+export const KLAVIYO_STACK_SOURCE = 'springspot - stack breakdown';
 
-export interface ScoreProfileProperties {
-  springboard_score: number;
-  springboard_level: string;
+/** Custom profile properties: what Klaviyo segments and flows key on. */
+export type ProfileProperties = Record<string, string | number>;
+
+export interface ScoreProfileProperties extends ProfileProperties {
+  springspot_score: number;
+  springspot_level: string;
   /** Track slug of the weakest checkpoint, e.g. `design-system`, or `none` on a perfect score. */
   weakest_checkpoint: string;
 }
@@ -46,7 +55,8 @@ export interface KlaviyoRequest {
 export function buildSubscriptionRequest(
   config: { siteKey: string; listId: string },
   email: string,
-  properties: ScoreProfileProperties,
+  properties: ProfileProperties,
+  source: string = KLAVIYO_SOURCE,
 ): KlaviyoRequest {
   const url = `${KLAVIYO_ENDPOINT}?company_id=${encodeURIComponent(config.siteKey.trim())}`;
   return {
@@ -60,12 +70,12 @@ export function buildSubscriptionRequest(
       data: {
         type: 'subscription',
         attributes: {
-          custom_source: KLAVIYO_SOURCE,
+          custom_source: source,
           profile: {
             data: {
               type: 'profile',
               attributes: {
-                email,
+                email: email.trim().toLowerCase(),
                 properties,
                 subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } },
               },
@@ -90,9 +100,10 @@ const TIMEOUT_MS = 8000;
 export async function subscribe(
   config: { siteKey: string; listId: string },
   email: string,
-  properties: ScoreProfileProperties,
+  properties: ProfileProperties,
+  source: string = KLAVIYO_SOURCE,
 ): Promise<boolean> {
-  const request = buildSubscriptionRequest(config, email, properties);
+  const request = buildSubscriptionRequest(config, email, properties, source);
   try {
     const response = await fetch(request.url, {
       method: 'POST',

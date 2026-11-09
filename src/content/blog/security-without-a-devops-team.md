@@ -25,7 +25,7 @@ faq:
 
 <!-- WILL: Want to name one of the incidents you've been through (no company names needed) to open this? One or two sentences on what happened and which habit would have stopped it would make the post much stronger. -->
 
-The [Micro Stack](/blog/the-micro-stack) frees you from depending on large enterprises. The trade is that you're integrating a lot of things yourself. Every connection between your store, your email platform, your reviews app and Claude runs on a key. And once you start running your own automation, n8n on a droplet, a small app behind a CDN, you're also running servers.
+The [Springspot Stack](/blog/the-springspot-stack) frees you from depending on large enterprises. The trade is that you're integrating a lot of things yourself. Every connection between your store, your email platform, your reviews app and Claude runs on a key. And once you start running your own automation, n8n on a droplet, a small app behind a CDN, you're also running servers.
 
 At a big company, a DevOps or security team handles this. As a solo operator or a small business, you are that team. The good news is that most of the protection comes from four habits, and you can keep all four yourself.
 

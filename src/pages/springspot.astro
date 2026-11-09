@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import Card from '@/components/Card.astro';
@@ -66,7 +67,7 @@ const audiences = [
         The five checkpoints
       </h2>
       <p class="section-lede">
-        Springspot rests on five checkpoints. Each one has a matching track in the Path.
+        <BrandText text="Springspot rests on five checkpoints. Each one has a matching track in the Path." />
       </p>
       <CheckpointList />
     </section>
@@ -119,8 +120,7 @@ const audiences = [
         How close are you?
       </h2>
       <p class="section-lede">
-        The Springspot Score rates each checkpoint from 0 to 4 and gives you a level and one next
-        step.
+        <BrandText text="The Springspot Score rates each checkpoint from 0 to 4 and gives you a level and one next step." />
       </p>
       <div class="actions">
         <Button href="/score">Take the Score</Button>

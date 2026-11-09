@@ -4,7 +4,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSubscriptionRequest, hasKlaviyoConfig } from '../src/lib/klaviyo.ts';
+import {
+  buildSubscriptionRequest,
+  hasKlaviyoConfig,
+  KLAVIYO_STACK_SOURCE,
+} from '../src/lib/klaviyo.ts';
 
 test('config needs both keys, non-empty', () => {
   assert.equal(hasKlaviyoConfig({}), false);
@@ -16,8 +20,8 @@ test('config needs both keys, non-empty', () => {
 
 test('subscription request matches the documented shape', () => {
   const properties = {
-    springboard_score: 60,
-    springboard_level: 'Coiled',
+    springspot_score: 60,
+    springspot_level: 'Coiled',
     weakest_checkpoint: 'design-system',
   };
   const req = buildSubscriptionRequest(
@@ -32,7 +36,7 @@ test('subscription request matches the documented shape', () => {
     data: {
       type: 'subscription',
       attributes: {
-        custom_source: 'Springboard Score',
+        custom_source: 'springspot - score',
         profile: {
           data: {
             type: 'profile',
@@ -47,4 +51,22 @@ test('subscription request matches the documented shape', () => {
       relationships: { list: { data: { type: 'list', id: 'LIST1' } } },
     },
   });
+});
+
+test('other gates set their own source and properties', () => {
+  const req = buildSubscriptionRequest(
+    { siteKey: 'ABC123', listId: 'LIST1' },
+    'op@example.com',
+    { requested: 'stack_breakdown' },
+    KLAVIYO_STACK_SOURCE,
+  );
+  assert.equal(req.body.data.attributes.custom_source, 'springspot - stack breakdown');
+  assert.deepEqual(req.body.data.attributes.profile.data.attributes.properties, {
+    requested: 'stack_breakdown',
+  });
+});
+
+test('emails are trimmed and lowercased', () => {
+  const req = buildSubscriptionRequest({ siteKey: 'K', listId: 'L' }, '  Op@Example.COM ', {});
+  assert.equal(req.body.data.attributes.profile.data.attributes.email, 'op@example.com');
 });

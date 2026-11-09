@@ -9,7 +9,7 @@ Last updated: 2026-10-21.
 - **Organic first, paid later.** Earn trust with content, the Score and LinkedIn before spending on ads.
 - **Agents draft, Will approves.** Nothing goes out under Will's name without his review. Agents deliver work as PRs or drafts.
 - **Near-free until revenue.** Free tiers where they exist. Ask before any paid service.
-- **Build to the Springspot standard.** The site, the email program and the agents are themselves the live demo.
+- **Build to the Springspot Standard.** The site, the email program and the agents are themselves the live demo.
 
 ## Workstreams
 
@@ -46,7 +46,7 @@ See `docs/blog-roadmap.md`. Launch with eight backdated foundational posts, then
 - **Platform:** Klaviyo, already in the stack. The free tier is enough to start (about 250 active profiles and 500 email sends a month; confirm current limits on Klaviyo's pricing page).
 - **Why Klaviyo:** Will already knows it, Track 4 of the Path teaches the Klaviyo MCP, and running the list on it makes the site a live demo.
 - **Will:** creates the account (it needs his identity and billing details), shares the public site key and a list ID.
-- **Claude:** wires the Score email gate and a newsletter sign-up (M3), with profile properties `springboard_score`, `springboard_level` and `weakest_checkpoint`.
+- **Claude:** wires the Score email gate and a newsletter sign-up (M3), with profile properties `springspot_score`, `springspot_level` and `weakest_checkpoint`.
 - **Later:** a nurture flow by Score level, and a weekly or biweekly newsletter built from the blog and digests. SMS only once there's a reason to text people; it costs credits.
 
 ## 5. LinkedIn

@@ -12,11 +12,13 @@ Springspot is a **threshold a business reaches, not a product it buys**. It is t
 - **Promise:** less vendor dependence, faster execution, same platforms they already use.
 - **Voice:** practitioner, not pundit. Real workflows, real screenshots, real numbers.
 
-## The Micro Stack
+## The Springspot Stack
 
 **It's not our stack, it's theirs.** Springspot is a standard a business's own stack meets, not software it rents from us. The owner keeps every account and every connection.
 
-The Micro Stack is the minimum Springspot runs on, and a core selling point:
+The Springspot Stack is the minimum Springspot runs on, and a core selling point.
+
+**Public copy names no products and no prices.** The per-job breakdown (starting cost, what to look for, when to move up) is gated behind an email on the home page and the Springspot Stack post (`src/lib/stack.ts`, `StackBreakdown.astro`). It says the stack covers design, development, the store, email and SMS, and reviews for roughly $100 a month to start; that owners can bring their own tools; and that missing pieces are layered in based on business requirements, not anyone's favourites, in the Springspot Startup. The breakdown below is internal reference only:
 
 | Job                           | Tool                    | To start           |
 | ----------------------------- | ----------------------- | ------------------ |
@@ -34,7 +36,22 @@ Claude Pro checked 2026-11-09; the rest need confirming (see `review-queue.md`).
 - **Cheap stacks make cheap iterations:** the bigger win is how cheap it is to change course. Iteration often happens before launch, while the operator is still learning; we reserve the right to get smarter along the way.
 - **Audience:** the roughly 33 million US small businesses (SBA), most with no employees; Springspot serves the ones that sell online.
 - **The seal:** reaching the top Score level makes a stack **Springspot-ready** (see `site-blueprint.md`).
-- Post: `src/content/blog/the-micro-stack.md`.
+- Post: `src/content/blog/the-springspot-stack.md`.
+
+## The Springspot Startup
+
+The entry package Will sells: where working together begins. Page: `/startup`.
+
+1. **Assess the business** — starting from the Springspot Score and the business's requirements.
+2. **Plan the Springspot Stack** — keep the tools that do the job; layer in missing pieces chosen for the business's requirements.
+3. **Set it up and connect it to AI** — design system, store and catalog, email and SMS, reviews.
+4. **Hand over the processes** — core workflows written down and repeatable, leading into the Springspot Path.
+
+Price, scope and timeline are open (see `review-queue.md`). Springspot Advisory is the ongoing, done-with-you help after the Startup.
+
+## Branded terms
+
+Named Springspot things are brands: **Springspot Score**, **Springspot Stack**, **Springspot Startup**, **Springspot Path**, **Springspot Standard**, **Springspot Advisory** and **Springspot-ready** (plus the short forms "the Score" and "the Path"). Every mention in body copy is bold and colour-coded by family: score (brick: Score, Springspot-ready), stack (teal: Stack, Standard), path (amber: Startup, Path, Advisory). It is automatic for Markdown and frontmatter text (`src/lib/brand-terms.ts`); hand-written Astro copy uses `<BrandText>`. Nav labels, buttons, eyebrows and titles stay plain.
 
 ## Tiers of operation
 

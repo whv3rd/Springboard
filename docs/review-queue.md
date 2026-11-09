@@ -4,12 +4,30 @@ Things that need Will at a computer. Claude adds to this list as work lands; Wil
 
 Last updated: 2026-10-21.
 
-## The Micro Stack post and home section
+## The Springspot Stack post and home section
 
-- [ ] Confirm starting prices: Figma Professional seat, Shopify Basic, Klaviyo free tier and first paid plan, Judge.me free plan and first paid plan. Claude Pro ($20/month, $17 billed yearly) was checked 2026-11-09. If the total moves, update the post, the home page `MICRO_STACK` list and `docs/concept.md`.
+- [ ] Product names and prices are now off the public site. Confirm "roughly $100 a month to start" is the figure you want to stand behind (internal breakdown in `docs/concept.md`; only Claude Pro was checked live). 📱
 - [ ] Add a real enterprise number from your experience (Commerce Cloud or AEM contract) if you can share one. 📱
 - [ ] Keep the Mark Cuban framing for the 33 million figure, or cite the SBA directly? 📱
-- [ ] Naming: "Micro Stack" for the stack and "Springspot-ready" for the seal. Keep, or riff? 📱
+- [ ] Naming: "Springspot Stack" for the stack and "Springspot-ready" for the seal. Keep, or riff? 📱
+
+## Springspot Startup
+
+- [ ] Price: a fixed price, "from $X", or quoted after a call (the page says quoted for now).
+- [ ] Scope and timeline: are the four steps on `/startup` right? How long does a Startup take? 📱
+- [ ] How Startup and Advisory fit together: Advisory is described as the ongoing help after the Startup. 📱
+
+## Klaviyo (account: Springspot AI, public key TRKcd8)
+
+The site's forms subscribe to the **Email List** (`Y3mKEK`, single opt-in). The keys are set in the willvinton.com deploy, so the live Score and Stack breakdown collect emails once the open PRs merge and deploy. Sources: `springspot - score` (properties `springspot_score`, `springspot_level`, `weakest_checkpoint`) and `springspot - stack breakdown` (property `requested = stack_breakdown`).
+
+- [ ] After deploy, test each form with a plus-address (e.g. `you+score1@...`), check the profile in Lists → Email List shows **Subscribed** and the right source, then delete the test profiles.
+- [ ] Build a welcome flow (trigger: added to Email List). No flows exist yet, so new subscribers get nothing. Optionally branch on source: Score results vs the Stack breakdown.
+- [ ] Set up a branded sending domain before sending anything. The default sender is a Gmail address, which Gmail/Yahoo bulk-sender rules will spam-folder or reject.
+- [ ] Update the account's website URL (now `http://willvinton.com/springspot`) to `https://www.willvinton.com/springspot`, and later to springspot.ai.
+- [ ] SMS stays off: no sender is configured, and SMS capture needs the TCPA consent copy first.
+- [ ] Confirm the per-job cost ranges in `src/lib/stack.ts` (only the AI plan's price was checked live). Name example tools in the gated breakdown, or keep it product-free? 📱
+- [ ] More to gate later? Candidates: track requirements and checklists, some Playbook posts.
 
 ## Security without a DevOps team
 

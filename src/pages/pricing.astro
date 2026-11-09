@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import Callout from '@/components/Callout.astro';
@@ -45,8 +46,20 @@ const tiers: Tier[] = [
     unlocks: ['The Path for multiple seats', 'Team Score tracking', 'Quarterly live Q&A'],
   },
   {
+    name: 'Springspot Startup',
+    audience: 'Getting started',
+    price: 'Quoted',
+    unlocks: [
+      'Business and stack assessment',
+      'Your Springspot Stack, chosen for your requirements',
+      'Set up and connected to AI',
+      'Core processes written down',
+    ],
+    cta: { label: 'See the Startup', href: '/startup' },
+  },
+  {
     name: 'Springspot Advisory',
-    audience: 'Done-with-you',
+    audience: 'Ongoing, done with you',
     price: 'Quoted',
     unlocks: ['Readiness audit', 'Hands-on build', 'Optional ongoing operation'],
     cta: { label: 'Book a call', href: '/about#advisory' },
@@ -56,7 +69,7 @@ const tiers: Tier[] = [
 
 <BaseLayout
   title="Pricing"
-  description="Free, Path, Path Team and Springspot Advisory. What each tier unlocks."
+  description="Free, Path, Path Team, Springspot Startup and Springspot Advisory. What each tier unlocks."
 >
   <div class="container page">
     <PageHeader
@@ -100,8 +113,7 @@ const tiers: Tier[] = [
     {/* PLACEHOLDER: Path and Path Team pricing is an open decision (CLAUDE.md). */}
     <Callout title="Path pricing isn't set yet">
       <p>
-        The Path and Path Team open after the free tracks are published. Until then, every track
-        overview, requirements list and checklist is free to read.
+        <BrandText text="The Path and Path Team open after the free tracks are published. Until then, every track overview, requirements list and checklist is free to read." />
       </p>
     </Callout>
   </div>

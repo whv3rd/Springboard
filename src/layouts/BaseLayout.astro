@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { serializeJsonLd, type JsonLd } from '@/lib/schema';
+import { PUBLIC_KLAVIYO_SITE_KEY } from 'astro:env/client';
 
 interface Props {
   title: string;
@@ -44,6 +45,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     {schema && <script type="application/ld+json" set:html={serializeJsonLd(schema)} />}
+    {/* Klaviyo onsite tracking (Active on Site, identify, hosted forms). Only when the key is set. */}
+    {PUBLIC_KLAVIYO_SITE_KEY && (
+      <script
+        is:inline
+        async
+        src={`https://static.klaviyo.com/onsite/js/${PUBLIC_KLAVIYO_SITE_KEY}/klaviyo.js?company_id=${PUBLIC_KLAVIYO_SITE_KEY}`}
+      />
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">

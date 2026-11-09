@@ -8,6 +8,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: 'Springspot', href: '/springspot' },
   { label: 'The Score', href: '/score' },
   { label: 'The Path', href: '/path' },
+  { label: 'Startup', href: '/startup' },
   { label: 'Blog', href: '/blog' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },

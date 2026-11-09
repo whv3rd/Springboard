@@ -1,4 +1,6 @@
 ---
+import BrandText from '@/components/BrandText.astro';
+import StackBreakdown from '@/components/StackBreakdown.astro';
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -23,7 +25,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { title, description, date, updated, pillar, takeaways, faq } = post.data;
+const { title, description, date, updated, pillar, takeaways, faq, gate } = post.data;
 const { Content } = await render(post);
 
 const author = await getPostAuthor(post.data.author);
@@ -91,7 +93,9 @@ const schema = graph([
         </h2>
         <ul>
           {takeaways.map((item) => (
-            <li>{item}</li>
+            <li>
+              <BrandText text={item} />
+            </li>
           ))}
         </ul>
       </aside>
@@ -100,6 +104,12 @@ const schema = graph([
     <div class="prose">
       <Content />
     </div>
+
+    {gate === 'stack-breakdown' && (
+      <div class="post-gate">
+        <StackBreakdown id="post-stack" />
+      </div>
+    )}
 
     {faq?.length ? (
       <section class="faq" aria-labelledby="faq-title">
@@ -110,9 +120,13 @@ const schema = graph([
           {faq.map((item) => (
             <div class="faq__item">
               <dt>
-                <h3 class="faq__question">{item.question}</h3>
+                <h3 class="faq__question">
+                  <BrandText text={item.question} />
+                </h3>
               </dt>
-              <dd class="faq__answer">{item.answer}</dd>
+              <dd class="faq__answer">
+                <BrandText text={item.answer} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -124,8 +138,7 @@ const schema = graph([
         Where does your store stand?
       </h2>
       <p class="section-lede">
-        The Springspot Score rates your design, platform, marketing and process systems from 0 to
-        100.
+        <BrandText text="The Springspot Score rates your design, platform, marketing and process systems from 0 to 100." />
       </p>
       <div class="actions">
         <Button href="/score">Take the Score</Button>
@@ -242,6 +255,11 @@ const schema = graph([
   .faq__answer {
     margin: var(--space-2) 0 0;
     color: var(--color-text-muted);
+  }
+
+  .post-gate {
+    max-width: var(--width-prose);
+    margin-top: var(--space-7);
   }
 
   .post-cta {

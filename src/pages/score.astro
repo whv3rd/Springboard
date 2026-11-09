@@ -1,4 +1,5 @@
 ---
+import BrandText from '@/components/BrandText.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import Callout from '@/components/Callout.astro';
@@ -110,6 +111,18 @@ const nextSteps = await Promise.all(
             />
             <p class="field__error" id="score-email-error" data-email-error hidden></p>
           </div>
+          <div class="honeypot" aria-hidden="true">
+            <label>
+              Leave this field empty
+              <input
+                type="text"
+                name="company_website"
+                tabindex="-1"
+                autocomplete="off"
+                data-honeypot
+              />
+            </label>
+          </div>
           <p class="consent" id="score-consent">
             You'll get your result by email, plus occasional Springspot emails: new playbooks and
             build notes. Unsubscribe anytime.
@@ -157,16 +170,14 @@ const nextSteps = await Promise.all(
           ))}
           <div class="result__step" data-next-step="all-clear" hidden>
             <p>
-              Every checkpoint is at 4. Keep it there: retake the Score each quarter and use the
-              track checklists to catch drift.
+              <BrandText text="Every checkpoint is at 4. Keep it there: retake the Score each quarter and use the track checklists to catch drift." />
             </p>
           </div>
         </div>
 
         <div class="result__upsell">
           <p>
-            The full gap report, with every checkpoint rated and linked to the matching Path
-            modules, is part of the Path.
+            <BrandText text="The full gap report, with every checkpoint rated and linked to the matching Path modules, is part of the Path." />
           </p>
           <div class="actions">
             <Button href="/pricing">See Path pricing</Button>
