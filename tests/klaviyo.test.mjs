@@ -20,8 +20,8 @@ test('config needs both keys, non-empty', () => {
 
 test('subscription request matches the documented shape', () => {
   const properties = {
-    springboard_score: 60,
-    springboard_level: 'Coiled',
+    springspot_score: 60,
+    springspot_level: 'Coiled',
     weakest_checkpoint: 'design-system',
   };
   const req = buildSubscriptionRequest(
@@ -36,7 +36,7 @@ test('subscription request matches the documented shape', () => {
     data: {
       type: 'subscription',
       attributes: {
-        custom_source: 'Springboard Score',
+        custom_source: 'springspot - score',
         profile: {
           data: {
             type: 'profile',
@@ -60,8 +60,13 @@ test('other gates set their own source and properties', () => {
     { requested: 'stack_breakdown' },
     KLAVIYO_STACK_SOURCE,
   );
-  assert.equal(req.body.data.attributes.custom_source, 'Springspot Stack breakdown');
+  assert.equal(req.body.data.attributes.custom_source, 'springspot - stack breakdown');
   assert.deepEqual(req.body.data.attributes.profile.data.attributes.properties, {
     requested: 'stack_breakdown',
   });
+});
+
+test('emails are trimmed and lowercased', () => {
+  const req = buildSubscriptionRequest({ siteKey: 'K', listId: 'L' }, '  Op@Example.COM ', {});
+  assert.equal(req.body.data.attributes.profile.data.attributes.email, 'op@example.com');
 });

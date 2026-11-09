@@ -17,10 +17,15 @@ Last updated: 2026-10-21.
 - [ ] Scope and timeline: are the four steps on `/startup` right? How long does a Startup take? 📱
 - [ ] How Startup and Advisory fit together: Advisory is described as the ongoing help after the Startup. 📱
 
-## Gating
+## Klaviyo (account: Springspot AI, public key TRKcd8)
 
-- [ ] **Set the Klaviyo keys so the email gates actually collect.** In whv3rd/willvinton.com → Settings → Secrets and variables → Actions → Variables, add `PUBLIC_KLAVIYO_SITE_KEY` (Klaviyo public API key / site ID) and `PUBLIC_KLAVIYO_LIST_ID` (the list to subscribe to), then re-run Deploy site. As of 2026-11-09 the live build has neither, so Score and breakdown emails go nowhere.
-- [ ] In Klaviyo, build a flow for source "Springspot Stack breakdown" (profile property `requested = stack_breakdown`) if you want to email the breakdown or follow up. Score signups keep the source "Springboard Score".
+The site's forms subscribe to the **Email List** (`Y3mKEK`, single opt-in). The keys are set in the willvinton.com deploy, so the live Score and Stack breakdown collect emails once the open PRs merge and deploy. Sources: `springspot - score` (properties `springspot_score`, `springspot_level`, `weakest_checkpoint`) and `springspot - stack breakdown` (property `requested = stack_breakdown`).
+
+- [ ] After deploy, test each form with a plus-address (e.g. `you+score1@...`), check the profile in Lists → Email List shows **Subscribed** and the right source, then delete the test profiles.
+- [ ] Build a welcome flow (trigger: added to Email List). No flows exist yet, so new subscribers get nothing. Optionally branch on source: Score results vs the Stack breakdown.
+- [ ] Set up a branded sending domain before sending anything. The default sender is a Gmail address, which Gmail/Yahoo bulk-sender rules will spam-folder or reject.
+- [ ] Update the account's website URL (now `http://willvinton.com/springspot`) to `https://www.willvinton.com/springspot`, and later to springspot.ai.
+- [ ] SMS stays off: no sender is configured, and SMS capture needs the TCPA consent copy first.
 - [ ] Confirm the per-job cost ranges in `src/lib/stack.ts` (only the AI plan's price was checked live). Name example tools in the gated breakdown, or keep it product-free? 📱
 - [ ] More to gate later? Candidates: track requirements and checklists, some Playbook posts.
 

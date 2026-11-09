@@ -44,7 +44,7 @@ An education-first hub (blog + docs + paid library) that does three jobs, in ord
 | 96–100 | Springspot   | One operator or a small team can run it all    |
 
 - **The seal:** a stack that reaches the Springspot level (96–100) is **Springspot-ready**. The seal is earned by what the stack can do, not issued by a vendor, and it applies to the business's own stack (see "The Springspot Stack" in `concept.md`).
-- **Email gate:** the whole result (total, level and next step) shows only after the visitor gives an email, which goes to Klaviyo with the score properties. Requires the `PUBLIC_KLAVIYO_SITE_KEY` and `PUBLIC_KLAVIYO_LIST_ID` repo variables on willvinton.com (the deploy builds the site).
+- **Email gate:** the whole result (total, level and next step) shows only after the visitor gives an email, which goes to Klaviyo with the score properties. The Klaviyo public key and Email List ID are set in the willvinton.com deploy (repo variables `PUBLIC_KLAVIYO_SITE_KEY` / `PUBLIC_KLAVIYO_LIST_ID` override them).
 - **Free result:** total, level, one next step.
 - **Paid result:** full gap report per checkpoint, with links into matching Path modules.
 

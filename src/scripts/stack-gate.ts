@@ -41,6 +41,7 @@ for (const gate of gates) {
   const input = gate.querySelector<HTMLInputElement>('[data-email]')!;
   const error = gate.querySelector<HTMLElement>('[data-error]')!;
   const submit = gate.querySelector<HTMLButtonElement>('[data-submit]')!;
+  const honeypot = gate.querySelector<HTMLInputElement>('[data-honeypot]');
   let sending = false;
 
   form.addEventListener('submit', async (event) => {
@@ -64,7 +65,9 @@ for (const gate of gates) {
     submit.disabled = true;
     submit.setAttribute('aria-busy', 'true');
     try {
-      if (hasKlaviyoConfig(klaviyo)) {
+      if (honeypot?.value) {
+        // A filled honeypot means a bot: unlock, send nothing.
+      } else if (hasKlaviyoConfig(klaviyo)) {
         await subscribe(klaviyo, value, { requested: 'stack_breakdown' }, KLAVIYO_STACK_SOURCE);
       } else {
         console.warn(

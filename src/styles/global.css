@@ -353,3 +353,12 @@ a:hover {
 .brand-term--path {
   color: var(--color-brand-path);
 }
+
+/* Spam trap on signup forms: hidden from people and assistive tech, filled in by bots. */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

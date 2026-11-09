@@ -46,6 +46,18 @@ const { id } = Astro.props;
         </div>
         <p class="field__error" id={`${id}-error`} data-error hidden></p>
       </div>
+      <div class="honeypot" aria-hidden="true">
+        <label>
+          Leave this field empty
+          <input
+            type="text"
+            name="company_website"
+            tabindex="-1"
+            autocomplete="off"
+            data-honeypot
+          />
+        </label>
+      </div>
       <p class="gate__consent" id={`${id}-consent`}>
         You'll also get occasional Springspot emails: new playbooks and build notes. Unsubscribe
         anytime.
