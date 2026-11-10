@@ -129,6 +129,9 @@ function init(): void {
     $<HTMLElement>(result, '[data-total]').textContent = String(score.total);
     $<HTMLElement>(result, '[data-level-name]').textContent = score.level.name;
     $<HTMLElement>(result, '[data-level-meaning]').textContent = `${score.level.meaning}.`;
+    result.querySelectorAll<HTMLElement>('[data-level-art]').forEach((el) => {
+      el.hidden = el.dataset.levelArt !== score.level.name;
+    });
     $<HTMLElement>(result, '[data-weakest-name]').textContent = score.weakest.name;
     $<HTMLElement>(result, '[data-weakest-line]').hidden = allClear;
     const shown = allClear ? 'all-clear' : score.weakest.track;

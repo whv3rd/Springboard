@@ -1,0 +1,959 @@
+---
+/**
+ * Homepage hero graphic: the five checkpoints wire into a spring standing on the spot.
+ * Each connection adds 20 to the Score and compresses the spring; at 100 it releases
+ * and launches the parcel. Pure SVG + CSS, no script. With reduced motion it holds the
+ * finished state (all five connected, Score 100).
+ */
+import { CHECKPOINTS, LEVELS } from '@/lib/score';
+
+const GROUND = 440;
+const coil = Array.from({ length: 6 }, (_, i) => GROUND - 28 * i);
+const front = coil.map((y) => `M278,${y} C278,${y + 11} 362,${y - 3} 362,${y - 14}`).join(' ');
+const back = coil.map((y) => `M362,${y - 14} C362,${y - 25} 278,${y - 39} 278,${y - 28}`).join(' ');
+
+// Checkpoints 1-3 sit on the left, 4-5 on the right; each has a wire into the spot.
+const rows = [110, 195, 280, 195, 280];
+const nodes = CHECKPOINTS.map((c, i) => {
+  const left = i < 3;
+  const y = rows[i];
+  const yc = y + 20;
+  return {
+    n: c.number,
+    name: c.name,
+    y,
+    yc,
+    chipX: left ? 24 : 576,
+    labelX: left ? 76 : 564,
+    anchor: left ? 'start' : 'end',
+    portX: left ? 206 : 434,
+    wire: left
+      ? `M206,${yc} C262,${yc} 214,${GROUND} 264,${GROUND}`
+      : `M434,${yc} C378,${yc} 426,${GROUND} 376,${GROUND}`,
+  };
+});
+
+// One readout per step: five checkpoints at full marks are worth 20 each.
+const scores = [0, 20, 40, 60, 80, 100];
+const last = LEVELS.length - 1;
+---
+
+<svg
+  class="hs"
+  viewBox="0 0 640 480"
+  role="img"
+  aria-label="Five checkpoints connect one by one to a spring standing on a target. Each connection raises the Springspot Score by 20 and compresses the spring. At 100 it releases and launches a parcel."
+>
+  <line class="hs__ground" x1="24" y1={GROUND} x2="616" y2={GROUND}></line>
+  <g class="hs__target">
+    <ellipse class="hs__ring" cx="320" cy={GROUND} rx="56" ry="9"></ellipse>
+    <ellipse class="hs__ring" cx="320" cy={GROUND} rx="37" ry="6"></ellipse>
+    <ellipse class="hs__bull" cx="320" cy={GROUND} rx="16" ry="2.6"></ellipse>
+  </g>
+  <ellipse class="hs__pulse" cx="320" cy={GROUND} rx="56" ry="9"></ellipse>
+
+  {nodes.map((d) => (
+    <g>
+      <path class="hs__ghost" d={d.wire} />
+      <path class={`hs__wire hs__wire--${d.n}`} d={d.wire} pathLength="1" />
+      <circle class="hs__port" cx={d.portX} cy={d.yc} r="3.5" />
+      <rect class="hs__chip" x={d.chipX} y={d.y} width="40" height="40" rx="2" />
+      <text class="hs__num" x={d.chipX + 20} y={d.y + 25.5} text-anchor="middle">
+        {d.n}
+      </text>
+      <text class="hs__label" x={d.labelX} y={d.y + 26} text-anchor={d.anchor}>
+        {d.name}
+      </text>
+      <g class={`hs__on hs__on--${d.n}`}>
+        <rect class="hs__chip hs__chip--on" x={d.chipX} y={d.y} width="40" height="40" rx="2" />
+        <text class="hs__num hs__num--on" x={d.chipX + 20} y={d.y + 25.5} text-anchor="middle">
+          {d.n}
+        </text>
+        <text class="hs__label hs__label--on" x={d.labelX} y={d.y + 26} text-anchor={d.anchor}>
+          {d.name}
+        </text>
+        <circle class="hs__port hs__port--on" cx={d.portX} cy={d.yc} r="3.5" />
+      </g>
+    </g>
+  ))}
+
+  <g class="hs__coil">
+    <path class="hs__back" d={back}></path>
+    <path class="hs__front" d={front}></path>
+  </g>
+  <g class="hs__plate">
+    <rect x="258" y="264" width="124" height="8" rx="1"></rect>
+  </g>
+  <g class="hs__load">
+    <g class="hs__parcel">
+      <rect x="304" y="232" width="32" height="32" rx="2"></rect>
+      <line x1="320" y1="232" x2="320" y2="264"></line>
+    </g>
+  </g>
+
+  <text class="hs__eyebrow" x="616" y="38" text-anchor="end">
+    SPRINGSPOT SCORE
+  </text>
+  {scores.map((s) => (
+    <text
+      class:list={['hs__score', 'hs__step', `hs__score--${s}`, { 'hs__step--final': s === 100 }]}
+      x="616"
+      y="118"
+      text-anchor="end"
+    >
+      {s}
+    </text>
+  ))}
+  {LEVELS.map((l, i) => (
+    <text
+      class:list={['hs__level', 'hs__step', `hs__level--${i}`, { 'hs__step--final': i === last }]}
+      x="616"
+      y="152"
+      text-anchor="end"
+    >
+      {l.name}
+    </text>
+  ))}
+</svg>
+
+<style is:global>
+  .hs {
+    --hs-d: 12s;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hs text {
+    font-family: var(--font-sans);
+  }
+  .hs__ground {
+    stroke: var(--color-border);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .hs__ring {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.75;
+  }
+  .hs__bull {
+    fill: var(--color-accent);
+  }
+  .hs__pulse {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.5;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+  }
+  .hs__back,
+  .hs__front {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .hs__back {
+    stroke: var(--color-border-strong);
+    stroke-width: 3.5;
+  }
+  .hs__front {
+    stroke: var(--color-text);
+    stroke-width: 5.5;
+  }
+  .hs__coil {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+  }
+  .hs__plate rect,
+  .hs__parcel rect {
+    fill: var(--color-text);
+  }
+  .hs__parcel line {
+    stroke: var(--color-bg);
+    stroke-width: 2;
+  }
+  .hs__parcel {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+  }
+  /* Resting pose (and the reduced-motion pose): launched, just above the plate. */
+  .hs__load {
+    transform: translateY(-64px);
+  }
+  .hs__ghost {
+    fill: none;
+    stroke: var(--color-border);
+    stroke-width: 2;
+    stroke-dasharray: 2 7;
+    stroke-linecap: round;
+  }
+  .hs__wire {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+  }
+  .hs__port {
+    fill: var(--color-bg);
+    stroke: var(--color-border-strong);
+    stroke-width: 2;
+  }
+  .hs__port--on {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+  }
+  .hs__chip {
+    fill: var(--color-bg);
+    stroke: var(--color-border-strong);
+    stroke-width: 1.5;
+  }
+  .hs__chip--on {
+    fill: var(--color-text);
+    stroke: var(--color-text);
+  }
+  .hs .hs__num {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    fill: var(--color-text-muted);
+  }
+  .hs .hs__num--on {
+    fill: var(--color-bg);
+  }
+  .hs__label {
+    font-size: 17px;
+    font-weight: 500;
+    fill: var(--color-text-muted);
+  }
+  .hs__label--on {
+    fill: var(--color-text);
+  }
+  .hs .hs__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    fill: var(--color-text-muted);
+  }
+  .hs .hs__score {
+    font-family: var(--font-serif);
+    font-size: 88px;
+    font-weight: 500;
+    fill: var(--color-text);
+  }
+  .hs .hs__level {
+    font-family: var(--font-serif);
+    font-size: 23px;
+    font-style: italic;
+    fill: var(--color-text);
+  }
+  .hs .hs__level.hs__step--final {
+    fill: var(--color-accent);
+  }
+  .hs__step {
+    opacity: 0;
+  }
+  .hs__step--final {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hs__coil {
+      animation: hs-coil var(--hs-d) linear infinite;
+    }
+    .hs__plate {
+      animation: hs-plate var(--hs-d) linear infinite;
+    }
+    .hs__load {
+      animation: hs-load var(--hs-d) linear infinite;
+    }
+    .hs__parcel {
+      animation: hs-spin var(--hs-d) linear infinite;
+    }
+    .hs__target {
+      animation: hs-lit var(--hs-d) linear infinite;
+    }
+    .hs__pulse {
+      animation: hs-pulse var(--hs-d) ease-out infinite;
+    }
+    .hs__wire--1 {
+      animation: hs-w1 var(--hs-d) ease-in-out infinite;
+    }
+    .hs__on--1 {
+      animation: hs-o1 var(--hs-d) linear infinite;
+    }
+    .hs__wire--2 {
+      animation: hs-w2 var(--hs-d) ease-in-out infinite;
+    }
+    .hs__on--2 {
+      animation: hs-o2 var(--hs-d) linear infinite;
+    }
+    .hs__wire--3 {
+      animation: hs-w3 var(--hs-d) ease-in-out infinite;
+    }
+    .hs__on--3 {
+      animation: hs-o3 var(--hs-d) linear infinite;
+    }
+    .hs__wire--4 {
+      animation: hs-w4 var(--hs-d) ease-in-out infinite;
+    }
+    .hs__on--4 {
+      animation: hs-o4 var(--hs-d) linear infinite;
+    }
+    .hs__wire--5 {
+      animation: hs-w5 var(--hs-d) ease-in-out infinite;
+    }
+    .hs__on--5 {
+      animation: hs-o5 var(--hs-d) linear infinite;
+    }
+    .hs__score--0 {
+      animation: hs-s0 var(--hs-d) step-end infinite;
+    }
+    .hs__score--20 {
+      animation: hs-s20 var(--hs-d) step-end infinite;
+    }
+    .hs__score--40 {
+      animation: hs-s40 var(--hs-d) step-end infinite;
+    }
+    .hs__score--60 {
+      animation: hs-s60 var(--hs-d) step-end infinite;
+    }
+    .hs__score--80 {
+      animation: hs-s80 var(--hs-d) step-end infinite;
+    }
+    .hs__score--100 {
+      animation: hs-s100 var(--hs-d) step-end infinite;
+    }
+    .hs__level--0 {
+      animation: hs-l0 var(--hs-d) step-end infinite;
+    }
+    .hs__level--1 {
+      animation: hs-l1 var(--hs-d) step-end infinite;
+    }
+    .hs__level--2 {
+      animation: hs-l2 var(--hs-d) step-end infinite;
+    }
+    .hs__level--3 {
+      animation: hs-l3 var(--hs-d) step-end infinite;
+    }
+    .hs__level--4 {
+      animation: hs-l4 var(--hs-d) step-end infinite;
+    }
+  }
+
+  @keyframes hs-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    72.5% {
+      transform: rotate(0deg);
+    }
+    86% {
+      transform: rotate(110deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes hs-lit {
+    0% {
+      opacity: 0.45;
+    }
+    68% {
+      opacity: 0.45;
+    }
+    70% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.45;
+    }
+  }
+  @keyframes hs-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    72.4% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    72.5% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    86% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+  @keyframes hs-w1 {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    6% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    12% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    94% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    99% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+  }
+  @keyframes hs-o1 {
+    0% {
+      opacity: 0;
+    }
+    12% {
+      opacity: 0;
+    }
+    13.5% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-w2 {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    20% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    26% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    94% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    99% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+  }
+  @keyframes hs-o2 {
+    0% {
+      opacity: 0;
+    }
+    26% {
+      opacity: 0;
+    }
+    27.5% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-w3 {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    34% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    40% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    94% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    99% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+  }
+  @keyframes hs-o3 {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 0;
+    }
+    41.5% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-w4 {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    48% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    54% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    94% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    99% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+  }
+  @keyframes hs-o4 {
+    0% {
+      opacity: 0;
+    }
+    54% {
+      opacity: 0;
+    }
+    55.5% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-w5 {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    62% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    68% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    94% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    99% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+  }
+  @keyframes hs-o5 {
+    0% {
+      opacity: 0;
+    }
+    68% {
+      opacity: 0;
+    }
+    69.5% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-s0 {
+    0% {
+      opacity: 1;
+    }
+    12% {
+      opacity: 0;
+    }
+    96% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes hs-s20 {
+    0% {
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    26% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-s40 {
+    0% {
+      opacity: 0;
+    }
+    26% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-s60 {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    54% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-s80 {
+    0% {
+      opacity: 0;
+    }
+    54% {
+      opacity: 1;
+    }
+    68% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-s100 {
+    0% {
+      opacity: 0;
+    }
+    68% {
+      opacity: 1;
+    }
+    96% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-l0 {
+    0% {
+      opacity: 1;
+    }
+    26% {
+      opacity: 0;
+    }
+    96% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes hs-l1 {
+    0% {
+      opacity: 0;
+    }
+    26% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-l2 {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    54% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-l3 {
+    0% {
+      opacity: 0;
+    }
+    54% {
+      opacity: 1;
+    }
+    68% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-l4 {
+    0% {
+      opacity: 0;
+    }
+    68% {
+      opacity: 1;
+    }
+    96% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes hs-coil {
+    0% {
+      transform: scaleY(1);
+    }
+    12% {
+      transform: scaleY(1);
+    }
+    15% {
+      transform: scaleY(0.88);
+    }
+    26% {
+      transform: scaleY(0.88);
+    }
+    29% {
+      transform: scaleY(0.74);
+    }
+    40% {
+      transform: scaleY(0.74);
+    }
+    43% {
+      transform: scaleY(0.6);
+    }
+    54% {
+      transform: scaleY(0.6);
+    }
+    57% {
+      transform: scaleY(0.46);
+    }
+    68% {
+      transform: scaleY(0.46);
+    }
+    70.5% {
+      transform: scaleY(0.4);
+    }
+    72.5% {
+      transform: scaleY(1.2);
+    }
+    76% {
+      transform: scaleY(0.9);
+    }
+    80% {
+      transform: scaleY(1.07);
+    }
+    84% {
+      transform: scaleY(0.97);
+    }
+    88% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes hs-plate {
+    0% {
+      transform: translateY(0px);
+    }
+    12% {
+      transform: translateY(0px);
+    }
+    15% {
+      transform: translateY(20.2px);
+    }
+    26% {
+      transform: translateY(20.2px);
+    }
+    29% {
+      transform: translateY(43.7px);
+    }
+    40% {
+      transform: translateY(43.7px);
+    }
+    43% {
+      transform: translateY(67.2px);
+    }
+    54% {
+      transform: translateY(67.2px);
+    }
+    57% {
+      transform: translateY(90.7px);
+    }
+    68% {
+      transform: translateY(90.7px);
+    }
+    70.5% {
+      transform: translateY(100.8px);
+    }
+    72.5% {
+      transform: translateY(-33.6px);
+    }
+    76% {
+      transform: translateY(16.8px);
+    }
+    80% {
+      transform: translateY(-11.8px);
+    }
+    84% {
+      transform: translateY(5px);
+    }
+    88% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  @keyframes hs-load {
+    0% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+    12% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+    15% {
+      transform: translateY(20.2px);
+      opacity: 1;
+    }
+    26% {
+      transform: translateY(20.2px);
+      opacity: 1;
+    }
+    29% {
+      transform: translateY(43.7px);
+      opacity: 1;
+    }
+    40% {
+      transform: translateY(43.7px);
+      opacity: 1;
+    }
+    43% {
+      transform: translateY(67.2px);
+      opacity: 1;
+    }
+    54% {
+      transform: translateY(67.2px);
+      opacity: 1;
+    }
+    57% {
+      transform: translateY(90.7px);
+      opacity: 1;
+    }
+    68% {
+      transform: translateY(90.7px);
+      opacity: 1;
+    }
+    70.5% {
+      transform: translateY(100.8px);
+      opacity: 1;
+    }
+    72.5% {
+      transform: translateY(-33.6px);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.1, 0.6, 0.3, 1);
+    }
+    86% {
+      transform: translateY(-340px);
+      opacity: 1;
+    }
+    86.1% {
+      transform: translateY(-340px);
+      opacity: 0;
+    }
+    95% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    99% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
