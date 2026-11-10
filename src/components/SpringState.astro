@@ -1,0 +1,483 @@
+---
+/**
+ * One Springspot Score level drawn as a spring on its spot, 1 (Grounded) to 5 (Springspot).
+ * Decorative: always shown beside the level's name. Pure SVG + CSS; with reduced motion
+ * each level holds a still pose.
+ */
+interface Props {
+  level: 1 | 2 | 3 | 4 | 5;
+}
+const { level } = Astro.props;
+
+const coil = Array.from({ length: 6 }, (_, i) => 220 - 20 * i);
+const front = coil.map((y) => `M70,${y} C70,${y + 8} 130,${y - 2} 130,${y - 10}`).join(' ');
+const back = coil.map((y) => `M130,${y - 10} C130,${y - 18} 70,${y - 28} 70,${y - 20}`).join(' ');
+const spot = level === 1 ? 176 : 100;
+---
+
+<svg
+  class:list={['ss', `ss--${level}`]}
+  viewBox="-20 0 240 240"
+  aria-hidden="true"
+  focusable="false"
+>
+  <line class="ss__ground" x1="-8" y1="223" x2="208" y2="223"></line>
+  <g class="ss__target">
+    <ellipse class="ss__ring" cx={spot} cy="223" rx="40" ry="6.5"></ellipse>
+    <ellipse class="ss__ring" cx={spot} cy="223" rx="26" ry="4.2"></ellipse>
+    <ellipse class="ss__bull" cx={spot} cy="223" rx="11" ry="1.9"></ellipse>
+  </g>
+  {level === 1 ? (
+    <Fragment>
+      <g transform="translate(-16,223) rotate(90) translate(-130,-220)">
+        <g class="ss__coil">
+          <path class="ss__back" d={back} />
+          <path class="ss__front" d={front} />
+        </g>
+      </g>
+      <g class="ss__parcel">
+        <rect x="108" y="200" width="22" height="22" rx="1.5" />
+        <line x1="119" y1="200" x2="119" y2="222" />
+      </g>
+    </Fragment>
+  ) : (
+    <g class="ss__rig">
+      <g class="ss__coil">
+        <path class="ss__back" d={back} />
+        <path class="ss__front" d={front} />
+      </g>
+      <g class="ss__top">
+        <rect class="ss__plate" x="56" y="94" width="88" height="6" rx="1" />
+        {level === 4 && (
+          <g class="ss__sparks">
+            <line x1="100" y1="54" x2="100" y2="42" />
+            <line x1="82" y1="59" x2="75" y2="49" />
+            <line x1="118" y1="59" x2="125" y2="49" />
+          </g>
+        )}
+        {level !== 5 && (
+          <g class="ss__load">
+            <g class="ss__parcel">
+              <rect x="89" y="72" width="22" height="22" rx="1.5" />
+              <line x1="100" y1="72" x2="100" y2="94" />
+            </g>
+          </g>
+        )}
+      </g>
+      {level === 5 && (
+        <g class="ss__load">
+          <g class="ss__parcel">
+            <rect x="89" y="72" width="22" height="22" rx="1.5" />
+            <line x1="100" y1="72" x2="100" y2="94" />
+          </g>
+        </g>
+      )}
+    </g>
+  )}
+</svg>
+
+<style is:global>
+  .ss {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .ss__ground {
+    stroke: var(--color-border-strong);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .ss__target {
+    opacity: 0.5;
+  }
+  .ss--5 .ss__target {
+    opacity: 1;
+  }
+  .ss__ring {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.5;
+  }
+  .ss__bull {
+    fill: var(--color-accent);
+  }
+  .ss__back,
+  .ss__front {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .ss__back {
+    stroke: var(--color-border-strong);
+    stroke-width: 3;
+  }
+  .ss__front {
+    stroke: var(--color-text);
+    stroke-width: 4.5;
+  }
+  .ss__plate,
+  .ss__parcel rect {
+    fill: var(--color-text);
+  }
+  .ss__parcel line {
+    stroke: var(--color-surface);
+    stroke-width: 1.5;
+  }
+  .ss__sparks {
+    opacity: 0;
+  }
+  .ss__sparks line {
+    stroke: var(--color-accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  .ss__coil {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+  }
+  .ss__parcel {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+  }
+  /* Still poses, also used for reduced motion. */
+  .ss--2 .ss__coil {
+    transform: scaleY(0.8);
+  }
+  .ss--2 .ss__top {
+    transform: translateY(24px);
+  }
+  .ss--3 .ss__coil,
+  .ss--4 .ss__coil {
+    transform: scaleY(0.42);
+  }
+  .ss--3 .ss__top,
+  .ss--4 .ss__top {
+    transform: translateY(69.6px);
+  }
+  .ss--5 .ss__load {
+    transform: translateY(-44px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ss--1 .ss__coil {
+      animation: ss-breathe 5s ease-in-out infinite alternate;
+    }
+    .ss--2 .ss__coil {
+      animation: ss-c2 5s linear infinite;
+    }
+    .ss--2 .ss__top {
+      animation: ss-t2 5s linear infinite;
+    }
+    .ss--3 .ss__coil {
+      animation: ss-c3 0.16s linear infinite alternate;
+    }
+    .ss--3 .ss__top {
+      animation: ss-t3 0.16s linear infinite alternate;
+    }
+    .ss--3 .ss__rig {
+      animation: ss-shake 0.11s linear infinite alternate;
+    }
+    .ss--4 .ss__coil {
+      animation: ss-c4 1.7s linear infinite;
+    }
+    .ss--4 .ss__top {
+      animation: ss-t4 1.7s linear infinite;
+    }
+    .ss--4 .ss__load {
+      animation: ss-hop 1.7s ease-out infinite;
+    }
+    .ss--4 .ss__sparks {
+      animation: ss-sparks 1.7s linear infinite;
+    }
+    .ss--5 .ss__coil {
+      animation: ss-c5 3.4s linear infinite;
+    }
+    .ss--5 .ss__top {
+      animation: ss-t5 3.4s linear infinite;
+    }
+    .ss--5 .ss__load {
+      animation: ss-launch 3.4s linear infinite;
+    }
+    .ss--5 .ss__parcel {
+      animation: ss-spin 3.4s linear infinite;
+    }
+  }
+
+  @keyframes ss-breathe {
+    from {
+      transform: scaleY(1);
+    }
+    to {
+      transform: scaleY(0.95);
+    }
+  }
+  @keyframes ss-shake {
+    from {
+      transform: translateX(-0.8px);
+    }
+    to {
+      transform: translateX(0.8px);
+    }
+  }
+  @keyframes ss-hop {
+    0% {
+      transform: translateY(0);
+    }
+    10% {
+      transform: translateY(-7px);
+    }
+    18% {
+      transform: translateY(0);
+    }
+    27% {
+      transform: translateY(-12px);
+    }
+    38% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes ss-sparks {
+    0% {
+      opacity: 0;
+    }
+    22% {
+      opacity: 0;
+    }
+    28% {
+      opacity: 1;
+    }
+    42% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes ss-launch {
+    0% {
+      transform: translateY(69.6px);
+      opacity: 1;
+    }
+    12% {
+      transform: translateY(69.6px);
+      opacity: 1;
+    }
+    19% {
+      transform: translateY(-24px);
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.1, 0.6, 0.3, 1);
+    }
+    46% {
+      transform: translateY(-190px);
+      opacity: 1;
+    }
+    47% {
+      transform: translateY(-190px);
+      opacity: 0;
+    }
+    84% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    88% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(69.6px);
+      opacity: 1;
+    }
+  }
+  @keyframes ss-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    19% {
+      transform: rotate(0deg);
+    }
+    46% {
+      transform: rotate(100deg);
+    }
+    47% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes ss-c2 {
+    0% {
+      transform: scaleY(1);
+    }
+    16% {
+      transform: scaleY(1);
+    }
+    24% {
+      transform: scaleY(0.9);
+    }
+    38% {
+      transform: scaleY(0.9);
+    }
+    46% {
+      transform: scaleY(0.8);
+    }
+    60% {
+      transform: scaleY(0.8);
+    }
+    68% {
+      transform: scaleY(0.7);
+    }
+    88% {
+      transform: scaleY(0.7);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes ss-t2 {
+    0% {
+      transform: translateY(0px);
+    }
+    16% {
+      transform: translateY(0px);
+    }
+    24% {
+      transform: translateY(12px);
+    }
+    38% {
+      transform: translateY(12px);
+    }
+    46% {
+      transform: translateY(24px);
+    }
+    60% {
+      transform: translateY(24px);
+    }
+    68% {
+      transform: translateY(36px);
+    }
+    88% {
+      transform: translateY(36px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  @keyframes ss-c3 {
+    0% {
+      transform: scaleY(0.42);
+    }
+    100% {
+      transform: scaleY(0.445);
+    }
+  }
+  @keyframes ss-t3 {
+    0% {
+      transform: translateY(69.6px);
+    }
+    100% {
+      transform: translateY(66.6px);
+    }
+  }
+  @keyframes ss-c4 {
+    0% {
+      transform: scaleY(0.42);
+    }
+    8% {
+      transform: scaleY(0.5);
+    }
+    16% {
+      transform: scaleY(0.42);
+    }
+    24% {
+      transform: scaleY(0.53);
+    }
+    34% {
+      transform: scaleY(0.42);
+    }
+    100% {
+      transform: scaleY(0.42);
+    }
+  }
+  @keyframes ss-t4 {
+    0% {
+      transform: translateY(69.6px);
+    }
+    8% {
+      transform: translateY(60px);
+    }
+    16% {
+      transform: translateY(69.6px);
+    }
+    24% {
+      transform: translateY(56.4px);
+    }
+    34% {
+      transform: translateY(69.6px);
+    }
+    100% {
+      transform: translateY(69.6px);
+    }
+  }
+  @keyframes ss-c5 {
+    0% {
+      transform: scaleY(0.42);
+    }
+    12% {
+      transform: scaleY(0.42);
+    }
+    19% {
+      transform: scaleY(1.2);
+    }
+    29% {
+      transform: scaleY(0.92);
+    }
+    39% {
+      transform: scaleY(1.06);
+    }
+    49% {
+      transform: scaleY(0.98);
+    }
+    58% {
+      transform: scaleY(1);
+    }
+    88% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0.42);
+    }
+  }
+  @keyframes ss-t5 {
+    0% {
+      transform: translateY(69.6px);
+    }
+    12% {
+      transform: translateY(69.6px);
+    }
+    19% {
+      transform: translateY(-24px);
+    }
+    29% {
+      transform: translateY(9.6px);
+    }
+    39% {
+      transform: translateY(-7.2px);
+    }
+    49% {
+      transform: translateY(2.4px);
+    }
+    58% {
+      transform: translateY(0px);
+    }
+    88% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(69.6px);
+    }
+  }
+</style>

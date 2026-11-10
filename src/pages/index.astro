@@ -6,6 +6,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import AccessBadge from '@/components/AccessBadge.astro';
 import Button from '@/components/Button.astro';
 import CheckpointList from '@/components/CheckpointList.astro';
+import HeroSpring from '@/components/HeroSpring.astro';
 import PostList from '@/components/PostList.astro';
 import { getPublishedPosts } from '@/lib/blog';
 import { PART_ACCESS, PART_LABELS, PARTS } from '@/lib/path';
@@ -19,22 +20,27 @@ const latest = (await getPublishedPosts()).slice(0, 3);
 >
   {/* DRAFT COPY: the whole home page is draft copy built from docs/concept.md. */}
   <section class="container hero">
-    <p class="eyebrow">Springspot AI</p>
-    <h1>Run the store with one operator, not five vendors.</h1>
-    <p class="hero__tagline">
-      Your jumping-off point to run leaner, launch more and scale without adding headcount.
-    </p>
-    <p class="hero__lede">
-      Springspot is the point where a small or mid-sized ecommerce business has its design, platform
-      and marketing systems connected to AI, so one operator or a small team can run it.
-    </p>
-    <div class="actions">
-      <Button href="/score" size="lg">
-        Take the Score
-      </Button>
-      <Button href="/springspot" variant="secondary" size="lg">
-        What is Springspot?
-      </Button>
+    <div class="hero__copy">
+      <p class="eyebrow">Springspot AI</p>
+      <h1>Run the store with one operator, not five vendors.</h1>
+      <p class="hero__tagline">
+        Your jumping-off point to run leaner, launch more and scale without adding headcount.
+      </p>
+      <p class="hero__lede">
+        Springspot is the point where a small or mid-sized ecommerce business has its design,
+        platform and marketing systems connected to AI, so one operator or a small team can run it.
+      </p>
+      <div class="actions">
+        <Button href="/score" size="lg">
+          Take the Score
+        </Button>
+        <Button href="/springspot" variant="secondary" size="lg">
+          What is Springspot?
+        </Button>
+      </div>
+    </div>
+    <div class="hero__art">
+      <HeroSpring />
     </div>
   </section>
 
@@ -178,7 +184,23 @@ const latest = (await getPublishedPosts()).slice(0, 3);
 
 <style>
   .hero {
-    padding-block: var(--space-9) var(--space-7);
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .hero__copy,
+  .hero__art {
+    min-width: 0;
+  }
+
+  @media (min-width: 60rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-7);
+      padding-block: var(--space-9) var(--space-7);
+    }
   }
 
   .hero h1 {

@@ -10,6 +10,7 @@ import { getTrackEntries } from '@/lib/path-content';
 import { TRACK_INFO, partHref, trackHref } from '@/lib/path';
 import { CHECKPOINTS, LEVELS, RATINGS } from '@/lib/score';
 import { NEXT_STEPS, QUESTIONS } from '@/lib/score-questions';
+import SpringState from '@/components/SpringState.astro';
 
 const questionCount = QUESTIONS.flat().length;
 
@@ -146,6 +147,13 @@ const nextSteps = await Promise.all(
         <h2 id="result-title" class="result__heading" tabindex="-1">
           Your Springspot Score
         </h2>
+        <div class="result__spring">
+          {LEVELS.map((l, i) => (
+            <div data-level-art={l.name} hidden>
+              <SpringState level={(i + 1) as 1 | 2 | 3 | 4 | 5} />
+            </div>
+          ))}
+        </div>
         <p class="result__score">
           <span class="result__total" data-total></span>
           <span class="result__out-of">out of 100</span>
@@ -229,6 +237,17 @@ const nextSteps = await Promise.all(
         Your level
       </h2>
       <p class="section-lede">Five checkpoints × 0–4, times five, gives a score from 0 to 100.</p>
+      <ol class="level-strip">
+        {LEVELS.map((l, i) => (
+          <li>
+            <SpringState level={(i + 1) as 1 | 2 | 3 | 4 | 5} />
+            <span class="level-strip__name">{l.name}</span>
+            <span class="level-strip__range">
+              {l.min}–{l.max}
+            </span>
+          </li>
+        ))}
+      </ol>
       <div class="prose">
         <table>
           <thead>
@@ -465,6 +484,50 @@ const nextSteps = await Promise.all(
   /* Next stays on the right when Back is hidden on the first step. */
   .quiz__nav :global([data-next]) {
     margin-left: auto;
+  }
+
+  .result__spring {
+    float: right;
+    width: clamp(8.5rem, 32%, 12rem);
+    margin: 0 0 var(--space-3) var(--space-4);
+  }
+
+  .level-strip {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin: var(--space-5) 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .level-strip li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .level-strip__name {
+    font-family: var(--font-serif);
+    font-size: var(--text-md);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
+  }
+
+  .level-strip__range {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 40rem) {
+    .level-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   .result__heading {
