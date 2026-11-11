@@ -24,6 +24,7 @@ Detail lives in `docs/`:
 - **Branded terms:** Springspot Score, Stack, Startup, Path, Standard, Advisory and Springspot-ready are brands: bold and colour-coded in body copy (automatic in Markdown; `<BrandText>` in Astro copy). See `docs/concept.md`.
 - **Public copy never lists Springspot Stack products or prices** — only roughly what it costs and the jobs it covers.
 - **Voice:** practitioner, not pundit. Real workflows, real numbers. No hype.
+- **Analytics:** GA4 through GTM, via the shared helper `/analytics.js` (lives in whv3rd/willvinton.com; see its `TRACKING.md`). `<Button href>` is a `cta_click` by default; tag anything else with `data-track="event"` + `data-track-<param>`, and send form/Score outcomes with `track()` from `src/lib/analytics.ts`. Never send what someone typed.
 - **Dependencies:** minimal. Ask before adding anything beyond Astro and dev tooling, and before any paid service.
 - **Workflow:** small commits on a branch, one PR per milestone (M0–M5, see handoff §4).
 - The site should itself meet the Springspot Standard — fast, on-system, accessible (Lighthouse 95+).
