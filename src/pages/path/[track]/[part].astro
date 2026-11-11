@@ -54,7 +54,13 @@ const eyebrow =
     </div>
 
     {Content ? (
-      <div class="prose">
+      <div
+        class="prose"
+        data-track-article
+        data-track-content-type="path_guide"
+        data-track-post-title={title}
+        data-track-post-slug={`${track}/${part}`}
+      >
         <Content />
       </div>
     ) : (

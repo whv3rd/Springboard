@@ -3,6 +3,7 @@
 // and the browser remembers it so a returning visitor isn't asked again.
 
 import { PUBLIC_KLAVIYO_LIST_ID, PUBLIC_KLAVIYO_SITE_KEY } from 'astro:env/client';
+import { STACK_FORM, track } from '@/lib/analytics';
 import { hasKlaviyoConfig, KLAVIYO_STACK_SOURCE, subscribe } from '@/lib/klaviyo';
 
 const STORAGE_KEY = 'springspot:stack-breakdown';
@@ -57,6 +58,11 @@ for (const gate of gates) {
     error.textContent = message;
     error.hidden = !message;
     if (message) {
+      track('form_error', {
+        ...STACK_FORM,
+        field_name: 'email',
+        error_type: value ? 'invalid_format' : 'required',
+      });
       input.focus();
       return;
     }
@@ -66,13 +72,25 @@ for (const gate of gates) {
     submit.setAttribute('aria-busy', 'true');
     try {
       if (honeypot?.value) {
-        // A filled honeypot means a bot: unlock, send nothing.
+        // A filled honeypot means a bot: unlock, send nothing (no analytics either).
       } else if (hasKlaviyoConfig(klaviyo)) {
-        await subscribe(klaviyo, value, { requested: 'stack_breakdown' }, KLAVIYO_STACK_SOURCE);
+        const ok = await subscribe(
+          klaviyo,
+          value,
+          { requested: 'stack_breakdown' },
+          KLAVIYO_STACK_SOURCE,
+        );
+        if (ok) {
+          track('form_submit', STACK_FORM);
+          track('generate_lead', { lead_source: 'stack_breakdown', form_id: STACK_FORM.form_id });
+        } else {
+          track('form_error', { ...STACK_FORM, field_name: 'form', error_type: 'submit_failed' });
+        }
       } else {
         console.warn(
           'Springspot Stack breakdown: PUBLIC_KLAVIYO_SITE_KEY / PUBLIC_KLAVIYO_LIST_ID not set; not sending to Klaviyo.',
         );
+        track('form_submit', STACK_FORM);
       }
     } finally {
       // Like the Score, it unlocks whatever happened with Klaviyo.

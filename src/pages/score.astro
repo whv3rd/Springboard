@@ -53,7 +53,13 @@ const nextSteps = await Promise.all(
 
     {/* Shown by the script; without JavaScript the explanation below still works. */}
     <section class="quiz" aria-label="Score questions" data-quiz hidden>
-      <form class="quiz__form" data-form novalidate>
+      <form
+        class="quiz__form"
+        data-form
+        novalidate
+        data-track-form="score"
+        data-track-form-name="Springspot Score"
+      >
         <div class="quiz__progress">
           <p class="quiz__progress-text" data-progress aria-live="polite">
             Step 1 of {CHECKPOINTS.length}: {CHECKPOINTS[0].name}
@@ -143,7 +149,13 @@ const nextSteps = await Promise.all(
       </form>
 
       {/* DRAFT COPY: result labels, all-clear line and gap report line. */}
-      <section class="result" data-result aria-labelledby="result-title" hidden>
+      <section
+        class="result"
+        data-result
+        aria-labelledby="result-title"
+        data-track-area="score_result"
+        hidden
+      >
         <h2 id="result-title" class="result__heading" tabindex="-1">
           Your Springspot Score
         </h2>
@@ -172,7 +184,9 @@ const nextSteps = await Promise.all(
             <div class="result__step" data-next-step={step.track} hidden>
               <p>{step.text}</p>
               <p>
-                <a href={step.href}>{step.linkText}</a>
+                <a href={step.href} data-track="score_cta_click">
+                  {step.linkText}
+                </a>
               </p>
             </div>
           ))}
@@ -188,8 +202,10 @@ const nextSteps = await Promise.all(
             <BrandText text="The full gap report, with every checkpoint rated and linked to the matching Path modules, is part of the Path." />
           </p>
           <div class="actions">
-            <Button href="/pricing">See Path pricing</Button>
-            <Button variant="secondary" data-retake>
+            <Button href="/pricing" data-track="score_cta_click">
+              See Path pricing
+            </Button>
+            <Button variant="secondary" data-retake data-track="score_cta_click">
               Retake the Score
             </Button>
           </div>

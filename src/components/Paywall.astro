@@ -10,7 +10,7 @@ interface Props {
 const { teaser, title = 'This part is in the Path' } = Astro.props;
 ---
 
-<section class="paywall" aria-labelledby="paywall-title">
+<section class="paywall" aria-labelledby="paywall-title" data-track-location="paywall">
   {teaser && <p class="paywall__teaser">{teaser}</p>}
   <div class="paywall__gate">
     <p class="eyebrow">Path members</p>

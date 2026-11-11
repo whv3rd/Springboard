@@ -101,7 +101,13 @@ const schema = graph([
       </aside>
     ) : null}
 
-    <div class="prose">
+    <div
+      class="prose"
+      data-track-article
+      data-track-content-type="blog_post"
+      data-track-post-title={title}
+      data-track-post-slug={post.id}
+    >
       <Content />
     </div>
 

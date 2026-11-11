@@ -2,6 +2,7 @@
 // Markup is rendered at build time in src/pages/score.astro; scoring is in src/lib/score.ts.
 
 import { PUBLIC_KLAVIYO_LIST_ID, PUBLIC_KLAVIYO_SITE_KEY } from 'astro:env/client';
+import { SCORE_FORM, track } from '@/lib/analytics';
 import { hasKlaviyoConfig, subscribe } from '@/lib/klaviyo';
 import {
   CHECKPOINTS,
@@ -13,7 +14,9 @@ import {
 import type { ScoreResult } from '@/lib/score';
 
 // Pre-rename key, kept so returning visitors keep their saved answers.
-const STORAGE_KEY = 'springboard:score';
+const STORAGE_KEY = 'springspot:score';
+// Results saved before the rename live under the old key; recall() moves them over.
+const OLD_STORAGE_KEY = 'springboard:score';
 // Loose on purpose: the browser's type=email check accepts `a@b`, this also wants a dot.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -93,6 +96,13 @@ function init(): void {
     else if (!emailInput.checkValidity() || !EMAIL_PATTERN.test(value)) {
       message = 'Enter a valid email address, like name@example.com.';
     }
+    if (message) {
+      track('form_error', {
+        ...SCORE_FORM,
+        field_name: 'email',
+        error_type: value ? 'invalid_format' : 'required',
+      });
+    }
     emailInput.setAttribute('aria-invalid', String(Boolean(message)));
     emailError.textContent = message;
     emailError.hidden = !message;
@@ -105,9 +115,13 @@ function init(): void {
     return scoreAnswers(answers);
   }
 
-  async function sendToKlaviyo(email: string, score: ScoreResult): Promise<void> {
+  /** What happened to the email: sent to Klaviyo, failed, skipped (bot), or no Klaviyo config. */
+  async function sendToKlaviyo(
+    email: string,
+    score: ScoreResult,
+  ): Promise<'sent' | 'failed' | 'bot' | 'unconfigured'> {
     // A filled honeypot means a bot: show the result, send nothing.
-    if (honeypot?.value) return;
+    if (honeypot?.value) return 'bot';
     if (!hasKlaviyoConfig(klaviyo)) {
       if (!warnedNoKlaviyo) {
         console.warn(
@@ -115,11 +129,29 @@ function init(): void {
         );
         warnedNoKlaviyo = true;
       }
-      return;
+      return 'unconfigured';
     }
-    await subscribe(klaviyo, email, {
+    const ok = await subscribe(klaviyo, email, {
       springspot_score: score.total,
       springspot_level: score.level.name,
+      weakest_checkpoint: weakestCheckpointProperty(score),
+    });
+    return ok ? 'sent' : 'failed';
+  }
+
+  /** Analytics for a finished quiz: the band and weakest checkpoint, never the email. */
+  function trackCompletion(score: ScoreResult, outcome: Awaited<ReturnType<typeof sendToKlaviyo>>) {
+    if (outcome === 'bot') return;
+    if (outcome === 'failed') {
+      track('form_error', { ...SCORE_FORM, field_name: 'form', error_type: 'submit_failed' });
+    } else {
+      track('form_submit', SCORE_FORM);
+      if (outcome === 'sent')
+        track('generate_lead', { lead_source: 'springspot_score', form_id: 'score' });
+    }
+    track('score_complete', {
+      score_total: score.total,
+      score_level: score.level.name,
       weakest_checkpoint: weakestCheckpointProperty(score),
     });
   }
@@ -139,6 +171,9 @@ function init(): void {
       el.hidden = el.dataset.nextStep !== shown;
     });
 
+    // Clicks on the result's next steps carry the band (analytics.js reads these off the area).
+    result.dataset.trackScoreLevel = score.level.name;
+    result.dataset.trackScoreTotal = String(score.total);
     form.hidden = true;
     result.hidden = false;
     if (moveFocus) $<HTMLElement>(result, '#result-title').focus();
@@ -154,6 +189,11 @@ function init(): void {
 
   function recall(): ScoreResult | null {
     try {
+      const old = localStorage.getItem(OLD_STORAGE_KEY);
+      if (old !== null) {
+        if (localStorage.getItem(STORAGE_KEY) === null) localStorage.setItem(STORAGE_KEY, old);
+        localStorage.removeItem(OLD_STORAGE_KEY);
+      }
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
       return stored ? resultFromRatings(stored.ratings) : null;
     } catch {
@@ -173,7 +213,18 @@ function init(): void {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (current < emailStep) {
-      if (validateStep(steps[current])) showStep(current + 1);
+      const stepInfo = { step_number: current + 1, step_name: CHECKPOINTS[current]?.name };
+      if (validateStep(steps[current])) {
+        track('score_step', stepInfo);
+        showStep(current + 1);
+      } else {
+        track('form_error', {
+          ...SCORE_FORM,
+          ...stepInfo,
+          field_name: 'checkpoint_answers',
+          error_type: 'required',
+        });
+      }
       return;
     }
 
@@ -184,9 +235,12 @@ function init(): void {
     nextButton.textContent = 'Working out your score…';
 
     const score = collectResult();
+    track('score_step', { step_number: current + 1, step_name: 'email' });
+    let outcome: Awaited<ReturnType<typeof sendToKlaviyo>> = 'failed';
     try {
-      await sendToKlaviyo(emailInput.value.trim(), score);
+      outcome = await sendToKlaviyo(emailInput.value.trim(), score);
     } finally {
+      trackCompletion(score, outcome);
       // The result shows whatever happened with Klaviyo.
       remember(score);
       showResult(score);
@@ -201,13 +255,19 @@ function init(): void {
   });
 
   // Clear a question's "needs an answer" mark as soon as it's answered.
+  let started = false;
   form.addEventListener('change', (event) => {
+    if (!started && (event.target as HTMLElement).closest('[data-question]')) {
+      started = true;
+      track('score_start');
+    }
     const fieldset = (event.target as HTMLElement).closest('[data-question]');
     fieldset?.classList.remove('is-missing');
     if (!steps[current].querySelector('.is-missing')) stepError.textContent = '';
   });
 
   $<HTMLButtonElement>(result, '[data-retake]').addEventListener('click', () => {
+    started = false;
     forget();
     form.reset();
     form.querySelectorAll('.is-missing').forEach((el) => el.classList.remove('is-missing'));

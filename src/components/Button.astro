@@ -20,10 +20,13 @@ const {
   ...rest
 } = Astro.props;
 const classes = ['button', `button--${variant}`, `button--${size}`, className];
+// Every link-style button is a CTA for analytics unless the caller tags it otherwise
+// (analytics.js; see TRACKING.md in whv3rd/willvinton.com).
+const track = href && !('data-track' in rest) ? { 'data-track': 'cta_click' } : {};
 ---
 
 {href ? (
-  <a href={href} class:list={classes} {...rest}>
+  <a href={href} class:list={classes} {...track} {...rest}>
     <slot />
   </a>
 ) : (

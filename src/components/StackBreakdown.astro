@@ -23,7 +23,13 @@ const { id } = Astro.props;
     <p class="gate__lede">
       <BrandText text="What each part of the Springspot Stack costs to start, what to look for when you choose or keep a tool, and when it's worth moving up a plan. Unlocks here straight away." />
     </p>
-    <form class="gate__form" novalidate data-form>
+    <form
+      class="gate__form"
+      novalidate
+      data-form
+      data-track-form="stack_breakdown"
+      data-track-form-name="Springspot Stack breakdown"
+    >
       <div class="field">
         <label class="field__label" for={`${id}-email`}>
           Email address
