@@ -13,9 +13,15 @@ const WILLVINTON_URL = 'https://www.willvinton.com/';
 <header class="site-header">
   <div class="container site-header__inner">
     <nav class="site-tabs" aria-label="Sites">
-      <a href={WILLVINTON_URL} class="site-tab">
+      <a
+        href={WILLVINTON_URL}
+        class="site-tab"
+        data-track="nav_click"
+        data-track-nav-type="site_tabs"
+        data-track-link-text="willvinton.com"
+      >
         <span class="site-tab__mark site-tab__mark--wv" aria-hidden="true">
-          W
+          wv
         </span>
         <span class="site-tab__label">willvinton.com</span>
         <svg class="site-tab__out" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
@@ -23,7 +29,13 @@ const WILLVINTON_URL = 'https://www.willvinton.com/';
         </svg>
       </a>
       <span class="site-tabs__divider" aria-hidden="true"></span>
-      <a href="/" class="site-tab site-tab--active" aria-current="true">
+      <a
+        href="/"
+        class="site-tab site-tab--active"
+        aria-current="true"
+        data-track="logo_click"
+        data-track-link-text="Springspot AI"
+      >
         <svg class="site-tab__mark" viewBox="0 0 32 32" aria-hidden="true">
           <rect width="32" height="32" rx="7" fill="currentColor"></rect>
           <path
@@ -38,7 +50,12 @@ const WILLVINTON_URL = 'https://www.willvinton.com/';
         <span class="site-tab__label">{SITE_LABEL}</span>
       </a>
     </nav>
-    <nav class="site-header__nav" aria-label="Primary">
+    <nav
+      class="site-header__nav"
+      aria-label="Primary"
+      data-track-area="nav"
+      data-track-nav-type="primary"
+    >
       <ul>
         {PRIMARY_NAV.map((item) => (
           <li>
@@ -54,7 +71,7 @@ const WILLVINTON_URL = 'https://www.willvinton.com/';
         ))}
       </ul>
     </nav>
-    <Button href="/score" class="site-header__cta">
+    <Button href="/score" class="site-header__cta" data-track-cta-location="header">
       Take the Score
     </Button>
   </div>
@@ -130,8 +147,9 @@ const WILLVINTON_URL = 'https://www.willvinton.com/';
     background: var(--color-text-muted);
     color: var(--color-bg);
     font-family: var(--font-serif);
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     font-weight: 700;
+    letter-spacing: -0.03em;
     line-height: 1;
   }
 
