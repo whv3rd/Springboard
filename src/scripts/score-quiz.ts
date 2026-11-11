@@ -13,7 +13,9 @@ import {
 import type { ScoreResult } from '@/lib/score';
 
 // Pre-rename key, kept so returning visitors keep their saved answers.
-const STORAGE_KEY = 'springboard:score';
+const STORAGE_KEY = 'springspot:score';
+// Results saved before the rename live under the old key; recall() moves them over.
+const OLD_STORAGE_KEY = 'springboard:score';
 // Loose on purpose: the browser's type=email check accepts `a@b`, this also wants a dot.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -154,6 +156,11 @@ function init(): void {
 
   function recall(): ScoreResult | null {
     try {
+      const old = localStorage.getItem(OLD_STORAGE_KEY);
+      if (old !== null) {
+        if (localStorage.getItem(STORAGE_KEY) === null) localStorage.setItem(STORAGE_KEY, old);
+        localStorage.removeItem(OLD_STORAGE_KEY);
+      }
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
       return stored ? resultFromRatings(stored.ratings) : null;
     } catch {

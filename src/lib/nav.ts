@@ -5,7 +5,7 @@ export interface NavItem {
 
 // Primary nav, from the sitemap in docs/site-blueprint.md.
 export const PRIMARY_NAV: NavItem[] = [
-  { label: 'Springspot', href: '/springspot' },
+  { label: 'Springspot', href: '/what-is-springspot' },
   { label: 'The Score', href: '/score' },
   { label: 'The Path', href: '/path' },
   { label: 'Startup', href: '/startup' },

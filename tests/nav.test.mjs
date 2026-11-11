@@ -17,10 +17,10 @@ test('strips the base path when served from a subdirectory', () => {
   for (const base of ['/springspot', '/springspot/']) {
     assert.equal(isCurrent('/blog', '/springspot/blog/five-checkpoints/', base), true);
     assert.equal(isCurrent('/score', '/springspot/score/', base), true);
-    assert.equal(isCurrent('/springspot', '/springspot/springspot/', base), true);
+    assert.equal(isCurrent('/what-is-springspot', '/springspot/what-is-springspot/', base), true);
     // The Springspot home page is not the "Springspot" explainer page.
-    assert.equal(isCurrent('/springspot', '/springspot/', base), false);
-    assert.equal(isCurrent('/springspot', '/springspot', base), false);
+    assert.equal(isCurrent('/what-is-springspot', '/springspot/', base), false);
+    assert.equal(isCurrent('/what-is-springspot', '/springspot', base), false);
     assert.equal(isCurrent('/blog', '/springspot/', base), false);
   }
 });
